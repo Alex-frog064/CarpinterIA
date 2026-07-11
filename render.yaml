@@ -8,5 +8,12 @@ services:
         sync: false
       - key: OLLAMA_MODEL
         value: llama3:latest
+      - key: DB_PATH
+        value: /data/carpinteria.db
     healthCheckPath: /health
     autoDeploy: true
+
+disks:
+  - name: carpinteria-data
+    mountPath: /data
+    sizeGB: 1
