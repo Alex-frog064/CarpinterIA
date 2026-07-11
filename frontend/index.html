@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARCHI Carpenter — Muebles a Medida y Carpintería Fina</title>
+  <meta name="description"
+    content="Manos expertas, creando carpintería atemporal. Más de 20 años de experiencia en la industria de la carpintería. Muebles a medida, renovación de hogares y restauración de madera.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+  <!-- Splash Screen -->
+  <div class="splash-screen" id="splashScreen">
+    <div class="splash-inner">
+      <div class="splash-logo">🪵</div>
+      <h2>ARCHI Carpenter</h2>
+      <div class="splash-loader"><span></span><span></span><span></span></div>
+      <p>Cargando carpintería premium...</p>
+    </div>
+  </div>
+
+  <div class="landing-page" id="appLanding">
+    <!-- Top Header / Navbar -->
+    <header class="navbar">
+      <div class="nav-container">
+        <a href="/" class="brand">
+          <span class="brand-icon">🪵</span>
+          <div class="brand-text-group">
+            <span class="brand-title">ARCHI</span>
+            <span class="brand-subtitle">CARPENTER</span>
+          </div>
+        </a>
+
+        <nav class="nav-menu" id="navMenu">
+          <a href="#hero" class="nav-link active">Inicio</a>
+          <a href="#services" class="nav-link">Servicios</a>
+          <a href="#projects" class="nav-link">Proyectos</a>
+          <a href="#blog" class="nav-link">Blog</a>
+          <a href="#contact" class="nav-link">Contáctanos</a>
+          <a href="/login" class="nav-link nav-auth-link" id="navAuthLink">Iniciar sesión</a>
+          <button class="nav-logout-btn hidden" id="navLogoutBtn" onclick="handleLogout()">Cerrar sesión</button>
+        </nav>
+
+        <div class="nav-phone">
+          <div class="phone-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+              </path>
+            </svg>
+          </div>
+          <div class="phone-text">
+            <span class="phone-label">Llámanos</span>
+            <a href="tel:12003009000" class="phone-number">1200 300 9000</a>
+          </div>
+        </div>
+
+        <button class="hamburger" id="btnHamburger" aria-label="Menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero"
+      style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/static/images/hero-bg.png');">
+      <div class="hero-container hero-split">
+        <div class="hero-content">
+          <h1>Manos expertas,<br>creando carpintería<br>atemporal</h1>
+        </div>
+        <div class="hero-right">
+          <p>Con más de 20 años de experiencia en la industria de la carpintería, nuestra pasión es transformar
+            materiales en bruto en espacios impresionantes y funcionales que perduran en el tiempo.</p>
+          <div class="hero-actions">
+            <a href="#services" class="btn-primary">Nuestros Servicios</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Bar -->
+    <section class="features-bar">
+      <div class="features-container">
+        <div class="feature-card feature-colored">
+          <div class="feature-icon">🪑</div>
+          <h3>Atención al Detalle</h3>
+          <p>Aliquip non incididunt ex minim minim minim culpa dolore voluptatedolor nisi consequat incididunt deserunt
+            in tempor.</p>
+        </div>
+        <div class="feature-card feature-colored">
+          <div class="feature-icon">🪵</div>
+          <h3>Materiales de Alta Calidad</h3>
+          <p>Aliquip non incididunt ex minim minim minim culpa dolore voluptatedolor nisi consequat incididunt deserunt
+            in tempor.</p>
+        </div>
+        <div class="feature-card feature-colored">
+          <div class="feature-icon">📐</div>
+          <h3>Servicio Personalizado</h3>
+          <p>Aliquip non incididunt ex minim minim minim culpa dolore voluptatedolor nisi consequat incididunt deserunt
+            in tempor.</p>
+        </div>
+        <div class="feature-card feature-white">
+          <div class="feature-icon-badge">%</div>
+          <h3>Precio Accesible</h3>
+          <p>Aliquip non incididunt ex minim minim minim culpa dolore voluptatedolor nisi consequat incididunt deserunt
+            in tempor.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Services -->
+    <section class="services-section" id="services">
+      <div class="section-header">
+        <h2>Nuestros Servicios</h2>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-image"
+            style="background-image: url('https://i.pinimg.com/736x/4e/bf/8a/4ebf8a7e6db24e0194f78b245d09a608.jpg');">
+          </div>
+          <div class="service-info">
+            <h3>Diseño de Muebles </h3>
+            <p>Ut enim dolore anim ut incididunt labore anim tempor nisi sit est dolor ea irure laborum ea minim
+              proident labore.</p>
+            <button class="btn-request-quote" onclick="startQuote('Custom Furniture Design')">Solicitar
+              Cotización</button>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-image"
+            style="background-image: url('https://i.pinimg.com/1200x/38/b1/f9/38b1f975f355eb5d24d1c1666bce1f74.jpg');">
+          </div>
+          <div class="service-info">
+            <h3>Proyectos de Renovación de Hogares</h3>
+            <p>Ut enim dolore anim ut incididunt labore anim tempor nisi sit est dolor ea irure laborum ea minim
+              proident labore.</p>
+            <button class="btn-request-quote" onclick="startQuote('Home Renovation Projects')">Solicitar
+              Cotización</button>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-image"
+            style="background-image: url('https://i.pinimg.com/1200x/48/b0/25/48b025d6f138eb7c2b4081d0f3c20303.jpg');">
+          </div>
+          <div class="service-info">
+            <h3>Reparación y Restauración de Madera</h3>
+            <p>Ut enim dolore anim ut incididunt labore anim tempor nisi sit est dolor ea irure laborum ea minim
+              proident labore.</p>
+            <button class="btn-request-quote" onclick="startQuote('Wood Repair & Restoration')">Solicitar
+              Cotización</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Custom Woodwork Section -->
+    <section class="about-section about-dark-wood" id="about"
+      style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/static/images/wood-bg.png');">
+      <div class="about-container">
+        <div class="about-image-wrapper">
+          <img src="https://i.pinimg.com/736x/64/fc/2b/64fc2bb36879a4df23bdc09ce6853d1e.jpg" alt="Carpintero trabajando"
+            class="about-main-image">
+          <div class="experience-badge-white">
+            <span class="exp-number">20</span>
+            <span class="exp-text">Años de Experiencia</span>
+          </div>
+        </div>
+
+        <div class="about-content">
+          <h2>Carpintería,<br>Personalizada para tu Hogar</h2>
+          <p>Lorem ipsum proident commodo tempor nulla duis non nostrud laboris pariatur nostrud adipisicing dolore ad
+            labore anim nulla id dolor officia non labore irure voluptatedolor anim reprehenderit dolore minim tempor
+            consequat veniam ut minim culpa velit aliquip id laboris in id aliqua nisi fugiat sequi proident consequat
+            dolor in anim. Ut enim dolore anim ut incididunt labore anim tempor nisi sit est dolor ea irure laborum ea
+            minim proident labore.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects-section" id="projects">
+      <div class="section-header">
+        <h2>Nuestros Proyectos</h2>
+      </div>
+
+      <div class="projects-gallery">
+        <div class="project-item">
+          <div class="project-img"
+            style="background-image: url('https://i.pinimg.com/1200x/22/2a/a6/222aa624a9f2fa6fe3aed02506f5bcb3.jpg');">
+          </div>
+          <div class="project-overlay">
+            <h4>Gabinetes para Sala</h4>
+            <span>Estantería a Medida</span>
+          </div>
+        </div>
+        <div class="project-item">
+          <div class="project-img"
+            style="background-image: url('https://i.pinimg.com/736x/b9/4e/29/b94e29236ca19aff75ede6b444ca3cc1.jpg');">
+          </div>
+          <div class="project-overlay">
+            <h4>Comedor Moderno</h4>
+            <span>Comedor de Roble</span>
+          </div>
+        </div>
+        <div class="project-item">
+          <div class="project-img"
+            style="background-image: url('https://i.pinimg.com/736x/55/57/3b/55573bcd7a859e42f5e53e4f47ff9d97.jpg');">
+          </div>
+          <div class="project-overlay">
+            <h4>Gabinetes de Cocina Premium</h4>
+            <span>Roble Claro</span>
+          </div>
+        </div>
+        <div class="project-item">
+          <div class="project-img"
+            style="background-image: url('https://i.pinimg.com/736x/2f/16/b8/2f16b8a33598a503fd6dabaeba6974ba.jpg');">
+          </div>
+          <div class="project-overlay">
+            <h4>Oficina de Lujo</h4>
+            <span>Mesa de Madera Maciza</span>
+          </div>
+        </div>
+        <div class="project-item">
+          <div class="project-img"
+            style="background-image: url('https://i.pinimg.com/736x/3f/9f/f9/3f9ff96c2cfed95b57b5e54c32b37919.jpg');">
+          </div>
+          <div class="project-overlay">
+            <h4>Detalles a Cincel</h4>
+            <span>Carpintería Artesanal</span>
+          </div>
+        </div>
+      </div>
+      <div class="projects-dots">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="blog">
+      <div class="testimonials-grid testimonials-four">
+        <div class="testimonial-card">
+          <div class="testimonial-author-top">
+            <div class="author-avatar">
+              <img src="https://i.pinimg.com/736x/0b/6c/44/0b6c44a2bb3e369362c57911c66fbcc9.jpg" alt="John Smith">
+            </div>
+            <div class="stars">★★★★★</div>
+          </div>
+          <p>Dolor clabore anim ut incididunt labore anim tempor nisi sit est dolor ea irure laborum ea minim proident
+            labor.</p>
+          <div class="client-info">
+            <span class="client-name">Angel Uk, Cliente</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-author-top">
+            <div class="author-avatar">
+              <img src="https://i.pinimg.com/736x/2e/52/ce/2e52cee9ce1a25334c45ad55d8c14c29.jpg" alt="John Smith">
+            </div>
+            <div class="stars">★★★★★</div>
+          </div>
+          <p>Dolor clabore anim ut incididunt labore anim tempor nisi sit est dolor ea irure laborum ea minim proident
+            labor.</p>
+          <div class="client-info">
+            <span class="client-name">John Smith, Cliente</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-author-top">
+            <div class="author-avatar">
+              <img src="https://i.pinimg.com/736x/39/36/73/393673eba5e31031aad76fd333384cd2.jpg" alt="John Smith">
+            </div>
+            <div class="stars">★★★★★</div>
+          </div>
+          <p>Dolor clabore anim ut incididunt labore anim tempor nisi sit est dolor ea irure laborum ea minim proident
+            labor.</p>
+          <div class="client-info">
+            <span class="client-name">Carlos Santana, Cliente</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-author-top">
+            <div class="author-avatar">
+              <img src="https://i.pinimg.com/1200x/3f/97/0d/3f970d04d5af09b472da57fb0d7385b1.jpg" alt="John Smith">
+            </div>
+            <div class="stars">★★★★★</div>
+          </div>
+          <p>Dolor clabore anim ut incididunt labore anim tempor nisi sit est dolor ea irure laborum ea minim proident
+            labor.</p>
+          <div class="client-info">
+            <span class="client-name">Vladimir Putin, Cliente</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+      <!-- CTA Bar -->
+      <div class="footer-cta">
+        <div class="footer-cta-inner">
+          <h2>Somos la Empresa Líder en Carpintería</h2>
+          <button class="btn-primary-light" onclick="toggleChatbot(true)">CONTÁCTANOS AHORA</button>
+        </div>
+      </div>
+
+      <div class="footer-container">
+        <div class="footer-column footer-brand-col">
+          <a href="#" class="brand">
+            <span class="brand-icon">🪵</span>
+            <div class="brand-text-group">
+              <span class="brand-title">ARCHI</span>
+              <span class="brand-subtitle">CARPENTER</span>
+            </div>
+          </a>
+          <p>Nos apasiona transformar espacios en entornos impresionantes, funcionales y personalizados. Con más de 20
+            años de experiencia en la industria, nos especializamos en crear diseños de interiores excepcionales que
+            reflejan el estilo único de nuestros clientes y satisfacen sus necesidades específicas.</p>
+        </div>
+
+        <div class="footer-column">
+          <h3>Últimas Noticias</h3>
+          <ul>
+            <li><a href="#">Consejos Esenciales de Diseño de Interiores</a></li>
+            <li><a href="#">Estanterías Funcionales de Pared a Pared</a></li>
+            <li><a href="#">12 Formas Sencillas de Exhibir tu Televisor</a></li>
+            <li><a href="#">Los 5 Secretos del Diseño Minimalista</a></li>
+            <li><a href="#">Genera un Gran Impacto con Múltiples Piezas</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>Contáctanos</h3>
+          <p>📍 180 S Main St, Los Angeles, CA</p>
+          <p>📞 Teléfono: (323) 222 9390</p>
+          <p>📠 Fax: (309) 333 9266</p>
+          <p>✉️ Correo: contact@archi-interiors.com</p>
+          <p>🌐 Web: templates-interiors.com</p>
+        </div>
+
+        <div class="footer-column">
+          <h3>Nuestros Servicios</h3>
+          <ul>
+            <li><a href="#services">Diseño de Muebles a Medida</a></li>
+            <li><a href="#services">Proyectos de Renovación de Hogares</a></li>
+            <li><a href="#services">Carpintería Comercial</a></li>
+            <li><a href="#services">Reparación y Restauración de Madera</a></li>
+            <li><a href="#services">Carpintería y Detallado</a></li>
+            <li><a href="#services">Mejoras Exteriores</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; Plantilla Premium por Dessignesia</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+            </svg>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+            </svg>
+          </a>
+          <a href="#" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- CHATBOT MODAL OVERLAY -->
+  <div class="chatbot-modal-overlay hidden" id="chatbotModalOverlay" onclick="toggleChatbot(false)"></div>
+
+  <!-- FLOATING LAUNCHER -->
+  <div class="chatbot-floating">
+    <!-- Toggle Button -->
+    <button class="chatbot-toggle" id="chatbotToggle" onclick="toggleChatbot(true)" aria-label="Abrir Asistente">
+      <span class="toggle-icon">💬</span>
+      <span class="toggle-badge hidden" id="chatbotBadge">1</span>
+    </button>
+  </div>
+
+  <!-- Chat Window Container (Centered Modal) -->
+  <div class="chatbot-window hidden" id="chatbotWindow">
+    <!-- Auth Panel: shown when user is not logged in -->
+    <div class="chatAuthPanel" id="chatAuthPanel">
+      <div class="chatAuthCard">
+        <div class="chatAuthBrand">
+          <span class="brand-icon">🪵</span>
+          <h2>ARCHI Carpenter</h2>
+          <p>Inicia sesión o crea una cuenta para cotizar</p>
+        </div>
+        <form id="chatAuthForm" class="chatAuthForm">
+          <label for="chatAuthUser">Usuario</label>
+          <input id="chatAuthUser" type="text" autocomplete="username" required placeholder="admin o cliente">
+
+          <label for="chatAuthPass">Contraseña</label>
+          <input id="chatAuthPass" type="password" autocomplete="current-password" required placeholder="••••••••">
+
+          <label for="chatAuthName" id="chatAuthNameLabel" class="hidden">Nombre completo</label>
+          <input id="chatAuthName" type="text" autocomplete="name" class="hidden" placeholder="Tu nombre completo">
+
+          <p class="chatAuthError hidden" id="chatAuthError"></p>
+
+          <button type="submit" class="chatAuthBtn" id="chatAuthBtn">Entrar</button>
+        </form>
+        <div class="chatAuthActions">
+          <button class="chatAuthToggle" id="chatAuthToggle" type="button">Crear cuenta</button>
+        </div>
+      </div>
+    </div>
+    <!-- Load the full /app inside an iframe to avoid ID/script conflicts -->
+    <iframe id="adminIframe" src="about:blank" title="ARCHI Admin" frameborder="0"
+      style="width:100%;height:100%;border:none;background:#1a1410;overflow:hidden;display:none;"></iframe>
+  </div>
+
+  <script src="/static/app.js"></script>
+  <script>
+    function getAuthToken() {
+      try {
+        const raw = localStorage.getItem(AUTH_KEY);
+        if (!raw) return null;
+        const auth = JSON.parse(raw);
+        return auth?.token || null;
+      } catch { return null; }
+    }
+
+    function toggleChatbot(forceOpen) {
+      const chatWin = document.getElementById("chatbotWindow");
+      const badge = document.getElementById("chatbotBadge");
+      const overlay = document.getElementById("chatbotModalOverlay");
+      const authPanel = document.getElementById("chatAuthPanel");
+      const iframe = document.getElementById("adminIframe");
+
+      let isVisible;
+      if (forceOpen === true) {
+        chatWin.classList.remove("hidden");
+        overlay?.classList.remove("hidden");
+        badge.classList.add("hidden");
+        isVisible = true;
+      } else if (forceOpen === false) {
+        chatWin.classList.add("hidden");
+        overlay?.classList.add("hidden");
+        isVisible = false;
+      } else {
+        const toggle = chatWin.classList.toggle("hidden");
+        overlay?.classList.toggle("hidden", toggle);
+        badge.classList.add("hidden");
+        isVisible = !toggle;
+      }
+
+      if (isVisible) {
+        document.body.style.overflow = "hidden";
+
+        const token = getAuthToken();
+        if (!token) {
+          // No session: show auth panel, hide iframe
+          authPanel.classList.remove("hidden");
+          iframe.style.display = "none";
+          iframe.src = "about:blank";
+          window._adminEmbeddedInitialized = false;
+        } else {
+          // Has session: hide auth panel, show iframe
+          authPanel.classList.add("hidden");
+          iframe.style.display = "";
+          if (iframe.src === "about:blank" || iframe.src === "") {
+            iframe.src = "/app";
+          }
+          initEmbeddedAdmin();
+        }
+      } else {
+        document.body.style.overflow = "";
+      }
+    }
+
+    function initEmbeddedAdmin() {
+      if (window._adminEmbeddedInitialized) return;
+      const modal = document.getElementById('chatbotWindow');
+      if (!modal) return;
+
+      const iframe = document.getElementById("adminIframe");
+      if (iframe) {
+        try {
+          const idoc = iframe.contentDocument || iframe.contentWindow.document;
+          const iframeInput = idoc && idoc.getElementById("messageInput");
+          if (iframeInput) iframeInput.focus();
+        } catch (e) { }
+      }
+
+      const modalSplash = modal.querySelector('.splash-screen');
+      const modalAppRoot = modal.querySelector('#appRoot');
+      if (modalSplash) modalSplash.classList.add('hidden');
+      if (modalAppRoot) modalAppRoot.classList.remove('app-hidden');
+
+      modal.querySelectorAll('.suggestion-chip').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          const prompt = btn.dataset && btn.dataset.prompt ? btn.dataset.prompt : btn.textContent.trim();
+          const msgInput = modal.querySelector('#messageInput');
+          const form = modal.querySelector('#chatForm');
+          if (msgInput) msgInput.value = prompt;
+          if (form) form.dispatchEvent(new Event('submit'));
+        });
+      });
+
+      const btnMenu = modal.querySelector('#btnMenu');
+      const sidebar = modal.querySelector('#sidebar');
+      if (btnMenu && sidebar) btnMenu.addEventListener('click', () => sidebar.classList.toggle('open'));
+
+      window._adminEmbeddedInitialized = true;
+    }
+
+    function switchToChat() {
+      const authPanel = document.getElementById("chatAuthPanel");
+      const iframe = document.getElementById("adminIframe");
+      authPanel.classList.add("hidden");
+      iframe.style.display = "";
+      if (iframe.src === "about:blank" || iframe.src === "") {
+        iframe.src = "/app";
+      }
+      initEmbeddedAdmin();
+    }
+
+    function handleLogout() {
+      localStorage.removeItem(AUTH_KEY);
+      window.location.href = "/login";
+    }
+
+    // Refleja el estado de sesión en el navbar del home
+    (function setupAuthNav() {
+      const link = document.getElementById("navAuthLink");
+      const logoutBtn = document.getElementById("navLogoutBtn");
+      if (!link) return;
+      try {
+        const raw = localStorage.getItem(AUTH_KEY);
+        if (!raw) return; // sigue mostrando "Login"
+        const auth = JSON.parse(raw);
+        if (auth && auth.user) {
+          // Usuario logueado: ocultar link de login, mostrar nombre + logout
+          link.classList.add("hidden");
+          if (logoutBtn) logoutBtn.classList.remove("hidden");
+
+          // Si es admin, agregar acceso al panel
+          if (auth.user.role === "ADMIN") {
+            const panelLink = document.createElement("a");
+            panelLink.href = "/app";
+            panelLink.className = "nav-link nav-panel-link";
+            panelLink.textContent = "Panel Admin";
+            logoutBtn.parentNode.insertBefore(panelLink, logoutBtn);
+          }
+        }
+      } catch {
+        localStorage.removeItem(AUTH_KEY);
+      }
+    })();
+
+    // Chat Modal Auth Form
+    (function setupChatAuth() {
+      const AUTH_KEY = "carpinteria_auth";
+      const form = document.getElementById("chatAuthForm");
+      const toggleBtn = document.getElementById("chatAuthToggle");
+      const nameInput = document.getElementById("chatAuthName");
+      const nameLabel = document.getElementById("chatAuthNameLabel");
+      const btn = document.getElementById("chatAuthBtn");
+      const errEl = document.getElementById("chatAuthError");
+
+      let registerMode = false;
+
+      if (toggleBtn) {
+        toggleBtn.addEventListener("click", () => {
+          registerMode = !registerMode;
+          nameInput.classList.toggle("hidden", !registerMode);
+          nameLabel.classList.toggle("hidden", !registerMode);
+          toggleBtn.textContent = registerMode ? "Ya tengo cuenta" : "Crear cuenta";
+          btn.textContent = registerMode ? "Registrarse" : "Entrar";
+          errEl.classList.add("hidden");
+        });
+      }
+
+      if (form) {
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          errEl.classList.add("hidden");
+          const username = document.getElementById("chatAuthUser").value.trim();
+          const password = document.getElementById("chatAuthPass").value;
+          const fullName = document.getElementById("chatAuthName").value.trim();
+
+          btn.disabled = true;
+          btn.textContent = registerMode ? "Registrando..." : "Entrando...";
+
+          try {
+            const url = registerMode ? "/auth/register" : "/auth/login";
+            const body = registerMode
+              ? { username, password, full_name: fullName }
+              : { username, password };
+
+            const res = await fetch(url, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(body),
+            });
+
+            if (!res.ok) {
+              const data = await res.json().catch(() => ({}));
+              throw new Error(data.detail || (registerMode ? "No se pudo registrar" : "Credenciales incorrectas"));
+            }
+
+            const data = await res.json();
+            localStorage.setItem(AUTH_KEY, JSON.stringify({ token: data.token, user: data.user }));
+            switchToChat();
+          } catch (err) {
+            errEl.textContent = err.message || "Error";
+            errEl.classList.remove("hidden");
+          } finally {
+            btn.disabled = false;
+            btn.textContent = registerMode ? "Registrarse" : "Entrar";
+          }
+        });
+      }
+    })();
+
+    function startQuote(serviceName) {
+      toggleChatbot(true);
+      const token = getAuthToken();
+      if (token) {
+        const msgInput = document.getElementById("messageInput");
+        if (msgInput) {
+          msgInput.value = `I want to quote: ${serviceName}`;
+          document.getElementById("chatForm")?.dispatchEvent(new Event('submit'));
+        }
+      }
+    }
+
+    // Hamburger Menu Mobile
+    const btnHam = document.getElementById("btnHamburger");
+    const navMenu = document.getElementById("navMenu");
+    if (btnHam && navMenu) {
+      btnHam.addEventListener("click", () => {
+        btnHam.classList.toggle("active");
+        navMenu.classList.toggle("active");
+      });
+    }
+
+    // Smooth scroll + active nav
+    document.querySelectorAll('.nav-link[href^="#"]').forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const target = document.querySelector(link.getAttribute("href"));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: "smooth" });
+          navMenu?.classList.remove("active");
+          btnHam?.classList.remove("active");
+          document.querySelectorAll(".nav-link").forEach((l) => l.classList.remove("active"));
+          link.classList.add("active");
+        }
+      });
+    });
+
+    // Scroll-based nav highlight
+    const sections = document.querySelectorAll("section[id]");
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY + 100;
+      sections.forEach((sec) => {
+        const top = sec.offsetTop;
+        const h = sec.offsetHeight;
+        const id = sec.getAttribute("id");
+        const link = document.querySelector(`.nav-link[href="#${id}"]`);
+        if (scrollY >= top && scrollY < top + h) {
+          document.querySelectorAll(".nav-link").forEach((l) => l.classList.remove("active"));
+          if (link) link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

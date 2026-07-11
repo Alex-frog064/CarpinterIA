@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARCHI Carpenter — Iniciar sesión</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="login-page">
+  <div class="login-container">
+
+    <!-- Panel izquierdo: gradiente + texto de bienvenida -->
+    <div class="login-left-panel">
+      <div class="login-left-content">
+        <h2>Bienvenido a<br>ARCHI Carpenter</h2>
+        <p>Manos expertas creando carpintería atemporal. Más de 20 años de experiencia transformando espacios.</p>
+      </div>
+      <!-- Formas decorativas animadas -->
+      <div class="login-shapes">
+        <span class="shape shape-1"></span>
+        <span class="shape shape-2"></span>
+        <span class="shape shape-3"></span>
+        <span class="shape shape-4"></span>
+        <span class="shape shape-5"></span>
+        <span class="shape shape-6"></span>
+      </div>
+    </div>
+
+    <!-- Panel derecho: formulario -->
+    <div class="login-card">
+      <div class="login-brand">
+        <span class="brand-icon">🪵</span>
+        <h1>INICIO DE SESIÓN</h1>
+        <p>Ingresa tus credenciales para continuar</p>
+      </div>
+
+      <form id="loginForm" class="login-form">
+        <label for="username">Usuario</label>
+        <div class="input-wrapper">
+          <span class="input-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </span>
+          <input id="username" name="username" type="text" autocomplete="username" required placeholder="Tu usuario">
+        </div>
+
+        <label for="password">Contraseña</label>
+        <div class="input-wrapper">
+          <span class="input-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </span>
+          <input id="password" name="password" type="password" autocomplete="current-password" required placeholder="••••••••">
+        </div>
+
+        <label for="fullName" id="fullNameLabel" class="hidden">Nombre completo</label>
+        <div class="input-wrapper hidden" id="fullNameWrapper">
+          <span class="input-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </span>
+          <input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="Tu nombre completo">
+        </div>
+
+        <p class="login-error hidden" id="loginError"></p>
+
+        <button type="submit" class="btn-login" id="btnLogin">INGRESAR</button>
+      </form>
+
+      <div class="login-actions">
+        <button class="btn-secondary" id="toggleRegister" type="button">Crear cuenta</button>
+        <a href="/" class="btn-link-home">← Volver al sitio</a>
+      </div>
+
+      <div class="login-hints">
+        <p><strong>Admin:</strong> admin / admin123</p>
+        <p><strong>Cliente:</strong> cliente / cliente123</p>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* Formas decorativas animadas */
+    .login-left-content {
+      position: relative;
+      z-index: 2;
+    }
+    .login-shapes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .shape {
+      position: absolute;
+      border-radius: 60px;
+      opacity: 0.7;
+    }
+    .shape-1 {
+      width: 80px; height: 28px;
+      background: linear-gradient(135deg, #f97316, #fb923c);
+      bottom: 22%; left: 8%;
+      transform: rotate(-42deg);
+      animation: floatShape 5s ease-in-out infinite;
+    }
+    .shape-2 {
+      width: 80px; height: 28px;
+      background: linear-gradient(135deg, #f97316, #fbbf24);
+      bottom: 16%; left: 25%;
+      transform: rotate(-42deg);
+      animation: floatShape 5.5s ease-in-out infinite 0.4s;
+    }
+    .shape-3 {
+      width: 80px; height: 28px;
+      background: linear-gradient(135deg, #fb923c, #f97316);
+      bottom: 28%; left: 50%;
+      transform: rotate(-42deg);
+      animation: floatShape 6s ease-in-out infinite 0.8s;
+    }
+    .shape-4 {
+      width: 70px; height: 24px;
+      background: linear-gradient(135deg, #c084fc, #f97316);
+      bottom: 12%; left: 62%;
+      transform: rotate(-42deg);
+      animation: floatShape 5s ease-in-out infinite 1.2s;
+    }
+    .shape-5 {
+      width: 70px; height: 24px;
+      background: linear-gradient(135deg, #f97316, #fb923c);
+      bottom: 34%; left: 72%;
+      transform: rotate(-42deg);
+      animation: floatShape 6.5s ease-in-out infinite 0.2s;
+    }
+    .shape-6 {
+      width: 60px; height: 22px;
+      background: linear-gradient(135deg, #fbbf24, #f97316);
+      bottom: 8%; left: 5%;
+      transform: rotate(-42deg);
+      animation: floatShape 5.8s ease-in-out infinite 1.6s;
+    }
+    @keyframes floatShape {
+      0%, 100% { transform: rotate(-42deg) translateY(0px); }
+      50% { transform: rotate(-42deg) translateY(-8px); }
+    }
+
+    /* Acciones adicionales del login */
+    .login-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .login-actions .btn-secondary {
+      background: transparent;
+      border: 1.5px solid #d8cff0;
+      color: #7c5cbf;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-family: inherit;
+      font-weight: 600;
+      width: 100%;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .login-actions .btn-secondary:hover {
+      background: #f3f0fb;
+      border-color: #9b6ec8;
+    }
+    .btn-link-home {
+      font-size: 0.82rem;
+      color: #aaa;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .btn-link-home:hover { color: #7c5cbf; }
+    .login-hints {
+      margin-top: 20px;
+      padding: 12px 16px;
+      background: #f9f7ff;
+      border-radius: 8px;
+      border: 1px dashed #d8cff0;
+      font-size: 0.78rem;
+      color: #888;
+      line-height: 1.8;
+    }
+    .login-hints strong { color: #7c5cbf; }
+
+    /* Responsive */
+    @media (max-width: 680px) {
+      .login-left-panel { display: none; }
+      .login-card { width: 100%; padding: 36px 24px; }
+    }
+  </style>
+
+  <script>
+    const AUTH_KEY = "carpinteria_auth";
+
+    const rawAuth = localStorage.getItem(AUTH_KEY);
+    if (rawAuth) {
+      try {
+        JSON.parse(rawAuth);
+        window.location.href = "/";
+      } catch {
+        localStorage.removeItem(AUTH_KEY);
+      }
+    }
+
+    const loginForm = document.getElementById("loginForm");
+    const toggleRegister = document.getElementById("toggleRegister");
+    const fullNameWrapper = document.getElementById("fullNameWrapper");
+    const fullNameLabel = document.getElementById("fullNameLabel");
+    const btnLogin = document.getElementById("btnLogin");
+
+    let registerMode = false;
+
+    function updateFormMode() {
+      if (registerMode) {
+        fullNameWrapper.classList.remove("hidden");
+        fullNameLabel.classList.remove("hidden");
+        toggleRegister.textContent = "Ya tengo cuenta";
+        btnLogin.textContent = "REGISTRARSE";
+      } else {
+        fullNameWrapper.classList.add("hidden");
+        fullNameLabel.classList.add("hidden");
+        toggleRegister.textContent = "Crear cuenta";
+        btnLogin.textContent = "INGRESAR";
+      }
+    }
+
+    toggleRegister.addEventListener("click", () => {
+      registerMode = !registerMode;
+      updateFormMode();
+      document.getElementById("loginError").classList.add("hidden");
+    });
+
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const errEl = document.getElementById("loginError");
+      errEl.classList.add("hidden");
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+      const fullName = document.getElementById("fullName").value.trim();
+
+      btnLogin.disabled = true;
+      btnLogin.textContent = registerMode ? "REGISTRANDO..." : "INGRESANDO...";
+
+      try {
+        const url = registerMode ? "/auth/register" : "/auth/login";
+        const body = registerMode
+          ? { username, password, full_name: fullName }
+          : { username, password };
+
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(data.detail || (registerMode ? "No se pudo registrar" : "Credenciales incorrectas"));
+        }
+
+        const data = await res.json();
+        localStorage.setItem(AUTH_KEY, JSON.stringify({ token: data.token, user: data.user }));
+        window.location.href = "/";
+      } catch (err) {
+        errEl.textContent = err.message || (registerMode ? "Error al registrarse" : "Error al iniciar sesión");
+        errEl.classList.remove("hidden");
+      } finally {
+        btnLogin.disabled = false;
+        updateFormMode();
+      }
+    });
+
+    updateFormMode();
+  </script>
+</body>
+</html>

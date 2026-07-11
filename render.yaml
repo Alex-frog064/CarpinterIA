@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: carpinteria
+    runtime: docker
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: OLLAMA_BASE_URL
+        sync: false
+      - key: OLLAMA_MODEL
+        value: llama3:latest
+    healthCheckPath: /health
+    autoDeploy: true
