@@ -98,42 +98,42 @@
     }
     .shape-1 {
       width: 80px; height: 28px;
-      background: linear-gradient(135deg, #f97316, #fb923c);
+      background: linear-gradient(135deg, #d4a574, #e0b888);
       bottom: 22%; left: 8%;
       transform: rotate(-42deg);
       animation: floatShape 5s ease-in-out infinite;
     }
     .shape-2 {
       width: 80px; height: 28px;
-      background: linear-gradient(135deg, #f97316, #fbbf24);
+      background: linear-gradient(135deg, #c99a6b, #d4a574);
       bottom: 16%; left: 25%;
       transform: rotate(-42deg);
       animation: floatShape 5.5s ease-in-out infinite 0.4s;
     }
     .shape-3 {
       width: 80px; height: 28px;
-      background: linear-gradient(135deg, #fb923c, #f97316);
+      background: linear-gradient(135deg, #e0b888, #d4a574);
       bottom: 28%; left: 50%;
       transform: rotate(-42deg);
       animation: floatShape 6s ease-in-out infinite 0.8s;
     }
     .shape-4 {
       width: 70px; height: 24px;
-      background: linear-gradient(135deg, #c084fc, #f97316);
+      background: linear-gradient(135deg, #b8956a, #d4a574);
       bottom: 12%; left: 62%;
       transform: rotate(-42deg);
       animation: floatShape 5s ease-in-out infinite 1.2s;
     }
     .shape-5 {
       width: 70px; height: 24px;
-      background: linear-gradient(135deg, #f97316, #fb923c);
+      background: linear-gradient(135deg, #d4a574, #e0b888);
       bottom: 34%; left: 72%;
       transform: rotate(-42deg);
       animation: floatShape 6.5s ease-in-out infinite 0.2s;
     }
     .shape-6 {
       width: 60px; height: 22px;
-      background: linear-gradient(135deg, #fbbf24, #f97316);
+      background: linear-gradient(135deg, #c99a6b, #d4a574);
       bottom: 8%; left: 5%;
       transform: rotate(-42deg);
       animation: floatShape 5.8s ease-in-out infinite 1.6s;
@@ -153,8 +153,8 @@
     }
     .login-actions .btn-secondary {
       background: transparent;
-      border: 1.5px solid #d8cff0;
-      color: #7c5cbf;
+      border: 1.5px solid #d4c4a8;
+      color: #6b4423;
       padding: 10px 20px;
       border-radius: 8px;
       cursor: pointer;
@@ -165,8 +165,8 @@
       transition: background 0.2s, border-color 0.2s;
     }
     .login-actions .btn-secondary:hover {
-      background: #f3f0fb;
-      border-color: #9b6ec8;
+      background: #faf5ef;
+      border-color: #8b6914;
     }
     .btn-link-home {
       font-size: 0.82rem;
@@ -174,18 +174,18 @@
       text-decoration: none;
       transition: color 0.2s;
     }
-    .btn-link-home:hover { color: #7c5cbf; }
+    .btn-link-home:hover { color: #6b4423; }
     .login-hints {
       margin-top: 20px;
       padding: 12px 16px;
-      background: #f9f7ff;
+      background: #faf5ef;
       border-radius: 8px;
-      border: 1px dashed #d8cff0;
+      border: 1px dashed #d4c4a8;
       font-size: 0.78rem;
       color: #888;
       line-height: 1.8;
     }
-    .login-hints strong { color: #7c5cbf; }
+    .login-hints strong { color: #6b4423; }
 
     /* Responsive */
     @media (max-width: 680px) {
@@ -200,8 +200,22 @@
     const rawAuth = localStorage.getItem(AUTH_KEY);
     if (rawAuth) {
       try {
-        JSON.parse(rawAuth);
-        window.location.href = "/";
+        const parsed = JSON.parse(rawAuth);
+        if (parsed && parsed.token) {
+          fetch("/auth/me", {
+            headers: { "Authorization": "Bearer " + parsed.token }
+          }).then(res => {
+            if (res.ok) {
+              window.location.href = "/";
+            } else {
+              localStorage.removeItem(AUTH_KEY);
+            }
+          }).catch(() => {
+            localStorage.removeItem(AUTH_KEY);
+          });
+        } else {
+          localStorage.removeItem(AUTH_KEY);
+        }
       } catch {
         localStorage.removeItem(AUTH_KEY);
       }

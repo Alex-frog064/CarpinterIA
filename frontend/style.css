@@ -3024,7 +3024,7 @@ body.admin-body .order-confirmed-card {
 
 .login-page {
   font-family: "Outfit", sans-serif;
-  background: #f3f0fb;
+  background: #faf5ef;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -3039,13 +3039,13 @@ body.admin-body .order-confirmed-card {
   display: flex;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 24px 80px rgba(100, 80, 180, 0.25);
+  box-shadow: 0 24px 80px rgba(107, 68, 35, 0.2);
 }
 
 /* Panel izquierdo — gradiente decorativo */
 .login-left-panel {
   flex: 1;
-  background: linear-gradient(135deg, #7c5cbf 0%, #9b6ec8 40%, #c97d4e 100%);
+  background: linear-gradient(135deg, #6b4423 0%, #8b6914 40%, #d4a574 100%);
   padding: 48px 40px;
   display: flex;
   flex-direction: column;
@@ -3058,7 +3058,7 @@ body.admin-body .order-confirmed-card {
   content: '';
   position: absolute;
   inset: 0;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cellipse cx='60' cy='340' rx='55' ry='22' fill='rgba(255,150,80,0.55)' transform='rotate(-40 60 340)'/%3E%3Cellipse cx='120' cy='310' rx='55' ry='22' fill='rgba(255,120,60,0.45)' transform='rotate(-40 120 310)'/%3E%3Cellipse cx='180' cy='360' rx='55' ry='22' fill='rgba(255,160,90,0.4)' transform='rotate(-40 180 360)'/%3E%3Cellipse cx='240' cy='340' rx='55' ry='22' fill='rgba(200,100,200,0.35)' transform='rotate(-40 240 340)'/%3E%3Cellipse cx='300' cy='370' rx='55' ry='22' fill='rgba(255,130,70,0.45)' transform='rotate(-40 300 370)'/%3E%3Cellipse cx='20' cy='390' rx='55' ry='22' fill='rgba(255,170,80,0.35)' transform='rotate(-40 20 390)'/%3E%3C/svg%3E") no-repeat bottom center;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cellipse cx='60' cy='340' rx='55' ry='22' fill='rgba(212,165,116,0.55)' transform='rotate(-40 60 340)'/%3E%3Cellipse cx='120' cy='310' rx='55' ry='22' fill='rgba(200,154,107,0.45)' transform='rotate(-40 120 310)'/%3E%3Cellipse cx='180' cy='360' rx='55' ry='22' fill='rgba(224,184,136,0.4)' transform='rotate(-40 180 360)'/%3E%3Cellipse cx='240' cy='340' rx='55' ry='22' fill='rgba(184,149,106,0.35)' transform='rotate(-40 240 340)'/%3E%3Cellipse cx='300' cy='370' rx='55' ry='22' fill='rgba(212,165,116,0.45)' transform='rotate(-40 300 370)'/%3E%3Cellipse cx='20' cy='390' rx='55' ry='22' fill='rgba(200,154,107,0.35)' transform='rotate(-40 20 390)'/%3E%3C/svg%3E") no-repeat bottom center;
   background-size: cover;
   pointer-events: none;
 }
@@ -3110,7 +3110,7 @@ body.admin-body .order-confirmed-card {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #5a4090;
+  color: #6b4423;
   margin-bottom: 4px;
 }
 
@@ -3133,10 +3133,10 @@ body.admin-body .order-confirmed-card {
 .login-form input {
   width: 100%;
   padding: 11px 14px 11px 36px;
-  background: #f3f0fb;
+  background: #faf5ef;
   border: none;
   border-radius: 8px;
-  color: #3a2c6a;
+  color: #3d2b1f;
   font-size: 0.95rem;
   font-family: inherit;
   transition: background 0.2s, box-shadow 0.2s;
@@ -3153,18 +3153,18 @@ body.admin-body .order-confirmed-card {
   left: 12px;
   top: 50%;
   transform: translateY(-50%);
-  color: #b0a0d8;
+  color: #b8956a;
   font-size: 0.95rem;
   pointer-events: none;
 }
 
 .login-form input:focus {
-  background: #ece8f8;
-  box-shadow: 0 0 0 2px rgba(124, 92, 191, 0.25);
+  background: #f5efe6;
+  box-shadow: 0 0 0 2px rgba(107, 68, 35, 0.2);
 }
 
 .login-form input::placeholder {
-  color: #c5b8e8;
+  color: #c4b09a;
 }
 
 .login-error {
@@ -3178,7 +3178,7 @@ body.admin-body .order-confirmed-card {
   width: 100%;
   margin-top: 24px;
   padding: 13px;
-  background: linear-gradient(135deg, #9b6ec8, #7c5cbf);
+  background: linear-gradient(135deg, #8b6914, #6b4423);
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -3188,13 +3188,13 @@ body.admin-body .order-confirmed-card {
   letter-spacing: 0.08em;
   cursor: pointer;
   transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 16px rgba(124, 92, 191, 0.4);
+  box-shadow: 0 4px 16px rgba(107, 68, 35, 0.35);
 }
 
 .btn-login:hover {
   opacity: 0.9;
   transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(124, 92, 191, 0.5);
+  box-shadow: 0 8px 24px rgba(107, 68, 35, 0.45);
 }
 
 .btn-login:disabled {
