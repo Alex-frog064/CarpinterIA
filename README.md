@@ -1,4 +1,4 @@
-# Agente IA Cafetería
+# Agente de CarpinterIA
 
 Backend FastAPI + SQLite + Ollama con function calling real y memoria persistente por `conversation_id`.
 
