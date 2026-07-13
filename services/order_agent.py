@@ -84,14 +84,6 @@ class OrderAgent:
         if state == ConversationState.IDLE:
             if not self.is_order_intent(user_message):
                 return None
-            if not self._is_within_order_hours():
-                return (
-                    "⏰ Lo siento, las cotizaciones solo se pueden solicitar de 8:00 AM a 6:00 PM. "
-                    "Nuestro horario de atención es de lunes a sábado de 08:00 a 18:00 hrs. "
-                    "¿Puedo ayudarte con algo más, como ver el catálogo de servicios o la disponibilidad?",
-                    [],
-                    ConversationState.IDLE.value,
-                )
             save_conversation_state(
                 conversation_id, state=ConversationState.COLLECTING_ORDER.value
             )
