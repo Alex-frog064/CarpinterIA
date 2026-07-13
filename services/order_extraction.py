@@ -30,6 +30,64 @@ ORDER_KEYWORDS = re.compile(
     re.IGNORECASE,
 )
 
+CUSTOM_MEASURE_PATTERN = re.compile(
+    r"(mis\s+medidas|a\s+medida|medidas?\s+propias?|medida\s+propia|"
+    r"personalizado|personalizada|hecho\s+a\s+medida|seg[uú]n\s+mis|"
+    r"con\s+mis\s+medidas|con\s+medidas)",
+    re.IGNORECASE,
+)
+
+DIMENSION_LABELS = re.compile(
+    r"(?:alto|altura)[:\s]+(\d+(?:[.,]\d+)?)\s*(?:cm|m)?\s*[,;\s]+"
+    r"(?:ancho|anchura)[:\s]+(\d+(?:[.,]\d+)?)\s*(?:cm|m)?\s*[,;\s]+"
+    r"(?:fondo|largo|profundidad|depth)[:\s]+(\d+(?:[.,]\d+)?)\s*(?:cm|m)?",
+    re.IGNORECASE,
+)
+
+DIMENSION_NUMBERS = re.compile(
+    r"(\d+(?:[.,]\d+)?)\s*(?:cm|cent[ií]metros?)?\s*"
+    r"[y,\s]+\s*(\d+(?:[.,]\d+)?)\s*(?:cm|cent[ií]metros?)?\s*"
+    r"(?:[y,\s]+\s*(\d+(?:[.,]\d+)?)\s*(?:cm|cent[ií]metros?)?)?",
+    re.IGNORECASE,
+)
+
+
+def extract_dimensions_from_text(text: str) -> dict | None:
+    dims = {}
+    labeled = DIMENSION_LABELS.search(text)
+    if labeled:
+        dims["ancho"] = float(labeled.group(1).replace(",", "."))
+        dims["largo"] = float(labeled.group(2).replace(",", "."))
+        dims["alto"] = float(labeled.group(3).replace(",", "."))
+        return dims
+
+    labeled2 = re.search(
+        r"(?:ancho|anchura)[:\s]+(\d+(?:[.,]\d+)?)\s*(?:cm|m)?\s*[,;\s]+"
+        r"(?:largo|fondo|profundidad)[:\s]+(\d+(?:[.,]\d+)?)\s*(?:cm|m)?",
+        text, re.IGNORECASE,
+    )
+    if labeled2:
+        dims["ancho"] = float(labeled2.group(1).replace(",", "."))
+        dims["largo"] = float(labeled2.group(2).replace(",", "."))
+        return dims
+
+    nums = re.findall(r"(\d+(?:[.,]\d+)?)\s*(?:cm|m)?", text, re.IGNORECASE)
+    clean_nums = []
+    for n in nums:
+        val = float(n.replace(",", "."))
+        if 1 <= val <= 1000:
+            clean_nums.append(val)
+
+    if len(clean_nums) >= 3:
+        dims["ancho"] = clean_nums[0]
+        dims["largo"] = clean_nums[1]
+        dims["alto"] = clean_nums[2]
+    elif len(clean_nums) == 2:
+        dims["ancho"] = clean_nums[0]
+        dims["largo"] = clean_nums[1]
+
+    return dims if dims else None
+
 
 def _strip_accents(text: str) -> str:
     return "".join(
@@ -212,14 +270,17 @@ def _match_single_product(text: str, menu_names: list[str]) -> dict | None:
         "", text_lower,
     )
 
+    custom_measure = bool(CUSTOM_MEASURE_PATTERN.search(text_lower))
+
     qty = 1
     size_hint = None
-    size_match = SIZE_HINT_PATTERN.search(text_lower)
-    if size_match:
-        hint_text = size_match.group(1).strip().lower()
-        size_hint = SIZE_HINT_MAP.get(hint_text)
-        text_lower = text_lower[:size_match.start()] + text_lower[size_match.end():]
-        text_lower = re.sub(r"\s+", " ", text_lower).strip()
+    if not custom_measure:
+        size_match = SIZE_HINT_PATTERN.search(text_lower)
+        if size_match:
+            hint_text = size_match.group(1).strip().lower()
+            size_hint = SIZE_HINT_MAP.get(hint_text)
+            text_lower = text_lower[:size_match.start()] + text_lower[size_match.end():]
+            text_lower = re.sub(r"\s+", " ", text_lower).strip()
 
     qty_match = re.search(r"\b(\d+|dos|tres|cuatro|cinco)\b", text_lower)
     if qty_match:
@@ -234,7 +295,9 @@ def _match_single_product(text: str, menu_names: list[str]) -> dict | None:
     if _is_generic_category_request(text_lower, menu_names):
         return None
 
-    keywords = ["medida", "puerta", "closet", "cocina", "mesa", "restauracion", "piso", "librero", "escalera", "ventana"]
+    dims = extract_dimensions_from_text(text_lower)
+
+    keywords = ["puerta", "closet", "cocina", "mesa", "piso", "librero", "escalera", "ventana"]
     for kw in keywords:
         if kw in text_lower:
             for name in menu_names:
@@ -242,14 +305,20 @@ def _match_single_product(text: str, menu_names: list[str]) -> dict | None:
                     item = {"nombre": name, "cantidad": qty}
                     if size_hint:
                         item["tamano"] = size_hint
+                    elif custom_measure or dims:
+                        item["tamano"] = "A medida"
+                    if dims:
+                        item["dimensiones_extraidas"] = dims
                     return item
 
     best = None
     best_len = 0
     for name in menu_names:
         name_lower = name.lower()
-        keywords = [w for w in name_lower.split() if len(w) > 3]
-        if name_lower in text_lower or any(kw in text_lower for kw in keywords):
+        kws = [w for w in name_lower.split() if len(w) > 3]
+        if name_lower in text_lower or any(k in text_lower for k in kws):
+            if "restauracion" in name_lower or "restauración" in name_lower:
+                continue
             if len(name) > best_len:
                 best = name
                 best_len = len(name)
@@ -258,6 +327,10 @@ def _match_single_product(text: str, menu_names: list[str]) -> dict | None:
         item = {"nombre": best, "cantidad": qty}
         if size_hint:
             item["tamano"] = size_hint
+        elif custom_measure or dims:
+            item["tamano"] = "A medida"
+        if dims:
+            item["dimensiones_extraidas"] = dims
         return item
     return None
 

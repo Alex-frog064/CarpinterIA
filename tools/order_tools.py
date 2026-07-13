@@ -493,29 +493,63 @@ def merge_cart_items(cart: list[dict], extracted: list[dict]) -> tuple[list[str]
         size_dims = None
         pid = product.get("id")
         if tamano_req and pid:
-            sizes = obtener_tamanos_producto(pid)
-            tamano_lower = tamano_req.strip().lower()
-            match_size = next(
-                (s for s in sizes if s["size_label"].lower() == tamano_lower
-                 or tamano_lower in s["size_label"].lower()),
-                None,
-            )
-            if match_size:
-                size_modifier = match_size["price_modifier"]
-                size_label = match_size["size_label"]
-                size_dims = match_size["dimensions"]
-            elif sizes:
-                size_options = ", ".join(s["size_label"] for s in sizes)
+            if tamano_req.lower() in ("a medida", "a-medida", "custom"):
+                size_label = "A medida"
                 errors.append(
-                    f"No existe tamaño \"{tamano_req.title()}\" para {product['name']}. "
-                    f"Opciones disponibles: {size_options}"
+                    f"ASK_CUSTOM_SIZE:{product['name']}"
                 )
+            else:
+                sizes = obtener_tamanos_producto(pid)
+                tamano_lower = tamano_req.strip().lower()
+                match_size = next(
+                    (s for s in sizes if s["size_label"].lower() == tamano_lower
+                     or tamano_lower in s["size_label"].lower()),
+                    None,
+                )
+                if match_size:
+                    size_modifier = match_size["price_modifier"]
+                    size_label = match_size["size_label"]
+                    size_dims = match_size["dimensions"]
+                elif sizes:
+                    size_options = ", ".join(s["size_label"] for s in sizes)
+                    errors.append(
+                        f"No existe tamaño \"{tamano_req.title()}\" para {product['name']}. "
+                        f"Opciones disponibles: {size_options}"
+                    )
+                    continue
+
+        extra_dims = item.get("dimensiones_extraidas")
+        if extra_dims:
+            from tools.carpentry_tools import validar_dimensiones_producto
+            dim_error = validar_dimensiones_producto(
+                product["name"],
+                alto=extra_dims.get("alto"),
+                ancho=extra_dims.get("ancho"),
+                fondo=extra_dims.get("fondo"),
+                largo=extra_dims.get("largo"),
+                profundidad=extra_dims.get("profundidad"),
+                grosor=extra_dims.get("grosor"),
+            )
+            if dim_error:
+                errors.append(dim_error)
                 continue
+            dim_parts = []
+            for k, v in extra_dims.items():
+                dim_parts.append(f"{v}cm")
+            size_dims = " × ".join(dim_parts)
+            size_label = "A medida"
+            size_modifier = 1.0
 
         precio_final = round(prod_price * wood_modifier * size_modifier, 2)
 
+        display_name = product["name"]
+        if size_label == "A medida" and size_dims:
+            dim_short = size_dims.replace("cm", "").strip()
+            display_name = f"{product['name']} ({dim_short}cm)"
+
         existing = next(
-            (c for c in cart if c["producto"].lower() == product["name"].lower()), None
+            (c for c in cart if c["producto"].lower() == product["name"].lower()
+             and c.get("tamano") == size_label), None
         )
         if existing:
             existing["cantidad"] += cantidad
@@ -523,7 +557,7 @@ def merge_cart_items(cart: list[dict], extracted: list[dict]) -> tuple[list[str]
         else:
             cart.append(
                 {
-                    "producto": product["name"],
+                    "producto": display_name,
                     "product_id": product["id"],
                     "cantidad": cantidad,
                     "precio_base": prod_price,

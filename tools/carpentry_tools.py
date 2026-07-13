@@ -3,6 +3,106 @@ from datetime import date
 from database.db import get_db
 from services.audit_log import sales_logger
 
+PRODUCT_SIZE_LIMITS = {
+    "silla": {
+        "alto": (70, 110),
+        "ancho": (35, 55),
+        "fondo": (35, 50),
+        "unidades": "cm",
+        "desc": "Altura total 85–100 cm, ancho 40–50 cm, fondo 40–45 cm",
+    },
+    "mesa": {
+        "alto": (70, 80),
+        "ancho": (70, 200),
+        "largo": (100, 300),
+        "unidades": "cm",
+        "desc": "Alto 75 cm estándar. 4 personas: 120×80 cm, 6 personas: 150–180×90 cm",
+    },
+    "closet": {
+        "alto": (200, 240),
+        "ancho": (100, 240),
+        "fondo": (50, 65),
+        "unidades": "cm",
+        "desc": "Grande: 240×180–240×60 cm. Mediano: 210–230×120–180×55–60 cm",
+    },
+    "cocina": {
+        "alto": (80, 95),
+        "ancho": (35, 110),
+        "profundidad": (50, 65),
+        "unidades": "cm",
+        "desc": "Altura 85–90 cm, profundidad 55–60 cm. Ancho por módulo: 40, 60, 80, 100 cm",
+    },
+    "librero": {
+        "alto": (100, 230),
+        "ancho": (50, 110),
+        "fondo": (20, 40),
+        "unidades": "cm",
+        "desc": "Alto 120–220 cm, ancho 60–100 cm, fondo 25–35 cm",
+    },
+    "puerta": {
+        "alto": (190, 240),
+        "ancho": (60, 130),
+        "grosor": (2.5, 6),
+        "unidades": "cm / grosor en cm",
+        "desc": "Interior: 200–210×70–90 cm. Principal: 210–240×90–120 cm",
+    },
+    "piso": {
+        "largo": (80, 230),
+        "ancho": (6, 20),
+        "grosor": (1, 2.5),
+        "unidades": "cm",
+        "desc": "Duela: 8–15 cm ancho, 90–220 cm largo, 1.5–2 cm grosor. Venta por m²",
+    },
+    "restauracion": None,
+}
+
+
+def _match_product_to_limit(product_name: str) -> dict | None:
+    name_lower = product_name.lower()
+    for key, limits in PRODUCT_SIZE_LIMITS.items():
+        if limits is None:
+            continue
+        if key in name_lower:
+            return limits
+    return None
+
+
+def validar_dimensiones_producto(product_name: str, alto: float = None, ancho: float = None,
+                                  fondo: float = None, largo: float = None,
+                                  profundidad: float = None, grosor: float = None) -> str | None:
+    limits = _match_product_to_limit(product_name)
+    if limits is None:
+        return None
+
+    checks = []
+    if alto is not None and "alto" in limits:
+        checks.append(("Alto", alto, limits["alto"]))
+    if ancho is not None and "ancho" in limits:
+        checks.append(("Ancho", ancho, limits["ancho"]))
+    if fondo is not None and "fondo" in limits:
+        checks.append(("Fondo", fondo, limits["fondo"]))
+    if largo is not None and "largo" in limits:
+        checks.append(("Largo", largo, limits["largo"]))
+    if profundidad is not None and "profundidad" in limits:
+        checks.append(("Profundidad", profundidad, limits["profundidad"]))
+    if grosor is not None and "grosor" in limits:
+        checks.append(("Grosor", grosor, limits["grosor"]))
+
+    errors = []
+    for name, value, (min_v, max_v) in checks:
+        if value < min_v:
+            errors.append(f"{name}: {value} cm es menor al mínimo de {min_v} cm")
+        elif value > max_v:
+            errors.append(f"{name}: {value} cm excede el máximo de {max_v} cm")
+
+    if errors:
+        return (
+            f"Las dimensiones exceden los límites para {product_name}:\n"
+            + "\n".join(f"  • {e}" for e in errors)
+            + f"\n\nRango permitido: {limits['desc']}"
+        )
+    return None
+
 
 def consultar_inventario() -> dict:
     """Devuelve el inventario completo de productos/servicios."""

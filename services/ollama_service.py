@@ -81,12 +81,13 @@ Tamaños conocidos por tipo de producto:
 
 REGLAS DE EXTRACCIÓN:
 1. Si el cliente menciona un tipo de madera (pino, cedro, roble, nogal, caoba, MDF, triplay, etc.), asígnalo al campo "madera".
-2. Si el cliente menciona un tamaño (pequeño, mediano, grande, etc.) o dimensiones (120x80cm, 2m, etc.), asígnalo al campo "tamano".
-3. Si el cliente describe características como "de buena madera", "en pino", "grande", "para 6 personas", interprétalo como madera/tamaño.
-4. Si no se indica cantidad, usa 1.
-5. Si no se detecta madera o tamaño, usa null en esos campos.
-6. Normaliza nombres al catálogo cuando sea posible.
-7. Si el cliente dice "un closet en roble mediano", extrae: nombre="Closet", madera="Roble", tamano="Mediano".
+2. Si el cliente menciona un tamaño estándar (pequeño, mediano, grande, etc.) o dimensiones numéricas (120x80cm, 2m, etc.), asígnalo al campo "tamano".
+3. Si el cliente dice "mis medidas", "a medida", "personalizado", "hecho a medida", usa "A medida" en el campo "tamano".
+4. Si el cliente describe características como "de buena madera", "en pino", "grande", "para 6 personas", interprétalo como madera/tamaño.
+5. Si no se indica cantidad, usa 1.
+6. Si no se detecta madera o tamaño, usa null en esos campos.
+7. Normaliza nombres al catálogo cuando sea posible.
+8. Si el cliente dice "un closet en roble mediano", extrae: nombre="Closet", madera="Roble", tamano="Mediano".
 
 Si no detectas servicios concretos, devuelve {{"productos": []}}."""
 
@@ -172,7 +173,12 @@ class OllamaService:
         result = []
         for p in productos:
             tamano = (p.get("tamano") or "").strip()
-            tamano_norm = SIZE_NORMALIZE.get(tamano.lower(), tamano) if tamano else None
+            tamano_lower = tamano.lower() if tamano else ""
+            if tamano_lower in ("mis medidas", "a medida", "medidas propias", "medida propia",
+                                "personalizado", "personalizada", "hecho a medida"):
+                tamano_norm = "A medida"
+            else:
+                tamano_norm = SIZE_NORMALIZE.get(tamano_lower, tamano) if tamano else None
             result.append({
                 "nombre": str(p.get("nombre", "")).strip(),
                 "cantidad": float(p.get("cantidad", 1) or 1),

@@ -196,6 +196,26 @@ class OrderAgent:
                 )
                 return prompt, ["extract_order_from_text"], ConversationState.COLLECTING_ORDER.value
 
+            if isinstance(err, str) and err.startswith("ASK_CUSTOM_SIZE:"):
+                try:
+                    _, product_name = err.split(":", 1)
+                except Exception:
+                    product_name = "este mueble"
+                prompt = (
+                    f"Entendido, {product_name} a tu medida.\n\n"
+                    "¿Podrías indicarme las dimensiones exactas? Por ejemplo:\n"
+                    "- Alto: 120 cm\n"
+                    "- Ancho: 80 cm\n"
+                    "- Profundidad: 40 cm\n\n"
+                    "Con esas medidas puedo darte un precio más preciso."
+                )
+                save_conversation_state(
+                    conversation_id,
+                    state=ConversationState.ASKING_SIZE.value,
+                    cart=cart,
+                )
+                return prompt, ["extract_order_from_text"], ConversationState.ASKING_SIZE.value
+
         if errors and not cart:
             validation_messages = [err for err in errors if isinstance(err, str) and not err.startswith("ASK_FLAVORS:")]
             if validation_messages:
@@ -212,6 +232,23 @@ class OrderAgent:
             )
 
         if not cart:
+            from services.order_extraction import extract_dimensions_from_text
+            only_dims = extract_dimensions_from_text(user_message)
+            if only_dims and not extracted:
+                dim_str = ", ".join(f"{k}: {v}cm" for k, v in only_dims.items())
+                return (
+                    f"Veo que me diste unas dimensiones ({dim_str}), "
+                    "pero no detecté qué producto necesitas.\n\n"
+                    "¿Qué mueble o artículo quieres cotizar? Por ejemplo:\n"
+                    "  • Mesa de comedor\n"
+                    "  • Closet\n"
+                    "  • Silla\n"
+                    "  • Puerta\n\n"
+                    + self._render_menu_text(),
+                    ["extract_order_from_text"],
+                    ConversationState.COLLECTING_ORDER.value,
+                )
+
             if extraction.get("has_order_intent"):
                 if errors:
                     return (
@@ -873,12 +910,39 @@ class OrderAgent:
         state_data: dict,
     ) -> tuple[str, list[str], str]:
         cart = list(state_data.get("cart") or [])
-        # Buscar el item que no tiene tamaño
         target_item = next((item for item in cart if not item.get("tamano")), None)
         if not target_item:
             return await self._check_missing_properties(conversation_id, cart, history, user_message=user_message)
 
         from tools.carpentry_tools import obtener_tamanos_producto, obtener_tipos_madera
+
+        if target_item.get("tamano") == "A medida":
+            dims = self._parse_custom_dimensions(user_message, target_item.get("producto", ""))
+            if not dims:
+                return (
+                    "No pude identificar las dimensiones. Por favor indícalas así:\n"
+                    "  Alto: 120 cm, Ancho: 80 cm, Fondo: 40 cm\n\n"
+                    "Puedes usar: alto, ancho, fondo/largo, profundidad, grosor.",
+                    [],
+                    ConversationState.ASKING_SIZE.value,
+                )
+
+            from tools.carpentry_tools import validar_dimensiones_producto
+            error = validar_dimensiones_producto(target_item["producto"], **dims)
+            if error:
+                return error, [], ConversationState.ASKING_SIZE.value
+
+            dim_parts = []
+            for k, v in dims.items():
+                dim_parts.append(f"{k.title()}: {v} cm")
+            target_item["dimensions"] = ", ".join(dim_parts)
+            target_item["modificador_tamano"] = 1.0
+            target_item["precio"] = target_item.get("precio_base", target_item.get("precio", 0))
+            target_item["subtotal"] = round(target_item["precio"] * target_item["cantidad"], 2)
+
+            save_conversation_state(conversation_id, cart=cart)
+            return await self._check_missing_properties(conversation_id, cart, history, user_message=user_message)
+
         sizes = obtener_tamanos_producto(target_item["product_id"])
         
         user_msg_lower = user_message.lower().strip()
@@ -929,7 +993,6 @@ class OrderAgent:
             target_item["dimensions"] = match_size["dimensions"]
             target_item["modificador_tamano"] = match_size["price_modifier"]
             
-            # Recalcular precio
             precio_base = target_item.get("precio_base", target_item.get("precio", 0))
             mod_wood = target_item.get("modificador_madera", 1.0)
             target_item["precio"] = round(precio_base * mod_wood * match_size["price_modifier"], 2)
@@ -940,10 +1003,10 @@ class OrderAgent:
         else:
             size_options = []
             for s in sizes:
-                dims = f" ({s['dimensions']})" if s['dimensions'] else ""
+                dims_info = f" ({s['dimensions']})" if s['dimensions'] else ""
                 precio_calculado = round(target_item.get("precio_base", 0) * s["price_modifier"], 2)
                 size_options.append(
-                    f"  • {s['size_label']}{dims} ({s['price_modifier']}x) → ${precio_calculado:,.2f}"
+                    f"  • {s['size_label']}{dims_info} ({s['price_modifier']}x) → ${precio_calculado:,.2f}"
                 )
             size_list = "\n".join(size_options)
             response = (
@@ -952,6 +1015,50 @@ class OrderAgent:
                 f"Opciones:\n{size_list}"
             )
             return response, [], ConversationState.ASKING_SIZE.value
+
+    def _parse_custom_dimensions(self, text: str, product_name: str = "") -> dict | None:
+        DIM_PATTERNS = {
+            "alto": re.compile(r"alto[:\s]+(\d+(?:[.,]\d+)?)", re.IGNORECASE),
+            "ancho": re.compile(r"ancho[:\s]+(\d+(?:[.,]\d+)?)", re.IGNORECASE),
+            "fondo": re.compile(r"fondo[:\s]+(\d+(?:[.,]\d+)?)", re.IGNORECASE),
+            "largo": re.compile(r"largo[:\s]+(\d+(?:[.,]\d+)?)", re.IGNORECASE),
+            "profundidad": re.compile(r"profundidad[:\s]+(\d+(?:[.,]\d+)?)", re.IGNORECASE),
+            "grosor": re.compile(r"grosor[:\s]+(\d+(?:[.,]\d+)?)", re.IGNORECASE),
+        }
+        dims = {}
+        for key, pattern in DIM_PATTERNS.items():
+            match = pattern.search(text)
+            if match:
+                val = float(match.group(1).replace(",", "."))
+                dims[key] = val
+
+        if not dims:
+            nums = re.findall(r"(\d+(?:[.,]\d+)?)", text)
+            clean_nums = []
+            for n in nums:
+                val = float(n.replace(",", "."))
+                if 1 <= val <= 1000:
+                    clean_nums.append(val)
+
+            name_lower = product_name.lower()
+            if len(clean_nums) >= 3:
+                if any(k in name_lower for k in ["mesa", "librero", "estante"]):
+                    dims["largo"] = clean_nums[0]
+                    dims["ancho"] = clean_nums[1]
+                    dims["alto"] = clean_nums[2]
+                elif any(k in name_lower for k in ["closet", "puerta"]):
+                    dims["alto"] = clean_nums[0]
+                    dims["ancho"] = clean_nums[1]
+                    dims["fondo"] = clean_nums[2]
+                else:
+                    dims["ancho"] = clean_nums[0]
+                    dims["largo"] = clean_nums[1]
+                    dims["alto"] = clean_nums[2]
+            elif len(clean_nums) == 2:
+                dims["ancho"] = clean_nums[0]
+                dims["largo"] = clean_nums[1]
+
+        return dims if dims else None
 
     def _is_confirmation(self, message: str) -> bool:
         text = message.strip()
