@@ -30,6 +30,11 @@ CONFIRM_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
+SHORT_AFFIRMATIVE = re.compile(
+    r"^(s[ií]|ok|dale|claro|va|bueno|por\s+favor)\s*\.?\s*$",
+    re.IGNORECASE,
+)
+
 DENY_PATTERN = re.compile(
     r"^(no|nop|cancelar|cancela|me\s+equivoqu[eé]|cambiar|modificar)\b",
     re.IGNORECASE,
@@ -152,6 +157,14 @@ class OrderAgent:
         state_data: dict,
     ) -> tuple[str, list[str], str]:
         cart: list[dict] = list(state_data.get("cart") or [])
+
+        if not cart and SHORT_AFFIRMATIVE.match(user_message.strip()):
+            return (
+                "¡Perfecto! ¿Qué servicio de carpintería te gustaría cotizar?\n\n"
+                + self._render_menu_text(),
+                [],
+                ConversationState.COLLECTING_ORDER.value,
+            )
 
         if self._is_confirmation(user_message) and cart:
             return await self._check_missing_properties(conversation_id, cart, history, user_message=user_message)
