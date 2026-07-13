@@ -423,8 +423,13 @@ def _resolve_user_id(conversation_id: str, user_id: int | None) -> int | None:
 
 
 def merge_cart_items(cart: list[dict], extracted: list[dict]) -> tuple[list[str], list[str]]:
-    """Fusiona servicios extraídos al carrito de cotización."""
-    from tools.carpentry_tools import buscar_producto, obtener_menu
+    """Fusiona servicios extraídos al carrito de cotización (con madera y tamaño si aplica)."""
+    from tools.carpentry_tools import (
+        buscar_producto,
+        buscar_tipo_madera,
+        obtener_menu,
+        obtener_tamanos_producto,
+    )
 
     added = []
     errors: list[str] = []
@@ -432,6 +437,8 @@ def merge_cart_items(cart: list[dict], extracted: list[dict]) -> tuple[list[str]
     for item in extracted:
         categoria = item.get("categoria")
         cantidad = max(1, int(float(item.get("cantidad", 1) or 1)))
+        madera_req = item.get("madera")      # tipo de madera solicitado
+        tamano_req = item.get("tamano")      # tamaño solicitado
 
         if categoria:
             catalog_items = obtener_menu().get("productos") or []
@@ -462,25 +469,77 @@ def merge_cart_items(cart: list[dict], extracted: list[dict]) -> tuple[list[str]
             errors.append(f"{product.get('name')} (capacidad insuficiente)")
             continue
 
+        # Resolver modificador de madera
+        wood_modifier = 1.0
+        wood_name = None
+        if madera_req:
+            wood_info = buscar_tipo_madera(madera_req)
+            if wood_info:
+                wood_modifier = wood_info["price_modifier"]
+                wood_name = wood_info["name"]
+            else:
+                from tools.carpentry_tools import obtener_tipos_madera
+                woods = obtener_tipos_madera(active_only=True)
+                wood_list = ", ".join(w["name"] for w in woods) if woods else "ninguna disponible"
+                errors.append(
+                    f"No existe el tipo de madera \"{madera_req.title()}\". "
+                    f"Opciones disponibles: {wood_list}"
+                )
+                continue
+
+        # Resolver modificador de tamaño
+        size_modifier = 1.0
+        size_label = None
+        size_dims = None
+        pid = product.get("id")
+        if tamano_req and pid:
+            sizes = obtener_tamanos_producto(pid)
+            tamano_lower = tamano_req.strip().lower()
+            match_size = next(
+                (s for s in sizes if s["size_label"].lower() == tamano_lower
+                 or tamano_lower in s["size_label"].lower()),
+                None,
+            )
+            if match_size:
+                size_modifier = match_size["price_modifier"]
+                size_label = match_size["size_label"]
+                size_dims = match_size["dimensions"]
+            elif sizes:
+                size_options = ", ".join(s["size_label"] for s in sizes)
+                errors.append(
+                    f"No existe tamaño \"{tamano_req.title()}\" para {product['name']}. "
+                    f"Opciones disponibles: {size_options}"
+                )
+                continue
+
+        precio_final = round(prod_price * wood_modifier * size_modifier, 2)
+
         existing = next(
             (c for c in cart if c["producto"].lower() == product["name"].lower()), None
         )
         if existing:
             existing["cantidad"] += cantidad
-            existing["subtotal"] = existing["cantidad"] * existing["precio"]
+            existing["subtotal"] = round(existing["cantidad"] * existing["precio"], 2)
         else:
             cart.append(
                 {
                     "producto": product["name"],
                     "product_id": product["id"],
                     "cantidad": cantidad,
-                    "precio": prod_price,
-                    "subtotal": cantidad * prod_price,
+                    "precio_base": prod_price,
+                    "madera": wood_name,
+                    "tamano": size_label,
+                    "dimensiones": size_dims,
+                    "modificador_madera": wood_modifier,
+                    "modificador_tamano": size_modifier,
+                    "precio": precio_final,
+                    "subtotal": round(cantidad * precio_final, 2),
                 }
             )
         added.append(product["name"])
 
     return added, errors
+
 
 
 def _get_order(order_id: int) -> dict | None:

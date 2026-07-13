@@ -22,6 +22,12 @@ from models.schemas import (
     ProductUpdateRequest,
     RegisterRequest,
     UserOut,
+    WoodTypeOut,
+    WoodTypeCreate,
+    WoodTypeUpdate,
+    ProductSizeOut,
+    ProductSizeCreate,
+    ProductSizeUpdate,
 )
 from services.activity_service import list_activity, log_activity
 from services.auth_service import (
@@ -33,7 +39,20 @@ from services.auth_service import (
 )
 from services.chat_service import ChatService
 from services.order_display import build_order_card
-from tools.carpentry_tools import actualizar_producto, consultar_inventario, obtener_stats_dashboard
+from tools.carpentry_tools import (
+    actualizar_producto,
+    consultar_inventario,
+    obtener_stats_dashboard,
+    obtener_tipos_madera,
+    crear_tipo_madera,
+    actualizar_tipo_madera,
+    eliminar_tipo_madera,
+    obtener_tamanos_producto,
+    crear_tamano_producto,
+    actualizar_tamano_producto,
+    eliminar_tamano_producto,
+    obtener_catalogo_completo,
+)
 from tools.order_tools import cancel_order, get_user_orders, list_all_orders
 
 FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
@@ -310,3 +329,111 @@ async def admin_update_product(
 @app.get("/inventory")
 async def get_inventory(user: dict = Depends(require_admin)):
     return consultar_inventario()
+
+
+# ── Catálogo endpoints ────────────────────────────────────────────────────────
+
+@app.get("/catalog/wood-types", response_model=list[WoodTypeOut])
+async def catalog_wood_types():
+    """Obtiene los tipos de madera activos para el catálogo."""
+    return obtener_tipos_madera(active_only=True)
+
+
+@app.get("/catalog/products/{product_id}/sizes", response_model=list[ProductSizeOut])
+async def catalog_product_sizes(product_id: int):
+    """Obtiene los tamaños configurados para un producto."""
+    return obtener_tamanos_producto(product_id)
+
+
+@app.get("/catalog/full")
+async def catalog_full():
+    """Catálogo completo con precios base, rangos, maderas y tamaños disponibles."""
+    return obtener_catalogo_completo()
+
+
+# ── Admin Wood Types endpoints ────────────────────────────────────────────────
+
+@app.get("/admin/wood-types", response_model=list[WoodTypeOut])
+async def admin_get_wood_types(admin: dict = Depends(require_admin)):
+    """Obtiene todos los tipos de madera (activos e inactivos)."""
+    return obtener_tipos_madera(active_only=False)
+
+
+@app.post("/admin/wood-types", response_model=dict)
+async def admin_create_wood_type(body: WoodTypeCreate, admin: dict = Depends(require_admin)):
+    """Crea un nuevo tipo de madera."""
+    res = crear_tipo_madera(body.name, body.price_modifier, body.description)
+    if not res.get("exito"):
+        raise HTTPException(status_code=400, detail=res.get("mensaje"))
+    return res
+
+
+@app.patch("/admin/wood-types/{wood_type_id}", response_model=dict)
+async def admin_update_wood_type(
+    wood_type_id: int,
+    body: WoodTypeUpdate,
+    admin: dict = Depends(require_admin),
+):
+    """Actualiza modificador, descripción o estado activo de un tipo de madera."""
+    res = actualizar_tipo_madera(
+        wood_type_id,
+        price_modifier=body.price_modifier,
+        description=body.description,
+        active=body.active,
+    )
+    if not res.get("exito"):
+        raise HTTPException(status_code=400, detail=res.get("mensaje"))
+    return res
+
+
+@app.delete("/admin/wood-types/{wood_type_id}", response_model=dict)
+async def admin_delete_wood_type(wood_type_id: int, admin: dict = Depends(require_admin)):
+    """Desactiva un tipo de madera."""
+    res = eliminar_tipo_madera(wood_type_id)
+    if not res.get("exito"):
+        raise HTTPException(status_code=400, detail=res.get("mensaje"))
+    return res
+
+
+# ── Admin Product Sizes endpoints ─────────────────────────────────────────────
+
+@app.get("/admin/products/{product_id}/sizes", response_model=list[ProductSizeOut])
+async def admin_get_product_sizes(product_id: int, admin: dict = Depends(require_admin)):
+    """Obtiene los tamaños de un producto para administración."""
+    return obtener_tamanos_producto(product_id)
+
+
+@app.post("/admin/products/{product_id}/sizes", response_model=dict)
+async def admin_create_product_size(
+    product_id: int,
+    body: ProductSizeCreate,
+    admin: dict = Depends(require_admin),
+):
+    """Añade un tamaño con su modificador a un producto."""
+    res = crear_tamano_producto(product_id, body.size_label, body.price_modifier, body.dimensions)
+    if not res.get("exito"):
+        raise HTTPException(status_code=400, detail=res.get("mensaje"))
+    return res
+
+
+@app.patch("/admin/products/sizes/{size_id}", response_model=dict)
+async def admin_update_product_size(
+    size_id: int,
+    body: ProductSizeUpdate,
+    admin: dict = Depends(require_admin),
+):
+    """Actualiza dimensiones o modificador de un tamaño de producto."""
+    res = actualizar_tamano_producto(size_id, price_modifier=body.price_modifier, dimensions=body.dimensions)
+    if not res.get("exito"):
+        raise HTTPException(status_code=400, detail=res.get("mensaje"))
+    return res
+
+
+@app.delete("/admin/products/sizes/{size_id}", response_model=dict)
+async def admin_delete_product_size(size_id: int, admin: dict = Depends(require_admin)):
+    """Elimina un tamaño de un producto."""
+    res = eliminar_tamano_producto(size_id)
+    if not res.get("exito"):
+        raise HTTPException(status_code=400, detail=res.get("mensaje"))
+    return res
+

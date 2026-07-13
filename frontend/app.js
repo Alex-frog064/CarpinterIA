@@ -25,6 +25,8 @@ const TOOL_LABELS = {
 const STATE_LABELS = {
   IDLE: "Disponible",
   COLLECTING_ORDER: "Analizando cotización",
+  ASKING_WOOD_TYPE: "Tipo de madera",
+  ASKING_SIZE: "Tamaño del producto",
   ASKING_CUSTOMER_NAME: "Nombre del cliente",
   ASKING_DELIVERY_TYPE: "Tipo de entrega/instalación",
   ASKING_ADDRESS: "Dirección",
@@ -65,6 +67,8 @@ const LOCATION_STATES = ["ASKING_LOCATION"];
 /** Estados activos del flujo de pedido */
 const ORDER_FLOW_STATES = [
   "COLLECTING_ORDER",
+  "ASKING_WOOD_TYPE",
+  "ASKING_SIZE",
   "ASKING_CUSTOMER_NAME",
   "ASKING_DELIVERY_TYPE",
   "ASKING_ADDRESS",
@@ -90,6 +94,7 @@ const ADMIN_NAV = [
   { id: "users", label: "Usuarios", icon: "👥" },
   { id: "activity", label: "Actividad", icon: "📝" },
   { id: "products", label: "Servicios & Insumos", icon: "🪵" },
+  { id: "woodTypes", label: "Tipos de Madera", icon: "🌳" },
   { id: "adminConversations", label: "Conversaciones", icon: "💬" },
   { id: "chat", label: "Chat admin", icon: "🤖" },
 ];
@@ -264,10 +269,22 @@ function renderOrderTimeline(status) {
 
 function renderOrderConfirmationCard(card) {
   const itemsHtml = (card.items || [])
-    .map(
-      (item) =>
-        `<li>${item.cantidad} ${escapeHtml(item.producto)}</li>`
-    )
+    .map((item) => {
+      const props = [];
+      if (item.madera) props.push(`🪵 ${escapeHtml(item.madera)}`);
+      if (item.tamano) props.push(`📐 ${escapeHtml(item.tamano)}`);
+      const propsStr = props.length ? `<span class="order-card-item-props">${props.join(" · ")}</span>` : "";
+      const base = item.precio_base;
+      const final_ = item.precio || item.subtotal / item.cantidad;
+      const priceInfo = base && base !== final_
+        ? `<span class="order-card-item-price-detail">Base: $${base.toFixed(2)} → $${final_.toFixed(2)}</span>`
+        : `<span class="order-card-item-price">$${Number(item.subtotal || item.precio * item.cantidad).toFixed(2)}</span>`;
+      return `<li>
+        <span class="order-card-item-main">${item.cantidad}x ${escapeHtml(item.producto)}</span>
+        ${propsStr}
+        ${priceInfo}
+      </li>`;
+    })
     .join("");
 
   return `
@@ -288,6 +305,15 @@ function renderOrderConfirmationCard(card) {
           <span class="label">Productos</span>
           <ul class="order-card-items">${itemsHtml || "<li>Sin servicios</li>"}</ul>
         </div>
+        ${card.subtotal && card.delivery_fee ? `
+        <div class="order-card-row">
+          <span class="label">Subtotal</span>
+          <span class="value">$${Number(card.subtotal).toFixed(2)}</span>
+        </div>
+        <div class="order-card-row">
+          <span class="label">Envío/Instalación</span>
+          <span class="value">$${Number(card.delivery_fee).toFixed(2)}</span>
+        </div>` : ""}
         <div class="order-card-row highlight">
           <span class="label">Total</span>
           <span class="value total">$${Number(card.total).toFixed(2)}</span>
@@ -553,6 +579,7 @@ function switchView(viewId) {
     users: "Usuarios",
     activity: "Actividad",
     products: "Servicios & Materiales",
+    woodTypes: "Tipos de Madera",
     adminConversations: "Conversaciones",
   };
   viewTitle.textContent = titles[viewId] || "ARCHI Carpenter";
@@ -581,6 +608,9 @@ function switchView(viewId) {
   } else if (viewId === "products") {
     $("#viewProducts").classList.add("active");
     loadProducts();
+  } else if (viewId === "woodTypes") {
+    $("#viewWoodTypes").classList.add("active");
+    loadWoodTypes();
   } else if (viewId === "adminConversations") {
     $("#viewAdminConversations").classList.add("active");
     loadAdminConversations();
@@ -774,60 +804,7 @@ async function loadActivity() {
   }
 }
 
-async function loadProducts() {
-  const el = $("#productsTable");
-  el.innerHTML = '<div class="loading-inline">Cargando productos...</div>';
-  try {
-    const res = await apiFetch("/admin/products");
-    const data = await res.json();
-    const products = data.productos || data;
-    if (!products.length) {
-      el.innerHTML = '<p class="empty-msg">Sin productos.</p>';
-      return;
-    }
-    el.innerHTML = `
-      <table class="data-table products-table">
-        <thead>
-          <tr>
-            <th>Activo</th>
-            <th>Producto</th>
-            <th>Stock</th>
-            <th>Precio</th>
-            <th>Stock mín.</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>${products
-          .map(
-            (p) => `
-          <tr data-product-id="${p.id}">
-            <td>
-              <label class="toggle-switch">
-                <input type="checkbox" class="product-active" ${p.activo || p.menu_visible ? "checked" : ""}>
-                <span class="toggle-slider"></span>
-              </label>
-            </td>
-            <td>${escapeHtml(p.nombre || p.name)}</td>
-            <td><input type="number" class="inline-input product-stock" min="0" step="1" value="${p.stock}"></td>
-            <td><input type="number" class="inline-input product-price" min="0" step="0.5" value="${Number(p.precio || p.price).toFixed(2)}"></td>
-            <td>${p.stock_minimo || p.min_stock}</td>
-            <td><button type="button" class="btn-sm btn-save product-save">Guardar</button></td>
-          </tr>`
-          )
-          .join("")}</tbody>
-      </table>`;
-
-    el.querySelectorAll("tr[data-product-id]").forEach((row) => {
-      const saveBtn = row.querySelector(".product-save");
-      const activeToggle = row.querySelector(".product-active");
-      const save = () => saveProductRow(row);
-      saveBtn.addEventListener("click", save);
-      activeToggle.addEventListener("change", save);
-    });
-  } catch (err) {
-    el.innerHTML = `<p class="empty-msg">${escapeHtml(err.message)}</p>`;
-  }
-}
+// loadProducts moved to bottom of file (enhanced version with catalog + sizes)
 
 async function saveProductRow(row) {
   const id = parseInt(row.dataset.productId, 10);
@@ -1209,10 +1186,17 @@ function updateCart(cart) {
     .map((item) => {
       const sub = item.subtotal || item.precio * item.cantidad;
       total += sub;
+      const props = [];
+      if (item.madera) props.push(`🪵 ${escapeHtml(item.madera)}`);
+      if (item.tamano) props.push(`📐 ${escapeHtml(item.tamano)}`);
+      const propsHtml = props.length ? `<span class="cart-item-props">${props.join(" · ")}</span>` : "";
       return `
         <div class="cart-item">
           <span class="cart-item-qty">${item.cantidad}x</span>
-          <span class="cart-item-name">${escapeHtml(item.producto)}</span>
+          <div class="cart-item-info">
+            <span class="cart-item-name">${escapeHtml(item.producto)}</span>
+            ${propsHtml}
+          </div>
           <span class="cart-item-price">$${sub.toFixed(2)}</span>
         </div>`;
     })
@@ -1259,11 +1243,16 @@ async function handleSubmit(e) {
     const body = { message: text };
     if (state.conversationId) body.conversation_id = state.conversationId;
 
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 30000);
+
     const res = await apiFetch("/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
+      signal: controller.signal,
     });
+    clearTimeout(timeout);
 
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
@@ -1276,7 +1265,10 @@ async function handleSubmit(e) {
     await applyChatResponse(data);
   } catch (err) {
     thinkingEl.remove();
-    appendMessage("assistant", `⚠️ ${err.message || "No se pudo conectar."}`, null, false);
+    const msg = err.name === "AbortError"
+      ? "La respuesta está tardando demasiado. Por favor intenta de nuevo."
+      : (err.message || "No se pudo conectar.");
+    appendMessage("assistant", `⚠️ ${msg}`, null, false);
   } finally {
     setLoading(false);
   }
@@ -1390,7 +1382,7 @@ function appendMessage(role, content, toolsUsed = null, animate = false, timesta
   const avatarHtml =
     role === "user"
       ? `<div class="message-avatar avatar-user" title="Tú"><span>${getUserInitials()}</span></div>`
-      : `<div class="message-avatar avatar-carpinteria" title="Carpintería IA">🪵</div>`;
+      : `<div class="message-avatar avatar-carpinteria" title="CarpinterÍA">🪵</div>`;
 
   const timeStr = formatTime(timestamp);
   const tools = normalizeToolsUsed(toolsUsed);
@@ -1517,3 +1509,339 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, 0);
 });
+
+// ── CRUD Tipos de Madera ─────────────────────────────────────────────────────
+
+async function loadWoodTypes() {
+  const el = $("#woodTypesTable");
+  if (!el) return;
+  el.innerHTML = '<div class="loading-inline">Cargando tipos de madera...</div>';
+  try {
+    const res = await apiFetch("/admin/wood-types");
+    const types = await res.json();
+    if (!types.length) {
+      el.innerHTML = '<p class="empty-msg">Sin tipos de madera configurados.</p>';
+      return;
+    }
+    el.innerHTML = `
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Estado</th>
+            <th>Nombre</th>
+            <th>Modificador</th>
+            <th>Efecto en precio</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>${types
+          .map((t) => {
+            const pct = ((t.price_modifier - 1) * 100).toFixed(0);
+            const effect = t.price_modifier === 1.0 ? "Base" : (t.price_modifier > 1 ? `+${pct}%` : `${pct}%`);
+            return `
+          <tr data-wood-id="${t.id}">
+            <td>
+              <label class="toggle-switch">
+                <input type="checkbox" class="wood-active" ${t.active ? "checked" : ""} onchange="toggleWoodTypeActive(${t.id}, this.checked)">
+                <span class="toggle-slider"></span>
+              </label>
+            </td>
+            <td><strong>${escapeHtml(t.name)}</strong></td>
+            <td><code>${t.price_modifier}x</code></td>
+            <td><span class="wood-effect ${t.price_modifier > 1 ? 'premium' : t.price_modifier < 1 ? 'discount' : 'base'}">${effect}</span></td>
+            <td class="wood-desc">${escapeHtml(t.description || "—")}</td>
+            <td>
+              <button type="button" class="btn-sm btn-save" onclick="editWoodType(${t.id}, ${t.price_modifier}, '${escapeHtml(t.description || "")}', ${t.active})">Editar</button>
+              <button type="button" class="btn-sm btn-danger" onclick="deleteWoodType(${t.id}, '${escapeHtml(t.name)}')">Desactivar</button>
+            </td>
+          </tr>`;
+          })
+          .join("")}
+        </tbody>
+      </table>`;
+  } catch (err) {
+    el.innerHTML = `<p class="empty-msg">${escapeHtml(err.message)}</p>`;
+  }
+}
+
+function showNewWoodTypeModal() {
+  const modal = $("#woodTypeModal");
+  if (!modal) return;
+  $("#woodTypeModalTitle").textContent = "Nuevo Tipo de Madera";
+  $("#woodTypeId").value = "";
+  $("#woodTypeName").value = "";
+  $("#woodTypeModifier").value = "";
+  $("#woodTypeDescription").value = "";
+  $("#woodTypeActive").checked = true;
+  modal.classList.remove("hidden");
+}
+
+function editWoodType(id, modifier, description, active) {
+  const modal = $("#woodTypeModal");
+  if (!modal) return;
+  $("#woodTypeModalTitle").textContent = "Editar Tipo de Madera";
+  $("#woodTypeId").value = id;
+  $("#woodTypeName").value = "";
+  $("#woodTypeModifier").value = modifier;
+  $("#woodTypeDescription").value = description;
+  $("#woodTypeActive").checked = active;
+  modal.classList.remove("hidden");
+}
+
+function closeWoodTypeModal() {
+  const modal = $("#woodTypeModal");
+  if (modal) modal.classList.add("hidden");
+}
+
+async function handleSaveWoodType(e) {
+  e.preventDefault();
+  const id = $("#woodTypeId").value;
+  const name = $("#woodTypeName").value.trim();
+  const modifier = parseFloat($("#woodTypeModifier").value);
+  const description = $("#woodTypeDescription").value.trim();
+  const active = $("#woodTypeActive").checked;
+
+  if (!name && !id) {
+    showStatusBanner("El nombre es obligatorio", "warning");
+    return;
+  }
+  if (isNaN(modifier) || modifier <= 0) {
+    showStatusBanner("El modificador debe ser mayor a 0", "warning");
+    return;
+  }
+
+  try {
+    let res;
+    if (id) {
+      res = await apiFetch(`/admin/wood-types/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ price_modifier: modifier, description, active }),
+      });
+    } else {
+      res = await apiFetch("/admin/wood-types", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, price_modifier: modifier, description }),
+      });
+    }
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.detail || "Error al guardar");
+    }
+    closeWoodTypeModal();
+    showStatusBanner(id ? "Tipo de madera actualizado" : "Tipo de madera creado", "success");
+    loadWoodTypes();
+  } catch (err) {
+    showStatusBanner(err.message, "warning");
+  }
+}
+
+async function toggleWoodTypeActive(id, active) {
+  try {
+    const res = await apiFetch(`/admin/wood-types/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ active }),
+    });
+    if (!res.ok) throw new Error("Error al actualizar");
+    showStatusBanner(active ? "Tipo de madera activado" : "Tipo de madera desactivado", "success");
+  } catch (err) {
+    showStatusBanner(err.message, "warning");
+    loadWoodTypes();
+  }
+}
+
+async function deleteWoodType(id, name) {
+  if (!confirm(`¿Desactivar el tipo de madera "${name}"?`)) return;
+  try {
+    const res = await apiFetch(`/admin/wood-types/${id}`, { method: "DELETE" });
+    if (!res.ok) throw new Error("Error al desactivar");
+    showStatusBanner(`"${name}" desactivado`, "success");
+    loadWoodTypes();
+  } catch (err) {
+    showStatusBanner(err.message, "warning");
+  }
+}
+
+// ── CRUD Tamaños de Producto ──────────────────────────────────────────────────
+
+let currentSizesProductId = null;
+let currentSizesProductName = "";
+
+function showSizesModal(productId, productName) {
+  currentSizesProductId = productId;
+  currentSizesProductName = productName;
+  const modal = $("#sizesModal");
+  if (!modal) return;
+  $("#sizesModalTitle").textContent = `Tamaños: ${productName}`;
+  modal.classList.remove("hidden");
+  loadProductSizes(productId);
+}
+
+function closeSizesModal() {
+  const modal = $("#sizesModal");
+  if (modal) modal.classList.add("hidden");
+  currentSizesProductId = null;
+}
+
+async function loadProductSizes(productId) {
+  const tbody = $("#sizesModalTableBody");
+  if (!tbody) return;
+  try {
+    const res = await apiFetch(`/admin/products/${productId}/sizes`);
+    const sizes = await res.json();
+    if (!sizes.length) {
+      tbody.innerHTML = '<tr><td colspan="4" class="empty-msg">Sin tamaños configurados</td></tr>';
+      return;
+    }
+    tbody.innerHTML = sizes
+      .map((s) => `
+        <tr>
+          <td><strong>${escapeHtml(s.size_label)}</strong></td>
+          <td>${escapeHtml(s.dimensions || "—")}</td>
+          <td><code>${s.price_modifier}x</code></td>
+          <td>
+            <button type="button" class="btn-sm btn-danger" onclick="handleDeleteSize(${s.id})">Eliminar</button>
+          </td>
+        </tr>`)
+      .join("");
+  } catch (err) {
+    tbody.innerHTML = `<tr><td colspan="4" class="empty-msg">${escapeHtml(err.message)}</td></tr>`;
+  }
+}
+
+async function handleCreateSize(e) {
+  e.preventDefault();
+  if (!currentSizesProductId) return;
+  const label = $("#newSizeLabel").value.trim();
+  const dims = $("#newSizeDims").value.trim();
+  const modifier = parseFloat($("#newSizeModifier").value);
+
+  if (!label) {
+    showStatusBanner("El nombre del tamaño es obligatorio", "warning");
+    return;
+  }
+  if (isNaN(modifier) || modifier <= 0) {
+    showStatusBanner("El modificador debe ser mayor a 0", "warning");
+    return;
+  }
+
+  try {
+    const res = await apiFetch(`/admin/products/${currentSizesProductId}/sizes`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ size_label: label, dimensions: dims || null, price_modifier: modifier }),
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.detail || "Error al crear tamaño");
+    }
+    $("#newSizeLabel").value = "";
+    $("#newSizeDims").value = "";
+    $("#newSizeModifier").value = "";
+    showStatusBanner("Tamaño creado", "success");
+    loadProductSizes(currentSizesProductId);
+  } catch (err) {
+    showStatusBanner(err.message, "warning");
+  }
+}
+
+async function handleDeleteSize(sizeId) {
+  if (!confirm("¿Eliminar este tamaño?")) return;
+  try {
+    const res = await apiFetch(`/admin/products/sizes/${sizeId}`, { method: "DELETE" });
+    if (!res.ok) throw new Error("Error al eliminar");
+    showStatusBanner("Tamaño eliminado", "success");
+    loadProductSizes(currentSizesProductId);
+  } catch (err) {
+    showStatusBanner(err.message, "warning");
+  }
+}
+
+// ── Productos: tabla mejorada con rango de precios y botón de tamaños ────────
+
+async function loadProducts() {
+  const el = $("#productsTable");
+  el.innerHTML = '<div class="loading-inline">Cargando productos...</div>';
+  try {
+    const catalogRes = await apiFetch("/catalog/full");
+    const catalogData = await catalogRes.json();
+    const products = catalogData.productos || [];
+    const woodTypes = catalogData.tipos_madera || [];
+
+    if (!products.length) {
+      el.innerHTML = '<p class="empty-msg">Sin productos.</p>';
+      return;
+    }
+
+    const invRes = await apiFetch("/admin/products");
+    const invData = await invRes.json();
+    const inventory = invData.productos || [];
+
+    el.innerHTML = `
+      <div class="products-summary" style="margin-bottom: 1rem; padding: 1rem; background: var(--bg-card, #f8f9fa); border-radius: 8px; display: flex; gap: 2rem; flex-wrap: wrap;">
+        <div><strong>${products.length}</strong> productos activos</div>
+        <div><strong>${woodTypes.length}</strong> tipos de madera</div>
+        <div>Rangos de precio: <em>desde madera más económica hasta la más premium</em></div>
+      </div>
+      <table class="data-table products-table">
+        <thead>
+          <tr>
+            <th>Activo</th>
+            <th>Producto</th>
+            <th>Stock</th>
+            <th>Precio Base</th>
+            <th>Rango de Precios</th>
+            <th>Categoría</th>
+            <th>Tamaños</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>${products
+          .map((p) => {
+            const inv = inventory.find((i) => (i.id || i.id) === p.id) || {};
+            const sizeCount = (p.tamanos || []).length;
+            const priceDisplay = p.precio_minimo !== p.precio_maximo
+              ? `<span class="price-range">$${p.precio_minimo.toFixed(0)} - $${p.precio_maximo.toFixed(0)}</span>`
+              : `$${p.precio_base.toFixed(2)}`;
+            return `
+          <tr data-product-id="${p.id}">
+            <td>
+              <label class="toggle-switch">
+                <input type="checkbox" class="product-active" ${(inv.activo || inv.menu_visible) ? "checked" : ""}>
+                <span class="toggle-slider"></span>
+              </label>
+            </td>
+            <td>
+              <strong>${escapeHtml(p.nombre)}</strong>
+              <div class="product-base-price">Base: $${p.precio_base.toFixed(2)}</div>
+            </td>
+            <td><input type="number" class="inline-input product-stock" min="0" step="1" value="${inv.stock || 0}"></td>
+            <td><input type="number" class="inline-input product-price" min="0" step="0.5" value="${p.precio_base}"></td>
+            <td>${priceDisplay}</td>
+            <td><span class="category-badge">${escapeHtml(p.categoria || "—")}</span></td>
+            <td>
+              <button type="button" class="btn-sm btn-outline" onclick="showSizesModal(${p.id}, '${escapeHtml(p.nombre)}')">
+                📐 ${sizeCount} tamaño${sizeCount !== 1 ? "s" : ""}
+              </button>
+            </td>
+            <td><button type="button" class="btn-sm btn-save product-save">Guardar</button></td>
+          </tr>`;
+          })
+          .join("")}
+        </tbody>
+      </table>`;
+
+    el.querySelectorAll("tr[data-product-id]").forEach((row) => {
+      const saveBtn = row.querySelector(".product-save");
+      const activeToggle = row.querySelector(".product-active");
+      const save = () => saveProductRow(row);
+      saveBtn.addEventListener("click", save);
+      activeToggle.addEventListener("change", save);
+    });
+  } catch (err) {
+    el.innerHTML = `<p class="empty-msg">${escapeHtml(err.message)}</p>`;
+  }
+}

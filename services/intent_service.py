@@ -13,11 +13,14 @@ class ChatMode(str, Enum):
 
 ACTIVE_ORDER_STATES = {
     ConversationState.COLLECTING_ORDER.value,
+    ConversationState.ASKING_WOOD_TYPE.value,
+    ConversationState.ASKING_SIZE.value,
     ConversationState.ASKING_CUSTOMER_NAME.value,
     ConversationState.ASKING_DELIVERY_TYPE.value,
     ConversationState.ASKING_ADDRESS.value,
     ConversationState.ASKING_LOCATION.value,
     ConversationState.CONFIRMING_ORDER.value,
+    ConversationState.ORDER_COMPLETED.value,
 }
 
 GREETING_PATTERN = re.compile(
@@ -86,14 +89,15 @@ ADMIN_QUERY_PATTERN = re.compile(
 
 CLEAR_ORDER_INTENT_PATTERN = re.compile(
     r"(?i)\b("
-    r"quiero\s+(?:pedir|ordenar|comprar|cotizar|un[oa]?\s|\d+\s+)|"
-    r"quisiera\s+(?:pedir|ordenar|comprar|cotizar|un[oa]?\s|\d+\s+)|"
-    r"me\s+gustar[ií]a\s+(?:pedir|ordenar|comprar|cotizar|un[oa]?\s|\d+\s+)|"
-    r"(?:pedir|ordenar|comprar|cotizar)\s+(?:un[oa]?\s|\d+\s+)|"
-    r"(?:dame|me\s+das|necesito)\s+(?:un[oa]?\s|\d+\s+)|"
-    r"agreg(?:a|ar|ue)\s+(?:un[oa]?\s|\d+\s+)|"
-    r"ponme\s+(?:un[oa]?\s|\d+\s+)|"
-    r"haz(?:me)?\s+(?:un[oa]?\s|pedido|orden|cotizaci[oó]n|\d+\s+|mueble|puerta|closet|cocina|mesa)"
+    r"quiero\s+(?:pedir|ordenar|comprar|cotizar|un[oa]?\s|\d+\s+|media\s+|un\s+medio\s+)|"
+    r"quisiera\s+(?:pedir|ordenar|comprar|cotizar|un[oa]?\s|\d+\s+|media\s+|un\s+medio\s+)|"
+    r"me\s+gustar[ií]a\s+(?:pedir|ordenar|comprar|cotizar|un[oa]?\s|\d+\s+|media\s+|un\s+medio\s+)|"
+    r"(?:pedir|ordenar|comprar|cotizar)\s+(?:un[oa]?\s|\d+\s+|media\s+|un\s+medio\s+)|"
+    r"(?:dame|darme|me\s+das|necesito)\s+(?:un[oa]?\s|\d+\s+|media\s+|un\s+medio\s+)|"
+    r"(?:puedes|podr[ií]as)\s+darme\s+(?:un[oa]?\s|\d+\s+|media\s+|un\s+medio\s+)|"
+    r"agreg(?:a|ar|ue)\s+(?:un[oa]?\s|\d+\s+|media\s+|un\s+medio\s+)|"
+    r"ponme\s+(?:un[oa]?\s|\d+\s+|media\s+|un\s+medio\s+)|"
+    r"haz(?:me)?\s+(?:un[oa]?\s|pedido|orden|cotizaci[oó]n|\d+\s+|media\s+|un\s+medio\s+|mueble|puerta|closet|cocina|mesa)"
     r")\b"
 )
 
@@ -127,7 +131,9 @@ STOCK_INQUIRY_PATTERN = re.compile(
 )
 
 WANT_VERB_PATTERN = re.compile(
-    r"(?i)\b(quiero|quisiera|dame|me\s+das|me\s+gustar[ií]a|necesito)\b"
+    r"(?i)\b(quiero|quisiera|dame|darme|me\s+das|me\s+gustar[ií]a|necesito|"
+    r"puedes\s+darme|podr[ií]as\s+darme|me\s+podr[ií]as|regalame|ponme|"
+    r"abrica|fabrica|hazme|hazme|arma|armame)\b"
 )
 
 

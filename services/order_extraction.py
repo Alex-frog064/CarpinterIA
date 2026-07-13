@@ -25,7 +25,8 @@ QUANTITY_PRODUCT_PATTERN = re.compile(
 )
 
 ORDER_KEYWORDS = re.compile(
-    r"\b(quiero|quisiera|pedir|pido|ordenar|ordeno|comprar|cotizar|cotizo|me\s+das|dame|necesito|necesitaria|me\s+gustaria)\b",
+    r"\b(quiero|quisiera|pedir|pido|ordenar|ordeno|comprar|cotizar|cotizo|me\s+das|dame|darme|necesito|necesitaria|me\s+gustaria|"
+    r"puedes\s+darme|podr[ií]as\s+darme|regalame|ponme|hazme|arma|armame)\b",
     re.IGNORECASE,
 )
 
@@ -87,6 +88,9 @@ def _is_generic_category_request(text: str, menu_names: list[str]) -> bool:
     for name in menu_names:
         name_lower = _strip_accents(name.lower())
         if category in name_lower and name_lower in text_lower and name_lower != category:
+            return False
+        name_no_parens = re.sub(r"\s*\(.*?\)\s*", " ", name_lower).strip()
+        if category in name_lower and name_no_parens in text_lower and name_no_parens != category:
             return False
 
     return True
@@ -173,11 +177,51 @@ def _regex_extract(text: str, menu_names: list[str]) -> list[dict]:
     return items
 
 
+SIZE_HINT_PATTERN = re.compile(
+    r"\b(grande|peque[noa]?|mediano|mediana|media|extra\s+grande|chico|chica|enorme|"
+    r"est[aá]ndar|normal|amplio|compacto)\b",
+    re.IGNORECASE,
+)
+
+SIZE_HINT_MAP = {
+    "media": "Mediano",
+    "mediana": "Mediano",
+    "mediano": "Mediano",
+    "grande": "Grande",
+    "pequeño": "Pequeño",
+    "pequeña": "Pequeño",
+    "pequeno": "Pequeño",
+    "chico": "Pequeño",
+    "chica": "Pequeño",
+    "extra grande": "Extra Grande",
+    "enorme": "Extra Grande",
+    "estándar": "Mediano",
+    "estandar": "Mediano",
+    "normal": "Mediano",
+    "amplio": "Grande",
+    "compacto": "Pequeño",
+}
+
+
 def _match_single_product(text: str, menu_names: list[str]) -> dict | None:
     text_lower = text.lower().strip()
-    text_lower = re.sub(r"^(quiero|quisiera|cotizar|cotizame|necesito|dame|me das|un|una|unos|unas|dos|tres|cuatro|cinco)\s+", "", text_lower)
-    qty_match = re.search(r"\b(\d+|dos|tres|cuatro|cinco)\b", text_lower)
+    text_lower = re.sub(
+        r"^(quiero|quisiera|cotizar|cotizame|necesito|dame|me das|puedes darme|podr[ií]as darme|"
+        r"un|una|unos|unas|dos|tres|cuatro|cinco|regalame|ponme|hazme|arma|armame|"
+        r"la|las|los|el)\s+",
+        "", text_lower,
+    )
+
     qty = 1
+    size_hint = None
+    size_match = SIZE_HINT_PATTERN.search(text_lower)
+    if size_match:
+        hint_text = size_match.group(1).strip().lower()
+        size_hint = SIZE_HINT_MAP.get(hint_text)
+        text_lower = text_lower[:size_match.start()] + text_lower[size_match.end():]
+        text_lower = re.sub(r"\s+", " ", text_lower).strip()
+
+    qty_match = re.search(r"\b(\d+|dos|tres|cuatro|cinco)\b", text_lower)
     if qty_match:
         qty_text = qty_match.group(1)
         if qty_text.isdigit():
@@ -195,10 +239,10 @@ def _match_single_product(text: str, menu_names: list[str]) -> dict | None:
         if kw in text_lower:
             for name in menu_names:
                 if kw in name.lower():
-                    return {
-                        "nombre": name,
-                        "cantidad": qty,
-                    }
+                    item = {"nombre": name, "cantidad": qty}
+                    if size_hint:
+                        item["tamano"] = size_hint
+                    return item
 
     best = None
     best_len = 0
@@ -211,7 +255,10 @@ def _match_single_product(text: str, menu_names: list[str]) -> dict | None:
                 best_len = len(name)
 
     if best:
-        return {"nombre": best, "cantidad": qty}
+        item = {"nombre": best, "cantidad": qty}
+        if size_hint:
+            item["tamano"] = size_hint
+        return item
     return None
 
 

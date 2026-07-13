@@ -123,6 +123,10 @@ def init_db():
         _migrate_state_from_conversations(conn)
         _migrate_auth(conn)
         _cap_stock_max_50(conn)
+        _migrate_wood_types(conn)
+        _migrate_product_sizes(conn)
+        _seed_wood_types(conn)
+        _seed_product_sizes(conn)
 
 
 def _migrate_auth(conn: sqlite3.Connection):
@@ -420,3 +424,173 @@ def _cap_stock_max_50(conn: sqlite3.Connection):
     for row in rows:
         new_stock = float(random.randint(5, 50))
         conn.execute("UPDATE products SET stock = ? WHERE id = ?", (new_stock, row["id"]))
+
+
+def _migrate_wood_types(conn: sqlite3.Connection):
+    """Crea la tabla wood_types si no existe (tipos de madera con modificador de precio)."""
+    conn.executescript("""
+        CREATE TABLE IF NOT EXISTS wood_types (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL UNIQUE,
+            price_modifier REAL NOT NULL DEFAULT 1.0,
+            description TEXT,
+            active INTEGER NOT NULL DEFAULT 1,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+    """)
+
+
+def _migrate_product_sizes(conn: sqlite3.Connection):
+    """Crea la tabla product_sizes si no existe (tamaños por producto con modificador de precio)."""
+    conn.executescript("""
+        CREATE TABLE IF NOT EXISTS product_sizes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            product_id INTEGER NOT NULL,
+            size_label TEXT NOT NULL,
+            dimensions TEXT,
+            price_modifier REAL NOT NULL DEFAULT 1.0,
+            FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+            UNIQUE (product_id, size_label)
+        );
+    """)
+
+
+# Datos semilla: tipos de madera
+_WOOD_TYPES_SEED = [
+    ("MDF",     1.0,  "Material de densidad media, económico y liso. Ideal para pintar."),
+    ("Triplay", 1.1,  "Contrachapado resistente a humedad. Versátil y ligero."),
+    ("Pino",    1.2,  "Madera blanda de veta clara. Buena relación calidad-precio."),
+    ("Cedro",   1.5,  "Madera fragante con buena resistencia. Calidad media-alta."),
+    ("Roble",   1.8,  "Madera dura de alta durabilidad. Veta pronunciada y elegante."),
+    ("Nogal",   2.2,  "Madera fina de tono oscuro. Vetas exclusivas. Alta calidad."),
+    ("Caoba",   2.5,  "Madera premium tropical. Máxima durabilidad y belleza."),
+]
+
+# Datos semilla: tamaños genéricos para todos los productos de mobiliario
+_GENERIC_SIZES_SEED = [
+    ("Pequeño",    "hasta 80cm",    0.75),
+    ("Mediano",    "80-120cm",      1.0),
+    ("Grande",     "120-180cm",     1.35),
+    ("Extra Grande","más de 180cm", 1.7),
+]
+
+# Tamaños específicos por categoría de producto (palabras clave en el nombre del producto)
+_SPECIFIC_SIZES = {
+    "mesa": [
+        ("Pequeño (4 personas)",   "100x60cm",   0.75),
+        ("Mediano (6 personas)",   "120x80cm",   1.0),
+        ("Grande (8 personas)",    "160x90cm",   1.35),
+        ("Familiar (10 personas)", "200x100cm",  1.7),
+        ("XL (12+ personas)",      "240x110cm",  2.1),
+    ],
+    "librero": [
+        ("Compacto",   "1.2m x 0.6m",  0.7),
+        ("Mediano",    "1.5m x 0.9m",  1.0),
+        ("Alto",       "2m x 1m",      1.3),
+        ("Grande",     "2m x 1.5m",    1.6),
+        ("Biblioteca", "2.2m x 2m",    2.2),
+    ],
+    "closet": [
+        ("Sencillo",    "1.5m ancho",    0.85),
+        ("Mediano",     "2m ancho",      1.0),
+        ("Grande",      "2.5m ancho",    1.4),
+        ("XL",          "3m ancho",      1.8),
+        ("Walk-in",     "3.5m+ ancho",   2.3),
+        ("Vestidor",    "4m+ vestidor",   2.8),
+    ],
+    "puerta": [
+        ("Interior Sencilla",  "210x70cm",   0.85),
+        ("Interior Estándar",  "210x80cm",   1.0),
+        ("Exterior Estándar",  "210x90cm",   1.2),
+        ("Doble Hoja",         "210x120cm",  1.8),
+        ("Corredera",          "210x150cm",  2.0),
+    ],
+    "cocina": [
+        ("Básica (2-3 módulos)",    "2-3 módulos",   0.8),
+        ("Mediana (4-5 módulos)",   "4-5 módulos",   1.0),
+        ("Amplia (6-8 módulos)",    "6-8 módulos",   1.4),
+        ("Completa (9+ módulos)",   "9+ módulos",    1.8),
+        ("Premium (isla incluida)", "isla + módulos", 2.5),
+    ],
+    "piso": [
+        ("m²", "precio por m²", 1.0),
+    ],
+    "escalera": [
+        ("5 peldaños",   "altura 1.2m",  0.7),
+        ("7 peldaños",   "altura 1.8m",  0.9),
+        ("10 peldaños",  "altura 2.5m",  1.0),
+        ("12 peldaños",  "altura 3.0m",  1.2),
+        ("14 peldaños",  "altura 3.5m",  1.4),
+        ("Caracol",      "espiral",      1.8),
+    ],
+    "ventana": [
+        ("Pequeña",    "60x90cm",    0.8),
+        ("Mediana",    "90x120cm",   1.0),
+        ("Grande",     "120x150cm",  1.3),
+        ("Corredera",  "150x120cm",  1.5),
+        ("Panel fijo", "180x120cm",  1.2),
+    ],
+    "mueble": [
+        ("Pequeño",    "personalizado pequeño",   0.8),
+        ("Mediano",    "personalizado mediano",    1.0),
+        ("Grande",     "personalizado grande",     1.35),
+        ("XL",         "personalizado extra grande",1.7),
+    ],
+    "restauracion": [
+        ("Básica",      "limpieza y retoque",       1.0),
+        ("Media",       "restauración parcial",     1.3),
+        ("Completa",    "restauración profunda",    1.6),
+        ("Estructural", "reparación y restauración", 2.0),
+        ("Premium",     "restauración + acabados",  2.5),
+    ],
+}
+
+
+def _seed_wood_types(conn: sqlite3.Connection):
+    """Inserta tipos de madera si no existen."""
+    for name, modifier, description in _WOOD_TYPES_SEED:
+        exists = conn.execute(
+            "SELECT 1 FROM wood_types WHERE name = ?", (name,)
+        ).fetchone()
+        if not exists:
+            conn.execute(
+                "INSERT INTO wood_types (name, price_modifier, description) VALUES (?, ?, ?)",
+                (name, modifier, description),
+            )
+
+
+def _seed_product_sizes(conn: sqlite3.Connection):
+    """Inserta tamaños por producto según su nombre."""
+    products = conn.execute("SELECT id, name FROM products WHERE menu_visible = 1").fetchall()
+    for prod in products:
+        pid = prod["id"]
+        name_lower = prod["name"].lower()
+
+        # Buscar tamaños específicos por categoría
+        matched = False
+        for keyword, sizes in _SPECIFIC_SIZES.items():
+            if keyword in name_lower:
+                for size_label, dimensions, modifier in sizes:
+                    conn.execute(
+                        """
+                        INSERT OR IGNORE INTO product_sizes
+                            (product_id, size_label, dimensions, price_modifier)
+                        VALUES (?, ?, ?, ?)
+                        """,
+                        (pid, size_label, dimensions, modifier),
+                    )
+                matched = True
+                break
+
+        # Si no coincide con ninguna categoría específica, usar tamaños genéricos
+        if not matched:
+            for size_label, dimensions, modifier in _GENERIC_SIZES_SEED:
+                conn.execute(
+                    """
+                    INSERT OR IGNORE INTO product_sizes
+                        (product_id, size_label, dimensions, price_modifier)
+                    VALUES (?, ?, ?, ?)
+                    """,
+                    (pid, size_label, dimensions, modifier),
+                )
+

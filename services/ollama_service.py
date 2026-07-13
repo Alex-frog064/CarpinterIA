@@ -33,6 +33,7 @@ Personalidad:
 - Natural, cálido y conversacional.
 - Mantén el contexto de la cotización y no cambies de tema.
 - Confirma información antes de avanzar.
+- Eres experto en maderas y pueden asesorar al cliente sobre qué tipo de madera es mejor para su proyecto.
 
 Reglas estrictas:
 - Responde SIEMPRE en español.
@@ -41,23 +42,53 @@ Reglas estrictas:
 - Si no hay información suficiente, di que no cuentas con ella y ofrece conocer el catálogo de servicios disponible.
 - No abandones el flujo de cotización. Si el cliente cambia de tema, redirige a la cotización o al catálogo.
 - Haz UNA sola pregunta por mensaje.
-- Avanza paso a paso: servicios → nombre → tipo entrega → dirección → ubicación → confirmación.
+- Avanza paso a paso: servicios → madera → tamaño → nombre → tipo entrega → dirección → ubicación → confirmación.
+- Cuando preguntes por madera, menciona las opciones disponibles y sus características breves.
+- Cuando preguntes por tamaño, muestra las opciones disponibles con sus dimensiones.
 - Sé breve pero amable. Máximo 1 emoji por mensaje.
 - No menciones estados internos, JSON, bases de datos ni que eres una IA.
 - Cierra la cotización con entusiasmo cuando se confirme.
 - no quiero que puedan hacer preguntas de otros temas que no sean cotizaciones
-- no pueden ser productos perzonalizados"""
+- no pueden ser productos personalizados"""
 
-EXTRACT_PRODUCTS_PROMPT = """Extrae los servicios/productos de carpintería y cantidades del mensaje del cliente.
+EXTRACT_PRODUCTS_PROMPT = """Extrae los servicios/productos de carpintería, cantidades, tipo de madera y tamaño del mensaje del cliente.
 Responde SOLO con JSON válido en este formato:
-{{"productos": [{{"nombre": "nombre del servicio", "cantidad": 1}}]}}
+{{"productos": [{{"nombre": "nombre del servicio", "cantidad": 1, "madera": "tipo de madera o null", "tamano": "tamaño o null"}}]}}
 
 Catálogo de servicios disponible:
 {menu}
 
-Si no detectas servicios concretos, devuelve {{"productos": []}}.
-Si no se indica cantidad, usa 1.
-Normaliza nombres al catálogo cuando sea posible (ej: "quiero un closet" -> "Closet")."""
+Tipos de madera conocidos (con precios relativos):
+- MDF (1.0x): económico, liso, para pintar
+- Triplay (1.1x): resistente a humedad
+- Pino (1.2x): blanda, buena relación calidad-precio
+- Cedro (1.5x): fragante, resistente, calidad media-alta
+- Roble (1.8x): dura, elegante, alta durabilidad
+- Nogal (2.2x): fina, tono oscuro, veta exclusiva
+- Caoba (2.5x): premium tropical, máxima calidad
+
+Tamaños conocidos por tipo de producto:
+- Mesas: Pequeño (4 personas), Mediano (6 personas), Grande (8 personas), Familiar (10 personas), XL (12+)
+- Closets: Sencillo, Mediano, Grande, XL, Walk-in, Vestidor
+- Libreros: Compacto, Mediano, Alto, Grande, Biblioteca
+- Puertas: Interior Sencilla, Interior Estándar, Exterior Estándar, Doble Hoja, Corredera
+- Cocinas: Básica, Mediana, Amplia, Completa, Premium
+- Escaleras: 5-14 peldaños, Caracol
+- Ventanas: Pequeña, Mediana, Grande, Corredera, Panel fijo
+- Muebles: Pequeño, Mediano, Grande, XL
+- Restauración: Básica, Media, Completa, Estructural, Premium
+- Piso: m² (precio por metro cuadrado)
+
+REGLAS DE EXTRACCIÓN:
+1. Si el cliente menciona un tipo de madera (pino, cedro, roble, nogal, caoba, MDF, triplay, etc.), asígnalo al campo "madera".
+2. Si el cliente menciona un tamaño (pequeño, mediano, grande, etc.) o dimensiones (120x80cm, 2m, etc.), asígnalo al campo "tamano".
+3. Si el cliente describe características como "de buena madera", "en pino", "grande", "para 6 personas", interprétalo como madera/tamaño.
+4. Si no se indica cantidad, usa 1.
+5. Si no se detecta madera o tamaño, usa null en esos campos.
+6. Normaliza nombres al catálogo cuando sea posible.
+7. Si el cliente dice "un closet en roble mediano", extrae: nombre="Closet", madera="Roble", tamano="Mediano".
+
+Si no detectas servicios concretos, devuelve {{"productos": []}}."""
 
 
 class OllamaService:
@@ -120,7 +151,7 @@ class OllamaService:
     async def extract_order_products(
         self, user_message: str, menu_products: list[str]
     ) -> list[dict[str, Any]]:
-        """Usa el LLM para extraer servicios y cantidades del mensaje."""
+        """Usa el LLM para extraer servicios y cantidades del mensaje con madera y tamaño."""
         menu_text = "\n".join(f"- {p}" for p in menu_products)
         system = EXTRACT_PRODUCTS_PROMPT.format(menu=menu_text)
 
@@ -128,11 +159,27 @@ class OllamaService:
         productos = raw.get("productos", [])
         if not isinstance(productos, list):
             return []
-        return [
-            {"nombre": str(p.get("nombre", "")).strip(), "cantidad": float(p.get("cantidad", 1) or 1)}
-            for p in productos
-            if p.get("nombre")
-        ]
+
+        SIZE_NORMALIZE = {
+            "media": "Mediano", "mediana": "Mediano", "medio": "Mediano",
+            "grande": "Grande", "pequeño": "Pequeño", "pequeña": "Pequeño",
+            "chico": "Pequeño", "chica": "Pequeño",
+            "extra grande": "Extra Grande", "enorme": "Extra Grande",
+            "estándar": "Mediano", "estandar": "Mediano", "normal": "Mediano",
+            "compacto": "Pequeño", "amplio": "Grande",
+        }
+
+        result = []
+        for p in productos:
+            tamano = (p.get("tamano") or "").strip()
+            tamano_norm = SIZE_NORMALIZE.get(tamano.lower(), tamano) if tamano else None
+            result.append({
+                "nombre": str(p.get("nombre", "")).strip(),
+                "cantidad": float(p.get("cantidad", 1) or 1),
+                "madera": p.get("madera") if p.get("madera") else None,
+                "tamano": tamano_norm if tamano_norm else None,
+            })
+        return [item for item in result if item["nombre"]]
 
     async def generate_conversational_response(
         self,
@@ -145,63 +192,85 @@ class OllamaService:
         messages = list(history or [])[-8:]
         messages.append({"role": "user", "content": user_message})
 
-        async with httpx.AsyncClient(timeout=90.0) as client:
-            response = await client.post(
-                f"{self.base_url}/api/chat",
-                json={
-                    "model": self.model,
-                    "messages": [{"role": "system", "content": system}, *messages],
-                    "stream": False,
-                },
+        try:
+            async with httpx.AsyncClient(timeout=90.0) as client:
+                response = await client.post(
+                    f"{self.base_url}/api/chat",
+                    json={
+                        "model": self.model,
+                        "messages": [{"role": "system", "content": system}, *messages],
+                        "stream": False,
+                    },
+                )
+                response.raise_for_status()
+                return response.json()["message"].get("content", "")
+        except (httpx.TimeoutException, httpx.HTTPStatusError, httpx.ConnectError) as e:
+            print(f"[OllamaService] Error en respuesta conversacional: {type(e).__name__}: {e}")
+            return (
+                "Disculpa, tuve un problema técnico. Por favor intenta de nuevo "
+                "o escribe 'cotizar' para ver nuestros servicios."
             )
-            response.raise_for_status()
-            return response.json()["message"].get("content", "")
 
     async def generate_employee_response(
         self,
         instruction: str,
         context: str,
         history: list[dict[str, str]] | None = None,
+        user_message: str | None = None,
     ) -> str:
         """Genera una respuesta natural de empleado de carpintería."""
         system = f"{QUOTE_EMPLOYEE_PROMPT}\n\nContexto actual:\n{context}"
         messages = list(history or [])[-6:]
+        if user_message:
+            messages.append({"role": "user", "content": user_message})
+        messages.append({"role": "assistant", "content": f"[Procesando: {instruction}]"})
         messages.append({"role": "user", "content": instruction})
 
-        async with httpx.AsyncClient(timeout=90.0) as client:
-            response = await client.post(
-                f"{self.base_url}/api/chat",
-                json={"model": self.model, "messages": [{"role": "system", "content": system}, *messages], "stream": False},
+        try:
+            async with httpx.AsyncClient(timeout=90.0) as client:
+                response = await client.post(
+                    f"{self.base_url}/api/chat",
+                    json={"model": self.model, "messages": [{"role": "system", "content": system}, *messages], "stream": False},
+                )
+                response.raise_for_status()
+                return response.json()["message"].get("content", "")
+        except (httpx.TimeoutException, httpx.HTTPStatusError, httpx.ConnectError) as e:
+            print(f"[OllamaService] Error generando respuesta: {type(e).__name__}: {e}")
+            return (
+                "Disculpa, tuve un problema técnico al generar la respuesta. "
+                "¿Podrías repetir lo que necesitas? También puedes llamar al taller directamente."
             )
-            response.raise_for_status()
-            return response.json()["message"].get("content", "")
 
     async def _chat_json(self, system: str, user_content: str) -> dict:
-        async with httpx.AsyncClient(timeout=60.0) as client:
-            response = await client.post(
-                f"{self.base_url}/api/chat",
-                json={
-                    "model": self.model,
-                    "messages": [
-                        {"role": "system", "content": system},
-                        {"role": "user", "content": user_content},
-                    ],
-                    "format": "json",
-                    "stream": False,
-                },
-            )
-            response.raise_for_status()
-            content = response.json()["message"].get("content", "{}")
-            try:
-                return json.loads(content)
-            except json.JSONDecodeError:
-                match = re.search(r"\{.*\}", content, re.DOTALL)
-                if match:
-                    try:
-                        return json.loads(match.group())
-                    except json.JSONDecodeError:
-                        pass
-                return {}
+        try:
+            async with httpx.AsyncClient(timeout=60.0) as client:
+                response = await client.post(
+                    f"{self.base_url}/api/chat",
+                    json={
+                        "model": self.model,
+                        "messages": [
+                            {"role": "system", "content": system},
+                            {"role": "user", "content": user_content},
+                        ],
+                        "format": "json",
+                        "stream": False,
+                    },
+                )
+                response.raise_for_status()
+                content = response.json()["message"].get("content", "{}")
+        except (httpx.TimeoutException, httpx.HTTPStatusError, httpx.ConnectError) as e:
+            print(f"[OllamaService] Error en _chat_json: {type(e).__name__}: {e}")
+            return {}
+        try:
+            return json.loads(content)
+        except json.JSONDecodeError:
+            match = re.search(r"\{.*\}", content, re.DOTALL)
+            if match:
+                try:
+                    return json.loads(match.group())
+                except json.JSONDecodeError:
+                    pass
+            return {}
 
     def _execute_tool(self, name: str, args: dict[str, Any]) -> dict:
         func = TOOL_REGISTRY.get(name)

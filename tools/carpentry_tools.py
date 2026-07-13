@@ -299,7 +299,7 @@ def _seed_default_menu(conn):
 
 
 def obtener_menu() -> dict:
-    """Devuelve productos disponibles para cotizaciones."""
+    """Devuelve productos disponibles para cotizaciones (con tamaños y rango de precios)."""
     with get_db() as conn:
         rows = conn.execute(
             """
@@ -322,17 +322,59 @@ def obtener_menu() -> dict:
                 """
             ).fetchall()
 
-    productos = [
-        {
-            "id": r["id"],
-            "nombre": r["name"],
-            "stock": r["stock"],
-            "precio": r["price"],
-            "temperatura": r["temperature"],
-            "categoria": r["category"],
-        }
-        for r in rows
-    ]
+        # Obtener todos los tipos de madera y sus modificadores
+        wood_rows = conn.execute(
+            "SELECT price_modifier FROM wood_types WHERE active = 1"
+        ).fetchall()
+        wood_mods = [r["price_modifier"] for r in wood_rows] or [1.0]
+        min_wood = min(wood_mods)
+        max_wood = max(wood_mods)
+
+    productos = []
+    for r in rows:
+        pid = r["id"]
+        precio_base = r["price"]
+
+        # Tamaños del producto
+        size_rows_prod = []
+        with get_db() as conn2:
+            size_rows_prod = conn2.execute(
+                "SELECT id, product_id, size_label, dimensions, price_modifier FROM product_sizes WHERE product_id = ? ORDER BY price_modifier",
+                (pid,),
+            ).fetchall()
+
+        sizes = [
+            {
+                "id": s["id"],
+                "size_label": s["size_label"],
+                "dimensions": s["dimensions"],
+                "price_modifier": s["price_modifier"],
+                "precio_calculado": round(precio_base * s["price_modifier"], 2),
+            }
+            for s in size_rows_prod
+        ]
+
+        size_mods = [s["price_modifier"] for s in size_rows_prod] or [1.0]
+        min_size = min(size_mods)
+        max_size = max(size_mods)
+
+        precio_minimo = round(precio_base * min_wood * min_size, 2)
+        precio_maximo = round(precio_base * max_wood * max_size, 2)
+
+        productos.append(
+            {
+                "id": pid,
+                "nombre": r["name"],
+                "stock": r["stock"],
+                "precio": precio_base,
+                "precio_minimo": precio_minimo,
+                "precio_maximo": precio_maximo,
+                "temperatura": r["temperature"],
+                "categoria": r["category"],
+                "tamanos": sizes,
+            }
+        )
+
     return {"productos": productos}
 
 
@@ -396,3 +438,326 @@ TOOL_REGISTRY = {
     "get_active_order": get_active_order,
     "cancel_order": cancel_order,
 }
+
+
+# ── Tipos de Madera ───────────────────────────────────────────────────────────
+
+def obtener_tipos_madera(active_only: bool = True) -> list[dict]:
+    """Devuelve lista de tipos de madera disponibles con sus modificadores de precio."""
+    with get_db() as conn:
+        if active_only:
+            rows = conn.execute(
+                "SELECT id, name, price_modifier, description, active FROM wood_types WHERE active = 1 ORDER BY price_modifier"
+            ).fetchall()
+        else:
+            rows = conn.execute(
+                "SELECT id, name, price_modifier, description, active FROM wood_types ORDER BY price_modifier"
+            ).fetchall()
+    return [
+        {
+            "id": r["id"],
+            "name": r["name"],
+            "price_modifier": r["price_modifier"],
+            "description": r["description"],
+            "active": bool(r["active"]),
+        }
+        for r in rows
+    ]
+
+
+def crear_tipo_madera(name: str, price_modifier: float, description: str | None = None) -> dict:
+    """Crea un nuevo tipo de madera."""
+    if price_modifier <= 0:
+        return {"exito": False, "mensaje": "El modificador de precio debe ser mayor a 0."}
+    with get_db() as conn:
+        exists = conn.execute("SELECT 1 FROM wood_types WHERE LOWER(name) = LOWER(?)", (name,)).fetchone()
+        if exists:
+            return {"exito": False, "mensaje": f"Ya existe un tipo de madera con el nombre '{name}'."}
+        cursor = conn.execute(
+            "INSERT INTO wood_types (name, price_modifier, description) VALUES (?, ?, ?)",
+            (name.strip(), price_modifier, description),
+        )
+        row = conn.execute(
+            "SELECT id, name, price_modifier, description, active FROM wood_types WHERE id = ?",
+            (cursor.lastrowid,),
+        ).fetchone()
+    return {
+        "exito": True,
+        "wood_type": {"id": row["id"], "name": row["name"], "price_modifier": row["price_modifier"],
+                      "description": row["description"], "active": bool(row["active"])},
+    }
+
+
+def actualizar_tipo_madera(
+    wood_type_id: int,
+    price_modifier: float | None = None,
+    description: str | None = None,
+    active: bool | None = None,
+) -> dict:
+    """Actualiza un tipo de madera existente."""
+    updates = []
+    params: list = []
+    if price_modifier is not None:
+        if price_modifier <= 0:
+            return {"exito": False, "mensaje": "El modificador debe ser mayor a 0."}
+        updates.append("price_modifier = ?")
+        params.append(price_modifier)
+    if description is not None:
+        updates.append("description = ?")
+        params.append(description)
+    if active is not None:
+        updates.append("active = ?")
+        params.append(1 if active else 0)
+    if not updates:
+        return {"exito": False, "mensaje": "No hay cambios para aplicar."}
+    with get_db() as conn:
+        exists = conn.execute("SELECT 1 FROM wood_types WHERE id = ?", (wood_type_id,)).fetchone()
+        if not exists:
+            return {"exito": False, "mensaje": "Tipo de madera no encontrado."}
+        conn.execute(
+            f"UPDATE wood_types SET {', '.join(updates)} WHERE id = ?",
+            (*params, wood_type_id),
+        )
+        row = conn.execute(
+            "SELECT id, name, price_modifier, description, active FROM wood_types WHERE id = ?",
+            (wood_type_id,),
+        ).fetchone()
+    return {
+        "exito": True,
+        "wood_type": {"id": row["id"], "name": row["name"], "price_modifier": row["price_modifier"],
+                      "description": row["description"], "active": bool(row["active"])},
+    }
+
+
+def eliminar_tipo_madera(wood_type_id: int) -> dict:
+    """Desactiva un tipo de madera (soft delete)."""
+    with get_db() as conn:
+        exists = conn.execute("SELECT 1 FROM wood_types WHERE id = ?", (wood_type_id,)).fetchone()
+        if not exists:
+            return {"exito": False, "mensaje": "Tipo de madera no encontrado."}
+        conn.execute("UPDATE wood_types SET active = 0 WHERE id = ?", (wood_type_id,))
+    return {"exito": True, "mensaje": f"Tipo de madera #{wood_type_id} desactivado."}
+
+
+def buscar_tipo_madera(nombre: str) -> dict | None:
+    """Busca un tipo de madera activo por nombre (coincidencia parcial)."""
+    nombre_lower = nombre.strip().lower()
+    with get_db() as conn:
+        rows = conn.execute(
+            "SELECT id, name, price_modifier, description FROM wood_types WHERE active = 1"
+        ).fetchall()
+    for row in rows:
+        if row["name"].lower() == nombre_lower:
+            return dict(row)
+    for row in rows:
+        if nombre_lower in row["name"].lower() or row["name"].lower() in nombre_lower:
+            return dict(row)
+    return None
+
+
+# ── Tamaños de Producto ───────────────────────────────────────────────────────
+
+def obtener_tamanos_producto(product_id: int) -> list[dict]:
+    """Devuelve los tamaños disponibles para un producto."""
+    with get_db() as conn:
+        rows = conn.execute(
+            "SELECT id, product_id, size_label, dimensions, price_modifier FROM product_sizes WHERE product_id = ? ORDER BY price_modifier",
+            (product_id,),
+        ).fetchall()
+    return [
+        {
+            "id": r["id"],
+            "product_id": r["product_id"],
+            "size_label": r["size_label"],
+            "dimensions": r["dimensions"],
+            "price_modifier": r["price_modifier"],
+        }
+        for r in rows
+    ]
+
+
+def crear_tamano_producto(
+    product_id: int,
+    size_label: str,
+    price_modifier: float,
+    dimensions: str | None = None,
+) -> dict:
+    """Añade un tamaño a un producto."""
+    if price_modifier <= 0:
+        return {"exito": False, "mensaje": "El modificador de precio debe ser mayor a 0."}
+    with get_db() as conn:
+        prod = conn.execute("SELECT 1 FROM products WHERE id = ?", (product_id,)).fetchone()
+        if not prod:
+            return {"exito": False, "mensaje": "Producto no encontrado."}
+        exists = conn.execute(
+            "SELECT 1 FROM product_sizes WHERE product_id = ? AND LOWER(size_label) = LOWER(?)",
+            (product_id, size_label),
+        ).fetchone()
+        if exists:
+            return {"exito": False, "mensaje": f"Ya existe el tamaño '{size_label}' para este producto."}
+        cursor = conn.execute(
+            "INSERT INTO product_sizes (product_id, size_label, dimensions, price_modifier) VALUES (?, ?, ?, ?)",
+            (product_id, size_label.strip(), dimensions, price_modifier),
+        )
+        row = conn.execute(
+            "SELECT id, product_id, size_label, dimensions, price_modifier FROM product_sizes WHERE id = ?",
+            (cursor.lastrowid,),
+        ).fetchone()
+    return {
+        "exito": True,
+        "size": {"id": row["id"], "product_id": row["product_id"], "size_label": row["size_label"],
+                 "dimensions": row["dimensions"], "price_modifier": row["price_modifier"]},
+    }
+
+
+def actualizar_tamano_producto(
+    size_id: int,
+    price_modifier: float | None = None,
+    dimensions: str | None = None,
+) -> dict:
+    """Actualiza un tamaño de producto existente."""
+    updates = []
+    params: list = []
+    if price_modifier is not None:
+        if price_modifier <= 0:
+            return {"exito": False, "mensaje": "El modificador debe ser mayor a 0."}
+        updates.append("price_modifier = ?")
+        params.append(price_modifier)
+    if dimensions is not None:
+        updates.append("dimensions = ?")
+        params.append(dimensions)
+    if not updates:
+        return {"exito": False, "mensaje": "No hay cambios para aplicar."}
+    with get_db() as conn:
+        exists = conn.execute("SELECT 1 FROM product_sizes WHERE id = ?", (size_id,)).fetchone()
+        if not exists:
+            return {"exito": False, "mensaje": "Tamaño no encontrado."}
+        conn.execute(
+            f"UPDATE product_sizes SET {', '.join(updates)} WHERE id = ?",
+            (*params, size_id),
+        )
+        row = conn.execute(
+            "SELECT id, product_id, size_label, dimensions, price_modifier FROM product_sizes WHERE id = ?",
+            (size_id,),
+        ).fetchone()
+    return {
+        "exito": True,
+        "size": {"id": row["id"], "product_id": row["product_id"], "size_label": row["size_label"],
+                 "dimensions": row["dimensions"], "price_modifier": row["price_modifier"]},
+    }
+
+
+def eliminar_tamano_producto(size_id: int) -> dict:
+    """Elimina un tamaño de producto."""
+    with get_db() as conn:
+        exists = conn.execute("SELECT 1 FROM product_sizes WHERE id = ?", (size_id,)).fetchone()
+        if not exists:
+            return {"exito": False, "mensaje": "Tamaño no encontrado."}
+        conn.execute("DELETE FROM product_sizes WHERE id = ?", (size_id,))
+    return {"exito": True, "mensaje": f"Tamaño #{size_id} eliminado."}
+
+
+# ── Cálculo de precio con modificadores ──────────────────────────────────────
+
+def calcular_precio_con_modificadores(
+    precio_base: float,
+    wood_modifier: float = 1.0,
+    size_modifier: float = 1.0,
+) -> float:
+    """Calcula el precio final aplicando modificadores de madera y tamaño."""
+    return round(precio_base * wood_modifier * size_modifier, 2)
+
+
+def obtener_rango_precios_producto(product_id: int, precio_base: float) -> dict:
+    """Calcula el rango de precios (mínimo - máximo) para un producto según maderas y tamaños."""
+    with get_db() as conn:
+        wood_rows = conn.execute(
+            "SELECT price_modifier FROM wood_types WHERE active = 1"
+        ).fetchall()
+        size_rows = conn.execute(
+            "SELECT price_modifier FROM product_sizes WHERE product_id = ?",
+            (product_id,),
+        ).fetchall()
+
+    wood_mods = [r["price_modifier"] for r in wood_rows] or [1.0]
+    size_mods = [r["price_modifier"] for r in size_rows] or [1.0]
+
+    min_price = round(precio_base * min(wood_mods) * min(size_mods), 2)
+    max_price = round(precio_base * max(wood_mods) * max(size_mods), 2)
+    return {"min": min_price, "max": max_price}
+
+
+def obtener_catalogo_completo() -> dict:
+    """Devuelve el catálogo completo de productos con precios base, rangos, maderas y tamaños disponibles."""
+    with get_db() as conn:
+        rows = conn.execute(
+            """
+            SELECT id, name, stock, price,
+                   COALESCE(temperature, 'ESTANDAR') AS temperature,
+                   COALESCE(category, 'MOBILIARIO') AS category
+            FROM products
+            WHERE stock > 0 AND menu_visible = 1
+            ORDER BY category, name
+            """
+        ).fetchall()
+
+        wood_rows = conn.execute(
+            "SELECT id, name, price_modifier, description FROM wood_types WHERE active = 1 ORDER BY price_modifier"
+        ).fetchall()
+        wood_types = [
+            {
+                "id": w["id"],
+                "name": w["name"],
+                "price_modifier": w["price_modifier"],
+                "description": w["description"],
+            }
+            for w in wood_rows
+        ]
+
+    productos = []
+    for r in rows:
+        pid = r["id"]
+        precio_base = r["price"]
+
+        size_rows_prod = []
+        with get_db() as conn2:
+            size_rows_prod = conn2.execute(
+                "SELECT id, product_id, size_label, dimensions, price_modifier FROM product_sizes WHERE product_id = ? ORDER BY price_modifier",
+                (pid,),
+            ).fetchall()
+
+        sizes = [
+            {
+                "id": s["id"],
+                "size_label": s["size_label"],
+                "dimensions": s["dimensions"],
+                "price_modifier": s["price_modifier"],
+                "precio_calculado": round(precio_base * s["price_modifier"], 2),
+            }
+            for s in size_rows_prod
+        ]
+
+        wood_mods = [w["price_modifier"] for w in wood_rows] or [1.0]
+        size_mods = [s["price_modifier"] for s in size_rows_prod] or [1.0]
+
+        precio_minimo = round(precio_base * min(wood_mods) * min(size_mods), 2)
+        precio_maximo = round(precio_base * max(wood_mods) * max(size_mods), 2)
+
+        productos.append(
+            {
+                "id": pid,
+                "nombre": r["name"],
+                "precio_base": precio_base,
+                "precio_minimo": precio_minimo,
+                "precio_maximo": precio_maximo,
+                "categoria": r["category"],
+                "tamanos": sizes,
+            }
+        )
+
+    return {
+        "productos": productos,
+        "tipos_madera": wood_types,
+        "total": len(productos),
+    }
+

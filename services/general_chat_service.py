@@ -128,14 +128,14 @@ class GeneralChatService:
             return self._render_menu()
 
         if is_greeting(message):
-            return "¡Hola! Soy Carpintería IA, el asistente de la carpintería. ¿En qué te puedo ayudar hoy? 🪵"
+            return "¡Hola! Soy CarpinterÍA, el asistente de la carpintería. ¿En qué te puedo ayudar hoy? 🪵"
 
         if is_farewell(message):
             return "¡Hasta pronto! Que tengas un excelente día. 🪵"
 
         if is_identity_question(message):
             return (
-                "Soy Carpintería IA, el asistente virtual de la carpintería. "
+                "Soy CarpinterÍA, el asistente virtual de la carpintería. "
                 "Estoy aquí para platicar contigo, resolver dudas y ayudarte con cotizaciones cuando lo necesites."
             )
 

@@ -336,6 +336,18 @@ body.admin-body .order-confirmed-card {
   font-size: 0.8rem;
 }
 
+.cart-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cart-item-props {
+  font-size: 0.7rem;
+  color: var(--accent);
+  opacity: 0.85;
+}
+
 .cart-item-qty {
   color: var(--accent);
   font-weight: 600;
@@ -3562,5 +3574,137 @@ body.admin-body .order-confirmed-card {
     width: 95%;
     padding: 24px 20px;
   }
+}
+
+/* ── Wood Types & Sizes admin ──────────────────────────────────────────────── */
+
+.wood-effect {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.wood-effect.base {
+  background: rgba(74, 222, 128, 0.15);
+  color: var(--success);
+}
+
+.wood-effect.premium {
+  background: rgba(212, 165, 116, 0.15);
+  color: var(--accent);
+}
+
+.wood-effect.discount {
+  background: rgba(96, 165, 250, 0.15);
+  color: #60a5fa;
+}
+
+.wood-desc {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* ── Products table enhancements ───────────────────────────────────────────── */
+
+.product-base-price {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.price-range {
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.category-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.products-summary {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.products-summary strong {
+  color: var(--text-primary);
+}
+
+/* ── Order card item details ───────────────────────────────────────────────── */
+
+.order-card-items li {
+  list-style: none;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+
+.order-card-items li:last-child {
+  border-bottom: none;
+}
+
+.order-card-item-main {
+  display: block;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.order-card-item-props {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--accent);
+  margin-top: 2px;
+}
+
+.order-card-item-price {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.order-card-item-price-detail {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+  text-decoration: line-through;
+}
+
+.order-card-item-price-detail:last-of-type {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-weight: 500;
 }
 

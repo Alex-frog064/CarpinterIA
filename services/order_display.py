@@ -10,11 +10,16 @@ def estimated_days(delivery_type: str | None) -> int:
 
 def build_order_card(order: dict) -> dict:
     items = order.get("items") or []
+    total = float(order.get("total") or 0)
+    subtotal = float(order.get("subtotal") or 0)
+    delivery_fee = total - subtotal if total > subtotal else 0.0
     return {
         "order_id": order["id"],
         "customer_name": order.get("customer_name") or "Cliente",
         "items": items,
-        "total": float(order.get("total") or 0),
+        "subtotal": round(subtotal, 2),
+        "delivery_fee": round(delivery_fee, 2),
+        "total": total,
         "status": order.get("status") or "PENDING",
         "delivery_type": order.get("delivery_type"),
         "estimated_days": estimated_days(order.get("delivery_type")),

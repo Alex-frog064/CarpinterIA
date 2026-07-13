@@ -63,6 +63,7 @@ class CancelService:
                 instruction="Informa amablemente que no encontraste una cotización activa para cancelar.",
                 context="Sin cotizaciones cancelables.",
                 history=history,
+                user_message=user_message,
             )
             return response, [], state_data["state"]
 
@@ -74,6 +75,7 @@ class CancelService:
                 ),
                 context=f"Cotización #{order['id']} status={order['status']}",
                 history=history,
+                user_message=user_message,
             )
             return response, [], state_data["state"]
 
@@ -82,6 +84,7 @@ class CancelService:
                 instruction=f"Informa que la cotización #{order['id']} no puede cancelarse (estado: {order['status']}).",
                 context="",
                 history=history,
+                user_message=user_message,
             )
             return response, [], state_data["state"]
 
@@ -90,6 +93,7 @@ class CancelService:
             instruction=f"Pregunta ÚNICAMENTE: ¿Deseas cancelar tu cotización #{order['id']}? Responde sí o no.",
             context=f"Cotización #{order['id']} en estado {order['status']}",
             history=history,
+            user_message=user_message,
         )
         return response, ["cancel_order"], state_data["state"]
 
@@ -109,6 +113,7 @@ class CancelService:
                 instruction="Confirma amablemente que la cotización se mantiene activa.",
                 context=f"Cotización #{order_id} no cancelada.",
                 history=history,
+                user_message=user_message,
             )
             return response, [], state_data["state"]
 
@@ -122,6 +127,7 @@ class CancelService:
                 instruction=f"Explica el problema: {result.get('mensaje')}",
                 context="",
                 history=history,
+                user_message=user_message,
             )
             return response, ["cancel_order"], state_data["state"]
 
@@ -133,6 +139,7 @@ class CancelService:
             ),
             context=f"Cotización #{order_id} CANCELLED",
             history=history,
+            user_message=user_message,
         )
         return response, ["cancel_order"], state_data["state"]
 

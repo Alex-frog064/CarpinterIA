@@ -196,6 +196,17 @@
         </div>
       </div>
 
+      <!-- Vista admin tipos de madera -->
+      <div class="view-panel" id="viewWoodTypes">
+        <div class="panel-content">
+          <div class="panel-header-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <h2>Tipos de Madera</h2>
+            <button class="btn btn-primary" onclick="showNewWoodTypeModal()">+ Nueva Madera</button>
+          </div>
+          <div class="data-table-wrap" id="woodTypesTable">Cargando...</div>
+        </div>
+      </div>
+
       <!-- Vista admin conversaciones -->
       <div class="view-panel" id="viewAdminConversations">
         <div class="panel-content">
@@ -203,6 +214,75 @@
           <div class="data-table-wrap" id="adminConversationsTable">Cargando...</div>
         </div>
       </div>
+
+  <!-- Modal para gestionar tamaños de producto -->
+  <div class="modal hidden" id="sizesModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="sizesModalTitle">Tamaños del Producto</h3>
+        <button class="modal-close" onclick="closeSizesModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="newSizeForm" onsubmit="handleCreateSize(event)" style="margin-bottom: 1.5rem;">
+          <div class="form-row" style="display: flex; gap: 0.5rem;">
+            <input type="text" id="newSizeLabel" placeholder="Ej: Grande" required style="flex: 1; padding: 0.5rem; border: 1px solid var(--border); border-radius: 4px;">
+            <input type="text" id="newSizeDims" placeholder="Ej: 160x90cm" style="flex: 1; padding: 0.5rem; border: 1px solid var(--border); border-radius: 4px;">
+            <input type="number" id="newSizeModifier" step="0.05" min="0.1" placeholder="Modificador (ej: 1.35)" required style="flex: 1; padding: 0.5rem; border: 1px solid var(--border); border-radius: 4px;">
+            <button type="submit" class="btn-sm btn-primary">Añadir</button>
+          </div>
+        </form>
+        <div class="modal-table-wrap" style="max-height: 300px; overflow-y: auto;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Tamaño</th>
+                <th>Dimensiones</th>
+                <th>Modificador</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="sizesModalTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para crear/editar tipo de madera -->
+  <div class="modal hidden" id="woodTypeModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="woodTypeModalTitle">Tipo de Madera</h3>
+        <button class="modal-close" onclick="closeWoodTypeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="woodTypeForm" onsubmit="handleSaveWoodType(event)">
+          <input type="hidden" id="woodTypeId">
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="woodTypeName" style="display: block; margin-bottom: 0.5rem;">Nombre</label>
+            <input type="text" id="woodTypeName" required placeholder="Ej: Roble" style="width: 100%; padding: 0.5rem; border: 1px solid var(--border); border-radius: 4px;">
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="woodTypeModifier" style="display: block; margin-bottom: 0.5rem;">Modificador de Precio</label>
+            <input type="number" id="woodTypeModifier" step="0.05" min="0.1" max="10.0" required placeholder="Ej: 1.8" style="width: 100%; padding: 0.5rem; border: 1px solid var(--border); border-radius: 4px;">
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="woodTypeDescription" style="display: block; margin-bottom: 0.5rem;">Descripción</label>
+            <textarea id="woodTypeDescription" placeholder="Descripción..." style="width: 100%; padding: 0.5rem; border: 1px solid var(--border); border-radius: 4px; min-height: 80px;"></textarea>
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label class="checkbox-label" style="display: flex; align-items: center; gap: 0.5rem;">
+              <input type="checkbox" id="woodTypeActive" checked> Activo para cotizaciones
+            </label>
+          </div>
+          <div class="form-actions" style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+            <button type="submit" class="btn-sm btn-primary">Guardar</button>
+            <button type="button" class="btn-sm btn-secondary" onclick="closeWoodTypeModal()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
       <div class="recording-overlay hidden" id="recordingOverlay">
         <div class="recording-pulse"></div>

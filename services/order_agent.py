@@ -95,6 +95,8 @@ class OrderAgent:
 
         handlers = {
             ConversationState.COLLECTING_ORDER: self._collecting_order,
+            ConversationState.ASKING_WOOD_TYPE: self._asking_wood_type,
+            ConversationState.ASKING_SIZE: self._asking_size,
             ConversationState.ASKING_CUSTOMER_NAME: self._asking_customer_name,
             ConversationState.ASKING_DELIVERY_TYPE: self._asking_delivery_type,
             ConversationState.ASKING_ADDRESS: self._asking_address,
@@ -152,12 +154,7 @@ class OrderAgent:
         cart: list[dict] = list(state_data.get("cart") or [])
 
         if self._is_confirmation(user_message) and cart:
-            save_conversation_state(
-                conversation_id,
-                state=ConversationState.ASKING_CUSTOMER_NAME.value,
-                cart=cart,
-            )
-            return await self._ask_customer_name(conversation_id, cart, history)
+            return await self._check_missing_properties(conversation_id, cart, history, user_message=user_message)
 
         if self._is_denial(user_message) and cart:
             cart = []
@@ -166,6 +163,7 @@ class OrderAgent:
                 instruction="El cliente quiere corregir. Pregúntale amablemente qué servicio de carpintería desea cotizar.",
                 context="Cotización vacía.",
                 history=history,
+                user_message=user_message,
             )
             return response, [], ConversationState.COLLECTING_ORDER.value
 
@@ -207,14 +205,10 @@ class OrderAgent:
                 return response, ["extract_order_from_text"], ConversationState.COLLECTING_ORDER.value
 
         if cart and added:
-            save_conversation_state(
-                conversation_id,
-                state=ConversationState.ASKING_CUSTOMER_NAME.value,
-                cart=cart,
-            )
             tools = ["extract_order_from_text"]
-            return await self._ask_customer_name(
-                conversation_id, cart, history, errors=errors, tools=tools
+            return await self._check_missing_properties(
+                conversation_id, cart, history, errors=errors, tools=tools,
+                user_message=user_message,
             )
 
         if not cart:
@@ -257,6 +251,32 @@ class OrderAgent:
                     ConversationState.COLLECTING_ORDER.value,
                 )
 
+            category = extract_generic_category(user_message)
+            if category:
+                menu_items = obtener_menu().get("productos") or []
+                matches = [
+                    p["nombre"] for p in menu_items if category in p["nombre"].lower()
+                ]
+                if matches:
+                    if len(matches) == 1:
+                        from tools.order_tools import merge_cart_items as _merge
+                        extracted_generic = [{"nombre": matches[0], "cantidad": 1}]
+                        added_g, errors_g = _merge(cart, extracted_generic)
+                        if added_g:
+                            save_conversation_state(conversation_id, cart=cart)
+                            return await self._check_missing_properties(
+                                conversation_id, cart, history,
+                                errors=errors_g, tools=["extract_order_from_text"],
+                                user_message=user_message,
+                            )
+                    options = "\n".join(f"• {name}" for name in matches)
+                    return (
+                        f"Tenemos varias opciones de {category}s disponibles:\n{options}\n\n"
+                        "¿Cuál prefieres?",
+                        ["extract_order_from_text"],
+                        ConversationState.COLLECTING_ORDER.value,
+                    )
+
             response = await self.ollama.generate_employee_response(
                 instruction=(
                     "Saluda al cliente y pregúntale qué servicio de carpintería le gustaría cotizar. "
@@ -264,6 +284,7 @@ class OrderAgent:
                 ),
                 context="Sin servicios detectados aún.",
                 history=history,
+                user_message=user_message,
             )
             save_conversation_state(conversation_id, cart=cart)
             return response, ["extract_order_from_text"], ConversationState.COLLECTING_ORDER.value
@@ -305,6 +326,7 @@ class OrderAgent:
             ),
             context=context,
             history=history,
+            user_message=user_message,
         )
         return response, ["extract_order_from_text"], ConversationState.COLLECTING_ORDER.value
 
@@ -315,6 +337,7 @@ class OrderAgent:
         history: list[dict],
         errors: list[str] | None = None,
         tools: list[str] | None = None,
+        user_message: str = "",
     ) -> tuple[str, list[str], str]:
         context = self._cart_context(cart)
         if errors:
@@ -327,6 +350,7 @@ class OrderAgent:
             ),
             context=context,
             history=history,
+            user_message=user_message,
         )
         return response, tools or [], ConversationState.ASKING_CUSTOMER_NAME.value
 
@@ -334,7 +358,14 @@ class OrderAgent:
         menu_items = obtener_menu().get("productos") or []
         if not menu_items:
             return "Por ahora no tenemos servicios activos en el catálogo."
-        lines = [f"- {p['nombre']}: ${p['precio']:,.2f}" for p in menu_items]
+        lines = []
+        for p in menu_items:
+            precio_min = p.get("precio_minimo", p["precio"])
+            precio_max = p.get("precio_maximo", p["precio"])
+            if precio_min != precio_max:
+                lines.append(f"- {p['nombre']}: ${precio_min:,.2f} - ${precio_max:,.2f} (según madera y tamaño)")
+            else:
+                lines.append(f"- {p['nombre']}: ${p['precio']:,.2f}")
         return "Catálogo de servicios disponible:\n" + "\n".join(lines)
 
     def _is_order_related(self, message: str) -> bool:
@@ -363,6 +394,7 @@ class OrderAgent:
                 ),
                 context=self._cart_context(cart),
                 history=history,
+                user_message=user_message,
             )
             return response, [], ConversationState.ASKING_CUSTOMER_NAME.value
 
@@ -371,6 +403,7 @@ class OrderAgent:
                 instruction="Pide amablemente el nombre de la persona a quien va la cotización.",
                 context=self._cart_context(cart),
                 history=history,
+                user_message=user_message,
             )
             return response, [], ConversationState.ASKING_CUSTOMER_NAME.value
 
@@ -387,6 +420,7 @@ class OrderAgent:
             ),
             context=f"{self._cart_context(cart)}\nCliente: {name}",
             history=history,
+            user_message=user_message,
         )
         return response, [], ConversationState.ASKING_DELIVERY_TYPE.value
 
@@ -413,7 +447,7 @@ class OrderAgent:
                 customer_name=customer_name,
             )
             if not order.get("exito"):
-                return await self._order_error_response(order, cart, history)
+                return await self._order_error_response(order, cart, history, user_message)
             save_conversation_state(conversation_id, order_id=order["order_id"])
             return await self._show_summary(conversation_id, cart, history, "recoger")
 
@@ -430,13 +464,14 @@ class OrderAgent:
                 customer_name=customer_name,
             )
             if not order.get("exito"):
-                return await self._order_error_response(order, cart, history)
+                return await self._order_error_response(order, cart, history, user_message)
             save_conversation_state(conversation_id, order_id=order["order_id"])
 
             response = await self.ollama.generate_employee_response(
                 instruction="El cliente eligió entrega/instalación a domicilio. Pide ÚNICAMENTE la dirección de entrega.",
                 context=f"Cliente: {customer_name}\n{self._cart_context(cart)}",
                 history=history,
+                user_message=user_message,
             )
             return response, ["create_order"], ConversationState.ASKING_ADDRESS.value
 
@@ -444,6 +479,7 @@ class OrderAgent:
             instruction="Pregunta de nuevo si prefiere recoger en taller o entrega/instalación a domicilio.",
             context=self._cart_context(cart),
             history=history,
+            user_message=user_message,
         )
         return response, [], ConversationState.ASKING_DELIVERY_TYPE.value
 
@@ -462,6 +498,7 @@ class OrderAgent:
                 instruction="Pide la dirección completa: calle, número y colonia.",
                 context=self._cart_context(cart),
                 history=history,
+                user_message=user_message,
             )
             return response, [], ConversationState.ASKING_ADDRESS.value
 
@@ -482,6 +519,7 @@ class OrderAgent:
             ),
             context=f"{self._cart_context(cart)}\nDirección: {address}",
             history=history,
+            user_message=user_message,
         )
         return response, ["update_order"], ConversationState.ASKING_LOCATION.value
 
@@ -501,6 +539,7 @@ class OrderAgent:
             ),
             context=self._cart_context(cart),
             history=history,
+            user_message=user_message,
         )
         return response, [], ConversationState.ASKING_LOCATION.value
 
@@ -527,6 +566,7 @@ class OrderAgent:
             instruction=instruction,
             context=summary,
             history=history,
+            user_message=summary,
         )
         return response, ["calculate_order_total"], ConversationState.CONFIRMING_ORDER.value
 
@@ -549,6 +589,7 @@ class OrderAgent:
                 instruction="La cotización fue cancelada. Ofrece ayuda para una nueva cotización.",
                 context="Cotización cancelada.",
                 history=history,
+                user_message=user_message,
             )
             return response, ["cancel_order"], ConversationState.IDLE.value
 
@@ -559,6 +600,7 @@ class OrderAgent:
                 instruction="Pide confirmación: responda sí para confirmar o no para cancelar.",
                 context=summary,
                 history=history,
+                user_message=user_message,
             )
             return response, [], ConversationState.CONFIRMING_ORDER.value
 
@@ -587,6 +629,7 @@ class OrderAgent:
                 instruction=f"Informa el problema: {result.get('mensaje')}. Ofrece alternativas.",
                 context=self._cart_context(cart),
                 history=history,
+                user_message=user_message,
             )
             return response, tools_used, ConversationState.CONFIRMING_ORDER.value
 
@@ -603,6 +646,7 @@ class OrderAgent:
             ),
             context=f"{summary}\nNúmero de cotización: {order_id}",
             history=history,
+            user_message=user_message,
         )
         return response, tools_used, ConversationState.ORDER_COMPLETED.value
 
@@ -636,7 +680,32 @@ class OrderAgent:
         lines.append("Servicios:")
         for item in cart:
             sub = item.get("subtotal", item["precio"] * item["cantidad"])
-            lines.append(f"- {item['cantidad']}x {item['producto']} = ${sub:,.2f}")
+            props = []
+            precio_base = item.get("precio_base", item.get("precio", 0))
+            precio_final = item.get("precio", 0)
+
+            if item.get("madera"):
+                mod_m = item.get("modificador_madera", 1.0)
+                props.append(f"Madera: {item['madera']} ({mod_m}x)")
+            if item.get("tamano"):
+                mod_t = item.get("modificador_tamano", 1.0)
+                dims = item.get("dimensiones", "")
+                size_info = f"{item['tamano']}"
+                if dims:
+                    size_info += f" ({dims})"
+                props.append(f"Tamaño: {size_info} ({mod_t}x)")
+
+            if props and precio_base != precio_final:
+                prop_str = " | ".join(props)
+                lines.append(
+                    f"- {item['cantidad']}x {item['producto']}"
+                    f"\n    Base: ${precio_base:,.2f} → {prop_str}"
+                    f"\n    Precio unitario: ${precio_final:,.2f} × {item['cantidad']} = ${sub:,.2f}"
+                )
+            else:
+                prop_str = f" ({', '.join(props)})" if props else ""
+                lines.append(f"- {item['cantidad']}x {item['producto']}{prop_str} = ${sub:,.2f}")
+
         lines.append(f"Subtotal: ${totals['subtotal']:,.2f}")
         if delivery_type == "domicilio":
             lines.append(f"Envío/Instalación: ${totals['delivery_fee']:,.2f}")
@@ -657,8 +726,232 @@ class OrderAgent:
         lines = ["Cotización detectada:"]
         for item in cart:
             sub = item.get("subtotal", item["precio"] * item["cantidad"])
-            lines.append(f"- {item['cantidad']}x {item['producto']} (${sub:,.2f})")
+            props = []
+            precio_base = item.get("precio_base", item.get("precio", 0))
+            precio_final = item.get("precio", 0)
+
+            if item.get("madera"):
+                mod_m = item.get("modificador_madera", 1.0)
+                props.append(f"madera: {item['madera']} ({mod_m}x)")
+            if item.get("tamano"):
+                mod_t = item.get("modificador_tamano", 1.0)
+                dims = item.get("dimensiones", "")
+                size_info = f"{item['tamano']}"
+                if dims:
+                    size_info += f" ({dims})"
+                props.append(f"tamaño: {size_info} ({mod_t}x)")
+
+            if props and precio_base != precio_final:
+                prop_str = " | ".join(props)
+                lines.append(
+                    f"- {item['cantidad']}x {item['producto']}"
+                    f"\n    Base: ${precio_base:,.2f} → {prop_str}"
+                    f"\n    Final: ${precio_final:,.2f} × {item['cantidad']} = ${sub:,.2f}"
+                )
+            else:
+                prop_str = f" ({', '.join(props)})" if props else ""
+                lines.append(f"- {item['cantidad']}x {item['producto']}{prop_str} = ${sub:,.2f}")
         return "\n".join(lines)
+
+    async def _check_missing_properties(
+        self,
+        conversation_id: str,
+        cart: list[dict],
+        history: list[dict],
+        errors: list[str] | None = None,
+        tools: list[str] | None = None,
+        user_message: str = "",
+    ) -> tuple[str, list[str], str]:
+        """Comprueba si hay items en el carrito sin madera o tamaño y pregunta por ellos."""
+        # 1. Buscar el primer item sin madera
+        for item in cart:
+            if not item.get("madera"):
+                save_conversation_state(
+                    conversation_id,
+                    state=ConversationState.ASKING_WOOD_TYPE.value,
+                    cart=cart,
+                )
+                from tools.carpentry_tools import obtener_tipos_madera
+                woods = obtener_tipos_madera(active_only=True)
+                wood_options = []
+                for w in woods:
+                    mod = w["price_modifier"]
+                    effect = f"base" if mod == 1.0 else (f"+{(mod-1)*100:.0f}%" if mod > 1 else f"{(mod-1)*100:.0f}%")
+                    wood_options.append(f"  • {w['name']} ({mod}x - {effect})")
+                wood_list = "\n".join(wood_options)
+                prompt = (
+                    f"¿Qué tipo de madera prefieres para tu {item['producto']}?\n\n"
+                    f"Opciones disponibles:\n{wood_list}\n\n"
+                    f"Precio base del producto: ${item.get('precio_base', 0):,.2f}"
+                )
+                return prompt, tools or [], ConversationState.ASKING_WOOD_TYPE.value
+
+        # 2. Buscar el primer item sin tamaño
+        for item in cart:
+            if not item.get("tamano"):
+                save_conversation_state(
+                    conversation_id,
+                    state=ConversationState.ASKING_SIZE.value,
+                    cart=cart,
+                )
+                from tools.carpentry_tools import obtener_tamanos_producto
+                sizes = obtener_tamanos_producto(item["product_id"])
+                size_options = []
+                for s in sizes:
+                    dims = f" ({s['dimensions']})" if s['dimensions'] else ""
+                    precio_calculado = round(item.get("precio_base", 0) * s["price_modifier"], 2)
+                    size_options.append(
+                        f"  • {s['size_label']}{dims} ({s['price_modifier']}x) → ${precio_calculado:,.2f}"
+                    )
+                size_list = "\n".join(size_options)
+                prompt = (
+                    f"¿Qué tamaño prefieres para tu {item['producto']}?\n\n"
+                    f"Opciones disponibles:\n{size_list}"
+                )
+                return prompt, tools or [], ConversationState.ASKING_SIZE.value
+
+        # 3. Todo completo, pasar a nombre del cliente
+        save_conversation_state(
+            conversation_id,
+            state=ConversationState.ASKING_CUSTOMER_NAME.value,
+            cart=cart,
+        )
+        return await self._ask_customer_name(
+            conversation_id, cart, history, errors=errors, tools=tools,
+            user_message=user_message,
+        )
+
+    async def _asking_wood_type(
+        self,
+        conversation_id: str,
+        user_message: str,
+        history: list[dict],
+        state_data: dict,
+    ) -> tuple[str, list[str], str]:
+        cart = list(state_data.get("cart") or [])
+        # Buscar el item que no tiene madera
+        target_item = next((item for item in cart if not item.get("madera")), None)
+        if not target_item:
+            return await self._check_missing_properties(conversation_id, cart, history, user_message=user_message)
+
+        from tools.carpentry_tools import buscar_tipo_madera, obtener_tipos_madera
+        wood_info = buscar_tipo_madera(user_message)
+
+        if wood_info:
+            target_item["madera"] = wood_info["name"]
+            target_item["modificador_madera"] = wood_info["price_modifier"]
+            
+            # Recalcular precio
+            precio_base = target_item.get("precio_base", target_item.get("precio", 0))
+            mod_size = target_item.get("modificador_tamano", 1.0)
+            target_item["precio"] = round(precio_base * wood_info["price_modifier"] * mod_size, 2)
+            target_item["subtotal"] = round(target_item["precio"] * target_item["cantidad"], 2)
+            
+            save_conversation_state(conversation_id, cart=cart)
+            return await self._check_missing_properties(conversation_id, cart, history, user_message=user_message)
+        else:
+            from tools.carpentry_tools import obtener_tipos_madera
+            woods = obtener_tipos_madera(active_only=True)
+            wood_options = []
+            for w in woods:
+                mod = w["price_modifier"]
+                effect = f"base" if mod == 1.0 else (f"+{(mod-1)*100:.0f}%" if mod > 1 else f"{(mod-1)*100:.0f}%")
+                wood_options.append(f"  • {w['name']} ({mod}x - {effect})")
+            wood_list = "\n".join(wood_options)
+            response = (
+                f"No logré identificar ese tipo de madera. ¿Podrías indicarme cuál de las siguientes prefieres "
+                f"para tu {target_item['producto']}?\n\n"
+                f"Opciones:\n{wood_list}"
+            )
+            return response, [], ConversationState.ASKING_WOOD_TYPE.value
+
+    async def _asking_size(
+        self,
+        conversation_id: str,
+        user_message: str,
+        history: list[dict],
+        state_data: dict,
+    ) -> tuple[str, list[str], str]:
+        cart = list(state_data.get("cart") or [])
+        # Buscar el item que no tiene tamaño
+        target_item = next((item for item in cart if not item.get("tamano")), None)
+        if not target_item:
+            return await self._check_missing_properties(conversation_id, cart, history, user_message=user_message)
+
+        from tools.carpentry_tools import obtener_tamanos_producto, obtener_tipos_madera
+        sizes = obtener_tamanos_producto(target_item["product_id"])
+        
+        user_msg_lower = user_message.lower().strip()
+
+        wood_names = [
+            w["name"].lower() for w in obtener_tipos_madera(active_only=True)
+        ]
+        clean_msg = user_msg_lower
+        for wn in wood_names:
+            clean_msg = clean_msg.replace(wn, "").strip()
+        clean_msg = re.sub(r"\s+de\s+", " ", clean_msg).strip()
+
+        size_words = []
+        for s in sizes:
+            label = s["size_label"].lower()
+            size_words.append(label)
+            for word in label.split():
+                if len(word) > 3 and word not in size_words:
+                    size_words.append(word)
+
+        match_size = None
+        for s in sizes:
+            label = s["size_label"].lower()
+            if label == clean_msg or clean_msg in label or label in clean_msg:
+                match_size = s
+                break
+        if not match_size:
+            for s in sizes:
+                label = s["size_label"].lower()
+                for word in label.split():
+                    if len(word) > 3 and word in clean_msg:
+                        match_size = s
+                        break
+                if match_size:
+                    break
+        if not match_size:
+            for s in sizes:
+                label = s["size_label"].lower()
+                for sw in size_words:
+                    if sw in clean_msg:
+                        match_size = s
+                        break
+                if match_size:
+                    break
+
+        if match_size:
+            target_item["tamano"] = match_size["size_label"]
+            target_item["dimensions"] = match_size["dimensions"]
+            target_item["modificador_tamano"] = match_size["price_modifier"]
+            
+            # Recalcular precio
+            precio_base = target_item.get("precio_base", target_item.get("precio", 0))
+            mod_wood = target_item.get("modificador_madera", 1.0)
+            target_item["precio"] = round(precio_base * mod_wood * match_size["price_modifier"], 2)
+            target_item["subtotal"] = round(target_item["precio"] * target_item["cantidad"], 2)
+            
+            save_conversation_state(conversation_id, cart=cart)
+            return await self._check_missing_properties(conversation_id, cart, history, user_message=user_message)
+        else:
+            size_options = []
+            for s in sizes:
+                dims = f" ({s['dimensions']})" if s['dimensions'] else ""
+                precio_calculado = round(target_item.get("precio_base", 0) * s["price_modifier"], 2)
+                size_options.append(
+                    f"  • {s['size_label']}{dims} ({s['price_modifier']}x) → ${precio_calculado:,.2f}"
+                )
+            size_list = "\n".join(size_options)
+            response = (
+                f"No logré identificar ese tamaño. ¿Podrías indicarme cuál de los siguientes prefieres "
+                f"para tu {target_item['producto']}?\n\n"
+                f"Opciones:\n{size_list}"
+            )
+            return response, [], ConversationState.ASKING_SIZE.value
 
     def _is_confirmation(self, message: str) -> bool:
         text = message.strip()
@@ -670,11 +963,13 @@ class OrderAgent:
         return bool(DENY_PATTERN.search(message.strip()))
 
     async def _order_error_response(
-        self, order: dict, cart: list[dict], history: list[dict]
+        self, order: dict, cart: list[dict], history: list[dict],
+        user_message: str = "",
     ) -> tuple[str, list[str], str]:
         response = await self.ollama.generate_employee_response(
             instruction=f"Informa el error: {order.get('mensaje', 'No se pudo crear la cotización')}.",
             context=self._cart_context(cart),
             history=history,
+            user_message=user_message,
         )
         return response, [], ConversationState.ASKING_DELIVERY_TYPE.value
