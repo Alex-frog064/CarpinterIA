@@ -100,6 +100,7 @@ CLEAR_ORDER_INTENT_PATTERN = re.compile(
     r"ponme\s+(?:un[oa]?\s|\d+\s+|media\s+|un\s+medio\s+)|"
     r"haz(?:me)?\s+(?:un[oa]?\s|pedido|orden|cotizaci[oó]n|\d+\s+|media\s+|un\s+medio\s+|mueble|puerta|closet|cocina|mesa)|"
     r"cotiz(?:a|ame|ar|ame)\b|"
+    r"cotizaci[oó]n\b|"
     r"quiero\s+cotizar\b|"
     r"necesito\s+(?:una?\s+)?cotizaci[oó]n\b"
     r")\b"

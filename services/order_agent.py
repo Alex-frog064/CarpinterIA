@@ -415,8 +415,8 @@ class OrderAgent:
                     )
 
             return (
-                "No encontré los servicios solicitados en el catálogo actual. "
-                "Por favor elige uno de los servicios disponibles a continuación, confirma la cotización actual o cancélala.\n\n"
+                "¿Qué servicio de carpintería te gustaría cotizar?\n\n"
+                "Escribe el nombre del servicio que te interesa:\n\n"
                 + self._render_menu_text(),
                 [],
                 ConversationState.COLLECTING_ORDER.value,
