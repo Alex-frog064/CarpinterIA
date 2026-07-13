@@ -97,7 +97,10 @@ CLEAR_ORDER_INTENT_PATTERN = re.compile(
     r"(?:puedes|podr[ií]as)\s+darme\s+(?:un[oa]?\s|\d+\s+|media\s+|un\s+medio\s+)|"
     r"agreg(?:a|ar|ue)\s+(?:un[oa]?\s|\d+\s+|media\s+|un\s+medio\s+)|"
     r"ponme\s+(?:un[oa]?\s|\d+\s+|media\s+|un\s+medio\s+)|"
-    r"haz(?:me)?\s+(?:un[oa]?\s|pedido|orden|cotizaci[oó]n|\d+\s+|media\s+|un\s+medio\s+|mueble|puerta|closet|cocina|mesa)"
+    r"haz(?:me)?\s+(?:un[oa]?\s|pedido|orden|cotizaci[oó]n|\d+\s+|media\s+|un\s+medio\s+|mueble|puerta|closet|cocina|mesa)|"
+    r"cotiz(?:a|ame|ar|ame)\b|"
+    r"quiero\s+cotizar\b|"
+    r"necesito\s+(?:una?\s+)?cotizaci[oó]n\b"
     r")\b"
 )
 
@@ -223,17 +226,29 @@ def is_clear_order_intent(message: str) -> bool:
 def detect_mode(message: str, role: str, conversation_state: str) -> ChatMode:
     from models.user import UserRole
 
-    if conversation_state in ACTIVE_ORDER_STATES:
-        return ChatMode.ORDER_FLOW
-
-    if role == UserRole.ADMIN.value and is_admin_query(message):
-        return ChatMode.ADMIN_ASSISTANT
-
     if is_menu_request(message):
         return ChatMode.GENERAL_CHAT
 
     if is_stock_inquiry(message):
         return ChatMode.GENERAL_CHAT
+
+    if is_greeting(message):
+        return ChatMode.GENERAL_CHAT
+
+    if is_farewell(message):
+        return ChatMode.GENERAL_CHAT
+
+    if is_identity_question(message):
+        return ChatMode.GENERAL_CHAT
+
+    if is_hours_question(message):
+        return ChatMode.GENERAL_CHAT
+
+    if conversation_state in ACTIVE_ORDER_STATES:
+        return ChatMode.ORDER_FLOW
+
+    if role == UserRole.ADMIN.value and is_admin_query(message):
+        return ChatMode.ADMIN_ASSISTANT
 
     if is_clear_order_intent(message) or is_product_inquiry(message) or is_delivery_request(message):
         return ChatMode.ORDER_FLOW

@@ -99,6 +99,33 @@ class GeneralChatService:
         if is_stock_inquiry(message):
             return self._render_stock()
 
+        if is_greeting(message):
+            return (
+                "¡Hola! Soy CarpinterIA, el asistente de la carpintería. 🪵\n\n"
+                "Estos son nuestros servicios disponibles:\n"
+                f"{self._render_menu()}\n\n"
+                "¿Te gustaría solicitar una cotización?"
+            )
+
+        if is_farewell(message):
+            return "¡Hasta pronto! Que tengas un excelente día. 🪵"
+
+        if is_identity_question(message):
+            return (
+                "Soy CarpinterIA, el asistente virtual de la carpintería. "
+                "Estoy aquí para platicar contigo, resolver dudas y ayudarte con cotizaciones cuando lo necesites."
+            )
+
+        if is_capabilities_question(message):
+            caps = get_capabilities_text(role)
+            return f"Claro, te cuento. {caps} ¿Qué te gustaría hacer?"
+
+        if is_hours_question(message):
+            return (
+                "Abrimos de lunes a sábado, de 8:00 a 18:00 hrs. "
+                "Las cotizaciones se pueden solicitar en cualquier momento a través del chat."
+            )
+
         context = self._build_context(message, role)
         try:
             return await self.ollama.generate_conversational_response(
@@ -128,7 +155,12 @@ class GeneralChatService:
             return self._render_menu()
 
         if is_greeting(message):
-            return "¡Hola! Soy CarpinterÍA, el asistente de la carpintería. ¿En qué te puedo ayudar hoy? 🪵"
+            return (
+                "¡Hola! Soy CarpinterIA, el asistente de la carpintería. 🪵\n\n"
+                "Estos son nuestros servicios disponibles:\n"
+                f"{self._render_menu()}\n\n"
+                "¿Te gustaría solicitar una cotización?"
+            )
 
         if is_farewell(message):
             return "¡Hasta pronto! Que tengas un excelente día. 🪵"

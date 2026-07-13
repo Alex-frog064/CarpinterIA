@@ -159,12 +159,15 @@ class OrderAgent:
         if self._is_denial(user_message) and cart:
             cart = []
             save_conversation_state(conversation_id, cart=cart)
-            response = await self.ollama.generate_employee_response(
-                instruction="El cliente quiere corregir. Pregúntale amablemente qué servicio de carpintería desea cotizar.",
-                context="Cotización vacía.",
-                history=history,
-                user_message=user_message,
-            )
+            try:
+                response = await self.ollama.generate_employee_response(
+                    instruction="El cliente quiere corregir. Pregúntale amablemente qué servicio de carpintería desea cotizar.",
+                    context="Cotización vacía.",
+                    history=history,
+                    user_message=user_message,
+                )
+            except Exception:
+                response = "Entendido, cotización reiniciada. ¿Qué servicio de carpintería te gustaría cotizar?"
             return response, [], ConversationState.COLLECTING_ORDER.value
 
         if cart and not self._is_confirmation(user_message) and not self._is_denial(user_message):
@@ -232,6 +235,44 @@ class OrderAgent:
             )
 
         if not cart:
+            pending_generic = state_data.get("collected", {}).get("pending_generic") or state_data.get("pending_generic")
+            if pending_generic:
+                from tools.order_tools import merge_cart_items as _merge
+                menu_items = obtener_menu().get("productos") or []
+                matches = [
+                    p["nombre"] for p in menu_items if pending_generic in p["nombre"].lower()
+                ]
+                if matches:
+                    best_match = None
+                    user_lower = user_message.lower().strip()
+                    user_numbers = re.findall(r"(\d+(?:[.,]\d+)?)", user_lower)
+                    for name in matches:
+                        name_numbers = re.findall(r"(\d+(?:[.,]\d+)?)", name.lower())
+                        if user_numbers and name_numbers:
+                            if any(un in name_numbers for un in user_numbers):
+                                best_match = name
+                                break
+                    if not best_match:
+                        for name in matches:
+                            name_clean = name.lower()
+                            if user_lower in name_clean or any(
+                                w in name_clean for w in user_lower.split() if len(w) > 2
+                            ):
+                                best_match = name
+                                break
+                    if not best_match:
+                        best_match = matches[0]
+                    extracted_generic = [{"nombre": best_match, "cantidad": 1}]
+                    added_g, errors_g = _merge(cart, extracted_generic)
+                    if added_g:
+                        save_conversation_state(conversation_id, cart=cart, pending_generic=None)
+                        return await self._check_missing_properties(
+                            conversation_id, cart, history,
+                            errors=errors_g, tools=["extract_order_from_text"],
+                            user_message=user_message,
+                        )
+                    save_conversation_state(conversation_id, pending_generic=None)
+
             from services.order_extraction import extract_dimensions_from_text
             only_dims = extract_dimensions_from_text(user_message)
             if only_dims and not extracted:
@@ -265,7 +306,22 @@ class OrderAgent:
                         p["nombre"] for p in menu_items if category in p["nombre"].lower()
                     ]
                     if matches:
+                        if len(matches) == 1:
+                            from tools.order_tools import merge_cart_items as _merge
+                            extracted_generic = [{"nombre": matches[0], "cantidad": 1}]
+                            added_g, errors_g = _merge(cart, extracted_generic)
+                            if added_g:
+                                save_conversation_state(conversation_id, cart=cart)
+                                return await self._check_missing_properties(
+                                    conversation_id, cart, history,
+                                    errors=errors_g, tools=["extract_order_from_text"],
+                                    user_message=user_message,
+                                )
                         options = "\n".join(f"• {name}" for name in matches)
+                        save_conversation_state(
+                            conversation_id,
+                            pending_generic=category,
+                        )
                         return (
                             f"Tenemos varias opciones de {category}s disponibles:\n{options}\n\n"
                             "¿Cuál prefieres?",
@@ -314,15 +370,21 @@ class OrderAgent:
                         ConversationState.COLLECTING_ORDER.value,
                     )
 
-            response = await self.ollama.generate_employee_response(
-                instruction=(
-                    "Saluda al cliente y pregúntale qué servicio de carpintería le gustaría cotizar. "
-                    "Menciona muebles a medida, puertas, closets, cocinas integrales y restauración."
-                ),
-                context="Sin servicios detectados aún.",
-                history=history,
-                user_message=user_message,
-            )
+            try:
+                response = await self.ollama.generate_employee_response(
+                    instruction=(
+                        "Saluda al cliente y pregúntale qué servicio de carpintería le gustaría cotizar. "
+                        "Menciona muebles a medida, puertas, closets, cocinas integrales y restauración."
+                    ),
+                    context="Sin servicios detectados aún.",
+                    history=history,
+                    user_message=user_message,
+                )
+            except Exception:
+                response = (
+                    "¡Hola! ¿Qué servicio de carpintería te gustaría cotizar?\n\n"
+                    + self._render_menu_text()
+                )
             save_conversation_state(conversation_id, cart=cart)
             return response, ["extract_order_from_text"], ConversationState.COLLECTING_ORDER.value
 
@@ -356,15 +418,21 @@ class OrderAgent:
         if errors:
             context += f"\nNo disponibles: {', '.join(errors)}"
 
-        response = await self.ollama.generate_employee_response(
-            instruction=(
-                "Muestra la cotización detectada con cantidades. "
-                "Pregunta si desea agregar algo más o si está correcta."
-            ),
-            context=context,
-            history=history,
-            user_message=user_message,
-        )
+        try:
+            response = await self.ollama.generate_employee_response(
+                instruction=(
+                    "Muestra la cotización detectada con cantidades. "
+                    "Pregunta si desea agregar algo más o si está correcta."
+                ),
+                context=context,
+                history=history,
+                user_message=user_message,
+            )
+        except Exception:
+            response = (
+                context
+                + "\n\n¿Deseas agregar algo más o está correcta la cotización?"
+            )
         return response, ["extract_order_from_text"], ConversationState.COLLECTING_ORDER.value
 
     async def _ask_customer_name(
@@ -380,15 +448,22 @@ class OrderAgent:
         if errors:
             context += f"\nServicios no encontrados: {', '.join(errors)}"
 
-        response = await self.ollama.generate_employee_response(
-            instruction=(
-                "Confirma la cotización detectada listando servicios y cantidades. "
-                "Pregunta ÚNICAMENTE a nombre de quién será la cotización."
-            ),
-            context=context,
-            history=history,
-            user_message=user_message,
-        )
+        try:
+            response = await self.ollama.generate_employee_response(
+                instruction=(
+                    "Confirma la cotización detectada listando servicios y cantidades. "
+                    "Pregunta ÚNICAMENTE a nombre de quién será la cotización."
+                ),
+                context=context,
+                history=history,
+                user_message=user_message,
+            )
+        except Exception:
+            response = (
+                "Tu cotización está lista:\n\n"
+                + self._cart_context(cart)
+                + "\n\n¿A nombre de quién será la cotización?"
+            )
         return response, tools or [], ConversationState.ASKING_CUSTOMER_NAME.value
 
     def _render_menu_text(self) -> str:
@@ -424,24 +499,30 @@ class OrderAgent:
         name = user_message.strip()
 
         if PICKUP_PATTERN.search(user_message) or DELIVERY_PATTERN.search(user_message):
-            response = await self.ollama.generate_employee_response(
-                instruction=(
-                    "El cliente respondió con un tipo de entrega en lugar de su nombre. "
-                    "Pide de nuevo el nombre de la persona a quien va la cotización."
-                ),
-                context=self._cart_context(cart),
-                history=history,
-                user_message=user_message,
-            )
+            try:
+                response = await self.ollama.generate_employee_response(
+                    instruction=(
+                        "El cliente respondió con un tipo de entrega en lugar de su nombre. "
+                        "Pide de nuevo el nombre de la persona a quien va la cotización."
+                    ),
+                    context=self._cart_context(cart),
+                    history=history,
+                    user_message=user_message,
+                )
+            except Exception:
+                response = "Necesito el nombre de la persona a quien va la cotización. ¿A nombre de quién?"
             return response, [], ConversationState.ASKING_CUSTOMER_NAME.value
 
         if not NAME_PATTERN.match(name) or len(name.split()) > 4:
-            response = await self.ollama.generate_employee_response(
-                instruction="Pide amablemente el nombre de la persona a quien va la cotización.",
-                context=self._cart_context(cart),
-                history=history,
-                user_message=user_message,
-            )
+            try:
+                response = await self.ollama.generate_employee_response(
+                    instruction="Pide amablemente el nombre de la persona a quien va la cotización.",
+                    context=self._cart_context(cart),
+                    history=history,
+                    user_message=user_message,
+                )
+            except Exception:
+                response = "¿Podrías indicarme el nombre completo de la persona a quien va la cotización?"
             return response, [], ConversationState.ASKING_CUSTOMER_NAME.value
 
         save_conversation_state(
@@ -450,15 +531,21 @@ class OrderAgent:
             customer_name=name,
         )
 
-        response = await self.ollama.generate_employee_response(
-            instruction=(
-                f"Agradece a {name} por su nombre. "
-                "Pregunta ÚNICAMENTE si será para recoger en taller o entrega/instalación a domicilio."
-            ),
-            context=f"{self._cart_context(cart)}\nCliente: {name}",
-            history=history,
-            user_message=user_message,
-        )
+        try:
+            response = await self.ollama.generate_employee_response(
+                instruction=(
+                    f"Agradece a {name} por su nombre. "
+                    "Pregunta ÚNICAMENTE si será para recoger en taller o entrega/instalación a domicilio."
+                ),
+                context=f"{self._cart_context(cart)}\nCliente: {name}",
+                history=history,
+                user_message=user_message,
+            )
+        except Exception:
+            response = (
+                f"Gracias, {name}. ¿Prefieres recoger en taller o entrega/instalación a domicilio?\n\n"
+                "Responde 'recoger' o 'domicilio'."
+            )
         return response, [], ConversationState.ASKING_DELIVERY_TYPE.value
 
     async def _asking_delivery_type(
@@ -504,20 +591,31 @@ class OrderAgent:
                 return await self._order_error_response(order, cart, history, user_message)
             save_conversation_state(conversation_id, order_id=order["order_id"])
 
+            try:
+                response = await self.ollama.generate_employee_response(
+                    instruction="El cliente eligió entrega/instalación a domicilio. Pide ÚNICAMENTE la dirección de entrega.",
+                    context=f"Cliente: {customer_name}\n{self._cart_context(cart)}",
+                    history=history,
+                    user_message=user_message,
+                )
+            except Exception:
+                response = (
+                    f"Gracias, {customer_name}. ¿Cuál es la dirección de entrega?"
+                )
+            return response, ["create_order"], ConversationState.ASKING_ADDRESS.value
+
+        try:
             response = await self.ollama.generate_employee_response(
-                instruction="El cliente eligió entrega/instalación a domicilio. Pide ÚNICAMENTE la dirección de entrega.",
-                context=f"Cliente: {customer_name}\n{self._cart_context(cart)}",
+                instruction="Pregunta de nuevo si prefiere recoger en taller o entrega/instalación a domicilio.",
+                context=self._cart_context(cart),
                 history=history,
                 user_message=user_message,
             )
-            return response, ["create_order"], ConversationState.ASKING_ADDRESS.value
-
-        response = await self.ollama.generate_employee_response(
-            instruction="Pregunta de nuevo si prefiere recoger en taller o entrega/instalación a domicilio.",
-            context=self._cart_context(cart),
-            history=history,
-            user_message=user_message,
-        )
+        except Exception:
+            response = (
+                "¿Prefieres recoger en taller o entrega/instalación a domicilio?\n\n"
+                "Responde 'recoger' o 'domicilio'."
+            )
         return response, [], ConversationState.ASKING_DELIVERY_TYPE.value
 
     async def _asking_address(
@@ -531,12 +629,15 @@ class OrderAgent:
         address = user_message.strip()
 
         if len(address) < 5:
-            response = await self.ollama.generate_employee_response(
-                instruction="Pide la dirección completa: calle, número y colonia.",
-                context=self._cart_context(cart),
-                history=history,
-                user_message=user_message,
-            )
+            try:
+                response = await self.ollama.generate_employee_response(
+                    instruction="Pide la dirección completa: calle, número y colonia.",
+                    context=self._cart_context(cart),
+                    history=history,
+                    user_message=user_message,
+                )
+            except Exception:
+                response = "Por favor indica la dirección completa: calle, número y colonia."
             return response, [], ConversationState.ASKING_ADDRESS.value
 
         save_conversation_state(
@@ -549,15 +650,21 @@ class OrderAgent:
         if order_id:
             update_order(order_id, address=address)
 
-        response = await self.ollama.generate_employee_response(
-            instruction=(
-                "Agradece por la dirección. Pide ÚNICAMENTE que comparta su ubicación "
-                "usando el botón de ubicación 📍 en el chat."
-            ),
-            context=f"{self._cart_context(cart)}\nDirección: {address}",
-            history=history,
-            user_message=user_message,
-        )
+        try:
+            response = await self.ollama.generate_employee_response(
+                instruction=(
+                    "Agradece por la dirección. Pide ÚNICAMENTE que comparta su ubicación "
+                    "usando el botón de ubicación 📍 en el chat."
+                ),
+                context=f"{self._cart_context(cart)}\nDirección: {address}",
+                history=history,
+                user_message=user_message,
+            )
+        except Exception:
+            response = (
+                "Dirección registrada. Por favor comparte tu ubicación usando "
+                "el botón 📍 Compartir ubicación en el chat."
+            )
         return response, ["update_order"], ConversationState.ASKING_LOCATION.value
 
     async def _asking_location(
@@ -569,15 +676,21 @@ class OrderAgent:
     ) -> tuple[str, list[str], str]:
         cart = state_data.get("cart") or []
 
-        response = await self.ollama.generate_employee_response(
-            instruction=(
-                "Recuerda amablemente que debe usar el botón 📍 Compartir ubicación "
-                "en la parte inferior del chat. No pidas otra información."
-            ),
-            context=self._cart_context(cart),
-            history=history,
-            user_message=user_message,
-        )
+        try:
+            response = await self.ollama.generate_employee_response(
+                instruction=(
+                    "Recuerda amablemente que debe usar el botón 📍 Compartir ubicación "
+                    "en la parte inferior del chat. No pidas otra información."
+                ),
+                context=self._cart_context(cart),
+                history=history,
+                user_message=user_message,
+            )
+        except Exception:
+            response = (
+                "Por favor comparte tu ubicación usando el botón 📍 "
+                "Compartir ubicación en la parte inferior del chat."
+            )
         return response, [], ConversationState.ASKING_LOCATION.value
 
     async def _show_summary(
@@ -599,12 +712,15 @@ class OrderAgent:
         if extra_instruction:
             instruction = f"{extra_instruction} {instruction}"
 
-        response = await self.ollama.generate_employee_response(
-            instruction=instruction,
-            context=summary,
-            history=history,
-            user_message=summary,
-        )
+        try:
+            response = await self.ollama.generate_employee_response(
+                instruction=instruction,
+                context=summary,
+                history=history,
+                user_message=summary,
+            )
+        except Exception:
+            response = summary + "\n\n¿Confirmas la cotización? Responde 'sí' o 'no'."
         return response, ["calculate_order_total"], ConversationState.CONFIRMING_ORDER.value
 
     async def _confirming_order(
@@ -622,23 +738,29 @@ class OrderAgent:
             if order_id:
                 cancel_order(order_id)
             reset_order_state(conversation_id)
-            response = await self.ollama.generate_employee_response(
-                instruction="La cotización fue cancelada. Ofrece ayuda para una nueva cotización.",
-                context="Cotización cancelada.",
-                history=history,
-                user_message=user_message,
-            )
+            try:
+                response = await self.ollama.generate_employee_response(
+                    instruction="La cotización fue cancelada. Ofrece ayuda para una nueva cotización.",
+                    context="Cotización cancelada.",
+                    history=history,
+                    user_message=user_message,
+                )
+            except Exception:
+                response = "Cotización cancelada. ¿En qué te puedo ayudar?"
             return response, ["cancel_order"], ConversationState.IDLE.value
 
         if not self._is_confirmation(user_message):
             totals = calculate_order_total(cart, delivery_type)
             summary = self._build_summary(cart, delivery_type, totals, state_data)
-            response = await self.ollama.generate_employee_response(
-                instruction="Pide confirmación: responda sí para confirmar o no para cancelar.",
-                context=summary,
-                history=history,
-                user_message=user_message,
-            )
+            try:
+                response = await self.ollama.generate_employee_response(
+                    instruction="Pide confirmación: responda sí para confirmar o no para cancelar.",
+                    context=summary,
+                    history=history,
+                    user_message=user_message,
+                )
+            except Exception:
+                response = summary + "\n\n¿Confirmas la cotización? Responde 'sí' o 'no'."
             return response, [], ConversationState.CONFIRMING_ORDER.value
 
         if not order_id:
@@ -662,12 +784,15 @@ class OrderAgent:
         tools_used = ["confirm_order", "registrar_venta", "create_order"]
 
         if not result.get("exito"):
-            response = await self.ollama.generate_employee_response(
-                instruction=f"Informa el problema: {result.get('mensaje')}. Ofrece alternativas.",
-                context=self._cart_context(cart),
-                history=history,
-                user_message=user_message,
-            )
+            try:
+                response = await self.ollama.generate_employee_response(
+                    instruction=f"Informa el problema: {result.get('mensaje')}. Ofrece alternativas.",
+                    context=self._cart_context(cart),
+                    history=history,
+                    user_message=user_message,
+                )
+            except Exception:
+                response = f"Hubo un problema: {result.get('mensaje')}. Por favor intenta de nuevo."
             return response, tools_used, ConversationState.CONFIRMING_ORDER.value
 
         save_conversation_state(
@@ -676,15 +801,23 @@ class OrderAgent:
         totals = calculate_order_total(cart, delivery_type)
         summary = self._build_summary(cart, delivery_type, totals, state_data)
 
-        response = await self.ollama.generate_employee_response(
-            instruction=(
-                "Confirma que la cotización fue registrada exitosamente. "
-                "Indica tiempo estimado (3-5 días para recoger, 5-10 días para entrega/instalación a domicilio). Despídete amablemente."
-            ),
-            context=f"{summary}\nNúmero de cotización: {order_id}",
-            history=history,
-            user_message=user_message,
-        )
+        try:
+            response = await self.ollama.generate_employee_response(
+                instruction=(
+                    "Confirma que la cotización fue registrada exitosamente. "
+                    "Indica tiempo estimado (3-5 días para recoger, 5-10 días para entrega/instalación a domicilio). Despídete amablemente."
+                ),
+                context=f"{summary}\nNúmero de cotización: {order_id}",
+                history=history,
+                user_message=user_message,
+            )
+        except Exception:
+            response = (
+                f"¡Cotización #{order_id} registrada exitosamente!\n\n"
+                f"{summary}\n\n"
+                "Tiempo estimado: 3-5 días (recoger) o 5-10 días (entrega a domicilio).\n"
+                "¡Gracias por tu preferencia! 🪵"
+            )
         return response, tools_used, ConversationState.ORDER_COMPLETED.value
 
     async def _order_completed(
@@ -1073,10 +1206,13 @@ class OrderAgent:
         self, order: dict, cart: list[dict], history: list[dict],
         user_message: str = "",
     ) -> tuple[str, list[str], str]:
-        response = await self.ollama.generate_employee_response(
-            instruction=f"Informa el error: {order.get('mensaje', 'No se pudo crear la cotización')}.",
-            context=self._cart_context(cart),
-            history=history,
-            user_message=user_message,
-        )
+        try:
+            response = await self.ollama.generate_employee_response(
+                instruction=f"Informa el error: {order.get('mensaje', 'No se pudo crear la cotización')}.",
+                context=self._cart_context(cart),
+                history=history,
+                user_message=user_message,
+            )
+        except Exception:
+            response = f"Hubo un problema: {order.get('mensaje', 'No se pudo crear la cotización')}. Por favor intenta de nuevo."
         return response, [], ConversationState.ASKING_DELIVERY_TYPE.value

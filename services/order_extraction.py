@@ -178,11 +178,27 @@ async def extract_order_from_text(
             _append_unique(extracted, item)
         single = _match_single_product(fragment, menu_names)
         if single:
+            if single.get("_rejected"):
+                return {
+                    "productos_detectados": [],
+                    "cart": [],
+                    "added": [],
+                    "errors": [single["mensaje"]],
+                    "has_order_intent": True,
+                }
             _append_unique(extracted, single)
 
     if not extracted and ORDER_KEYWORDS.search(text):
         single = _match_single_product(text, menu_names)
         if single:
+            if single.get("_rejected"):
+                return {
+                    "productos_detectados": [],
+                    "cart": [],
+                    "added": [],
+                    "errors": [single["mensaje"]],
+                    "has_order_intent": True,
+                }
             extracted.append(single)
 
     cart: list[dict] = []
@@ -261,8 +277,23 @@ SIZE_HINT_MAP = {
 }
 
 
+FRACTIONAL_PRODUCT_PATTERN = re.compile(
+    r"\b(media|medio|medias|medios|tercio|tercia|cuarto|cuarta|quinto|quinta)\s+"
+    r"(silla|mesa|closet|cocina|librero|puerta|escalera|ventana|mueble)\b",
+    re.IGNORECASE,
+)
+
+
 def _match_single_product(text: str, menu_names: list[str]) -> dict | None:
     text_lower = text.lower().strip()
+
+    if FRACTIONAL_PRODUCT_PATTERN.search(text_lower):
+        return {"_rejected": True, "mensaje": (
+            "Lo siento, no es posible pedir medios o partes de un mueble. "
+            "Cada producto se cotiza como unidad completa. "
+            "¿Cuántas unidades necesitas?"
+        )}
+
     text_lower = re.sub(
         r"^(quiero|quisiera|cotizar|cotizame|necesito|dame|me das|puedes darme|podr[ií]as darme|"
         r"un|una|unos|unas|dos|tres|cuatro|cinco|regalame|ponme|hazme|arma|armame|"
