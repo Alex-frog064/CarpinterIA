@@ -1,3 +1,5 @@
+import re
+
 from models.user import UserRole
 from services.intent_service import (
     get_capabilities_text,
@@ -12,6 +14,11 @@ from services.intent_service import (
 )
 from services.ollama_service import OllamaService
 from tools.carpentry_tools import obtener_menu
+
+SHORT_AFFIRMATIVE = re.compile(
+    r"^(s[ií]|ok|dale|claro|va|bueno|por\s+favor)\s*\.?\s*$",
+    re.IGNORECASE,
+)
 
 
 class GeneralChatService:
@@ -124,6 +131,13 @@ class GeneralChatService:
             return (
                 "Abrimos de lunes a sábado, de 8:00 a 18:00 hrs. "
                 "Las cotizaciones se pueden solicitar en cualquier momento a través del chat."
+            )
+
+        if SHORT_AFFIRMATIVE.match(message.strip()):
+            return (
+                "¡Perfecto! ¿Qué servicio de carpintería te gustaría cotizar?\n\n"
+                f"{self._render_menu()}\n\n"
+                "Escribe el nombre del servicio que te interesa."
             )
 
         context = self._build_context(message, role)

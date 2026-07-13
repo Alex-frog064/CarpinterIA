@@ -54,7 +54,8 @@ PRODUCT_INQUIRY_PATTERN = re.compile(
     r"cu[aá]l\s+es\s+el\s+cat[aá]logo|mu[eé]strame\s+el\s+cat[aá]logo|"
     r"lista\s+de\s+(?:productos|servicios)|cat[aá]logo|precios?|"
     r"tienen\s+(mueble|puerta|closet|cocina|mesa|librero|escalera|ventana|piso|restauraci[oó]n)|"
-    r"qu[eé]\s+(?:muebles|servicios|trabajos))\b",
+    r"qu[eé]\s+(?:muebles|servicios|trabajos)|"
+    r"personalizado|personalizados|a\s+medida)\b",
     re.IGNORECASE,
 )
 

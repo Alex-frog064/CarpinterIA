@@ -1,5 +1,5 @@
 import re
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 from models.conversation_state import ConversationState, OrderStatus
 from services.conversation_state_service import (
@@ -68,7 +68,8 @@ class OrderAgent:
     @staticmethod
     def _is_within_order_hours() -> bool:
         """Verifica si la hora actual está dentro del horario de cotizaciones (8 AM - 6 PM)."""
-        now = datetime.now()
+        tz_mexico = timezone(timedelta(hours=-6))
+        now = datetime.now(tz_mexico)
         return ORDER_START_HOUR <= now.hour < ORDER_END_HOUR
 
     async def handle(
