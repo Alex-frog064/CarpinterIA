@@ -336,7 +336,8 @@ class OrderAgent:
                         )
 
                 return (
-                    "No encuentro ese servicio en el catálogo. Revisa lo que tenemos disponible:\n"
+                    "¿Qué servicio de carpintería te gustaría cotizar?\n\n"
+                    "Escribe el nombre del servicio que te interesa del siguiente catálogo:\n\n"
                     + self._render_menu_text(),
                     ["extract_order_from_text"],
                     ConversationState.COLLECTING_ORDER.value,
@@ -344,7 +345,8 @@ class OrderAgent:
 
             if is_product_inquiry(user_message):
                 return (
-                    "No encontré ese servicio en el catálogo activo. Esto es lo que tenemos disponible:\n"
+                    "¿Qué servicio de carpintería te gustaría cotizar?\n\n"
+                    "Escribe el nombre del servicio que te interesa del siguiente catálogo:\n\n"
                     + self._render_menu_text(),
                     ["extract_order_from_text"],
                     ConversationState.COLLECTING_ORDER.value,
