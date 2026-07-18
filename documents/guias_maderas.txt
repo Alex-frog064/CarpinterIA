@@ -1,0 +1,815 @@
+===============================================================================
+                    GUIA COMPLETA DE TIPOS DE MADERA PARA CARPINTERIA
+===============================================================================
+
+Ultima actualizacion: 2026
+Version: 2.1
+
+Esta guia detallada cubre los tipos de maderas mas utilizados en carpinteria
+profesional, con informacion tecnica, aplicaciones, precios y consejos de
+cuidado para cada variedad.
+
+===============================================================================
+## MDF (Medium Density Fiberboard) - Fibra de Densidad Media
+===============================================================================
+
+### Descripcion General
+El MDF es un panel de fibra de madera de densidad media, fabricado a partir de
+fibras de madera de madera dura y blanda desintegradas termicamente, mezcladas
+con cera y resina, y prensadas para formar paneles. Es uno de los materiales
+mas versatiles y economicos en carpinteria moderna.
+
+### Propiedades Tecnicas
+- Densidad: 600-800 kg/m³ (promedio 750 kg/m³)
+- Dureza Janka: No aplica (es un material compuesto)
+- Grosor comun: 15mm, 18mm, 25mm, 30mm, 36mm
+- Tamano de hoja estandar: 2.44m x 1.22m (8' x 4')
+- Humedad recomendada: 8-12%
+- Contenido de formaldehido: Clase E1 (seguro para interiores)
+- Curvatura minima: 0.3% en laminas de 18mm
+- Resistencia a la flexion: 12-18 MPa
+- Absorcion de agua: 8-12% en 24 horas
+
+### Trabajabilidad
+- Cortado: Excelente con sierras de dientes finos (40-60 dientes)
+- Taladrado: Muy facil, requiere brocas para madera
+- Ensamble: Acceptable con tornillos de madera (pre-taladrar)
+- Pegamento: Excelente con cola blanca (PVA) o cola francesa
+- Lijado: Muy facil, acabado uniforme
+- Pintado: Excelente superficie para pintar (sin veta)
+- Recorte CNC: Excelente precision en corte CNC
+- Limado: Fácil, genera polvo fino
+
+### Modificador de Precio
+- Base: 1.0x (referencia para todos los precios)
+- Panel completo (2.44 x 1.22m): $350-$550 MXN segun grosor
+- 18mm: $350-$400 MXN por hoja
+- 25mm: $450-$500 MXN por hoja
+- 30mm: $500-$550 MXN por hoja
+
+### Aplicaciones Recomendadas
+- Gabinetes de cocina (la mas comun)
+- Closets y armarios
+- Muebles de oficina
+- Repisas y estantes
+- Puertas de interior (panelado)
+- Molduras y marcos
+- Muebles para habitaciones
+- Estantes para libros
+- Encimeras economicas
+- Bases de camas
+
+### Cuidados Especiales
+- NO exponer a humedad directa o prolongada
+- Sell todos los bordes expuestos con sellador o pintura
+- Usar esquinas metlicas para mayor resistencia
+- Evitar cargas puntuales excesivas sin soporte
+- Mantener alejado de fuentes de calor directo
+- Reaplicar sellador cada 2-3 anos en areas húmedas
+- No usar productos con silicona en superficies a pintar
+- Limpiar solo con pano humedo (nunca empapado)
+
+### Ventajas
+- Superficie muy lisa y uniforme
+- Economico comparado con madera maciza
+- No tiene nudos ni imperfecciones
+- Facil de pintar y acabar
+- Dimensiones consistentes
+- Disponibilidad constante
+
+### Desventajas
+- No resistente a la humedad
+- Mas pesado que contrachapado equivalente
+- No tiene la textura natural de la madera
+- Genera mucho polvo al cortar (requiere mascarilla)
+- No apto para uso exterior sin tratamiento especial
+- Menor resistencia mecanica que madera maciza
+
+
+===============================================================================
+## Triplay (Plywood) - Contrachapado
+===============================================================================
+
+### Descripcion General
+El triplay o contrachapado es un panel de madera compuesto formado por multiples
+capas (laminas) de madera pegadas entre si, con las vetas de capas adyacentes
+en angulos perpendiculares. Esta construccion le otorga gran estabilidad y
+resistencia.
+
+### Propiedades Tecnicas
+- Densidad: 500-700 kg/m³ (varia segun especie)
+- Dureza Janka: Depende de la capa superior (vernon)
+- Grosor comun: 9mm, 12mm, 15mm, 18mm, 25mm
+- Tamano de hoja estandar: 2.44m x 1.22m (8' x 4')
+- Numero de capas: 3, 5, 7, 9 o mas (impar preferido)
+- Humedad recomendada: 8-12%
+- Resistencia a la flexion: 30-60 MPa
+- Absorcion de agua: 6-10% en 24 horas
+- Resistencia al desprendimiento: Clase 1 (mejor)
+
+### Tipos de Triplay por Capa Superior
+- A-cualidad: Sin defectos, acabado premium (caro)
+- B-cualidad: Pocos nudos pequenos, buen acabado
+- C-cualidad: Nudos permitidos, acabado regular
+- D-cualidad: Nudos grandes, uso estructural
+- Film-faced: Con revestimiento de fenol (para concreto)
+
+### Trabajabilidad
+- Cortado: Bueno, requiere sierra de dientes finos
+- Taladrado: Fácil, pero pre-taladrar para tornillos gruesos
+- Ensamble: Bueno con tornillos y cola
+- Pegamento: Excelente con cola PVA o epoxi
+- Lijado: Bueno, cuidado con las capas del borde
+- Pintado: Bueno con preparacion adecuada
+- Flexion: Puede doblarse con vapor o húmedad controlada
+- Recorte CNC: Bueno, cuidado con desprendimiento de virutas
+
+### Modificador de Precio
+- Base: 1.1x (10% mas que MDF)
+- 9mm: $280-$350 MXN por hoja
+- 12mm: $320-$400 MXN por hoja
+- 15mm: $380-$450 MXN por hoja
+- 18mm: $420-$520 MXN por hoja
+- 25mm: $550-$680 MXN por hoja
+- Triplay de abedil (Baltic birch): 1.3x adicional
+
+### Aplicaciones Recomendadas
+- Pisos (triple capa o multicapa)
+- Estructura de muebles (fondo, bases)
+- Encofrado para concreto
+- Paredes divisorias
+- Techos falsos
+- Estantes de carga
+- Juguetes de madera
+- Gabinetes de alta resistencia
+- Carrocerias y bodyboards
+- Cajas y embalajes de lujo
+- Muebles para exterior (tratado)
+- Escaleras (escalones)
+
+### Cuidados Especiales
+- Sell bordes expuestos para evitar absorcion de humedad
+- Para exterior, usar triplay marino o tratado
+- No dejar expuesto a lluvia sin proteccion
+- Revisar periodicamente bordes por delaminacion
+- Evitar temperatura extrema o cambios bruscos
+- Usar piezas de apoyo en areas de carga
+- Proteger superficie con cera o barniz cada 12 meses
+
+### Ventajas
+- Mayor estabilidad dimensional que madera maciza
+- Resistente a la torsion y flexion
+- Disponible en multiples calidades
+- Aprovechamiento mejorado de la madera
+- Puede fabricarse en tamanos grandes
+- Buena base para acabados
+
+### Desventajas
+- Bordes expuestos no son esteticos
+- Mas pesado que MDF en algunos grosores
+- Calidad variable segun fabricante
+- Capas visibles en bordes
+- Puede delaminarse con humedad excesiva
+
+
+===============================================================================
+## Pino (Pine) - Pinus spp.
+===============================================================================
+
+### Descripcion General
+El pino es una madera blanda de conifera, muy comun en carpinteria por su
+disponibilidad, facilidad de trabajo y precio accesible. Existen muchas
+especies, siendo las mas usadas: Pino Radiata, Pino Ocoa, Pino Douglas y
+Pino de Oregon. Es la madera de entrada ideal para proyectos de carpinteria.
+
+### Propiedades Tecnicas
+- Densidad: 400-550 kg/m³ (varia segun especie)
+- Dureza Janka: 380-870 lbf (1690-3870 N)
+- Dureza Janka promedio: 690 lbf (3070 N)
+- Diametro de tronco comun: 20-40cm
+- Longitud de tabla: 2.4-3.6m
+- Grosor comun: 1", 1.25", 1.5", 2", 3"
+- Ancho comun: 4", 6", 8", 10", 12"
+- Humedad recomendada: 8-12%
+- Color: Crema a amarillo pálido con vetas mas oscuras
+- Aroma: Ligeramente resinoso, agradable
+- Textura: Media a gruesa
+- Veta: Recta a ligeramente ondulada
+
+### Trabajabilidad
+- Cortado: Muy facil, excelente con todas las herramientas
+- Taladrado: Muy facil, no requiere pre-taladrado para tornillos pequenos
+- Ensamble: Excelente con todos los metodos
+- Pegamento: Excelente con cola PVA blanca o amarilla
+- Lijado: Muy facil, grano abierto puede requerir mas capas
+- Pintado: Bueno, puede necesitar sellador previo por grano abierto
+- Trazado: Muy facil de marcar y medir
+- Clavado: Excelente, retiene clavos bien
+- Envejecido: Se oscurece con el tiempo (a veces deseable)
+
+### Modificador de Precio
+- Base: 1.2x (20% mas que MDF)
+- Pino Radiata (Grado construccion): $45-$65 MXN/pie cuadrado
+- Pino Radiata (Grado SELECT): $65-$85 MXN/pie cuadrado
+- Pino Ocoa (1x6, 8'): $80-$120 MXN/pie
+- Pino Douglas (1x12, 8'): $180-$250 MXN/pie
+- Pino de Oregon (2x4, 8'): $60-$85 MXN/pie
+- Pino cepillado: +15% sobre precio base
+- Pino secado al horno: +20% sobre precio base
+
+### Aplicaciones Recomendadas
+- Marcos de puertas y ventanas
+- Techos y revestimientos de pared
+- Muebles rústicos y coloniales
+- Cajones y partes internas de muebles
+- Estanterias y repisas
+- Camas y estructuras de muebles
+- Molduras y zoclos
+- Construccion en general
+- Juguetes de madera
+- Proyectos DIY y principiantes
+- Enmarcado de cuadros
+- Cajas decorativas
+
+### Consejos de Acabado
+- Lijar con grano 120, luego 180, luego 220
+- Aplicar sellador de grano abierto antes de pintar
+- Para teñir: usar Pre-Stain conditioner para evitar manchas
+- Barniz satinado o mate queda mejor que brillante
+- Para look rustico: cepillar con cepillo de alambre
+- Para envejecido artificial: usar vinagre con clavos oxidados
+- Aceite de linaza puro da un acabado natural hermoso
+- Dos capas de barniz como minimo para muebles
+
+### Cuidados Especiales
+- Proteger de humedad excesiva (se hincha y deforma)
+- Tratar con preservante para uso exterior
+- Reaplicar acabado cada 12-18 meses en areas de uso intensivo
+- Evitar exposicion directa al sol (se decolora)
+- Usar protectores de goma en pies de muebles
+- Limpiar con pano ligeramente humedo
+- No usar productos abrasivos
+- Mantener alejado de fuentes de calor
+
+### Ventajas
+- Precio muy accesible
+- Facil de trabajar con herramientas manuales
+- Disponibilidad amplia
+- Aroma agradable
+- Se tiñe y pinta facilmente
+- Buena para aprendizaje
+
+### Desventajas
+- Es blanda, se marca facilmente
+- Resina puede filtrarse a traves de pintura
+- Se contrae y expande con cambios de humedad
+- No duradera en exterior sin tratamiento
+- Nudos pueden soltarse
+- Puede amarillear con el tiempo
+
+
+===============================================================================
+## Cedro (Cedar) - Cedrela spp. / Cedrus spp.
+===============================================================================
+
+### Descripcion General
+El cedro es una madera semidura a dura con propiedades aromaticas unicas que
+lo hacen altamente resistente a insectos y humedad. Se utiliza en aplicaciones
+de lujo y donde se requiere durabilidad y fragancia natural. Existen varias
+especies: Cedro Rojo (Cedrela odorata), Cedro de los Himalayas, Cedro
+Libanes y Cedro Americano (Western Red Cedar).
+
+### Propiedades Tecnicas
+- Densidad: 350-560 kg/m³ (varia segun especie)
+- Dureza Janka: 350-900 lbf (1560-4000 N)
+- Dureza Janka promedio: 600 lbf (2670 N)
+- Grosor comun: 1", 1.5", 2", 3"
+- Ancho comun: 4", 6", 8", 10", 12"
+- Humedad recomendada: 6-10%
+- Color: Rojizo a marron rosado, se oscurece con el tiempo
+- Aroma: Intenso, caracteristico, persistente por anos
+- Textura: Fina a media
+- Veta: Recta, uniforme
+- Estabilidad: Muy alta (se contrae poco)
+
+### Trabajabilidad
+- Cortado: Buena, requiere herramientas afiladas
+- Taladrado: Fácil, pero pre-taladrar para tornillos gruesos
+- Ensamble: Bueno con cola y tornillos (usar acero inoxidable)
+- Pegamento: Excelente con cola PVA o poliuretano
+- Lijado: Muy facil, acabado satinado natural
+- Pintado: Bueno, aunque generalmente se deja sin pintar
+- Clavado: Bueno, pero pre-taladrar para evitar grietas
+- Pulido: Excelente, se puede llevar a un acabado muy alto
+- Envejecido: Se torna gris plata sin acabado (deseable para exterior)
+
+### Modificador de Precio
+- Base: 1.5x (50% mas que MDF)
+- Cedro Rojo (1x6, 8'): $250-$350 MXN/pie
+- Cedro Rojo (1x12, 8'): $450-$600 MXN/pie
+- Cedro Americano (1x6, 8'): $300-$400 MXN/pie
+- Cedro Americano (1x12, 8'): $550-$700 MXN/pie
+- Cedro en tablas Selecto: +25% sobre precio regular
+- Cedro cepillado 4 caras: +20% sobre precio base
+
+### Aplicaciones Recomendadas
+- Vestidores y walk-in closets (la aplicacion premium)
+- Armarios y roperos
+- Repisas para ropa (aromas naturales)
+- Cajones de muebles de lujo
+- Molduras decorativas
+- Revestimientos de pared y techo
+- Puertas de interiores premium
+- Cajas de joyeria y regalos
+- Humidores para puros
+- Saunas y spas
+- Exteriores (tarimas, cercas, perfiles)
+- Barcos y muebles nauticos
+- Coffrets y empaques de lujo
+
+### Beneficios Unicos
+- Repelente natural de polillas y polillas de la ropa
+- Resistente natural a la putrefaccion
+- Aroma aromaterapeutico que dura anos
+- Naturalmente resistente a termitas
+- No requiere tratamiento quimico para resistencia
+- Absorbe y libera humedad (regulador natural)
+- Aislante termico superior
+- Resistente a hongos
+
+### Cuidados Especiales
+- Para interiores: barniz ligero o aceite para preservar aroma
+- Para exterior: puede dejarse sin tratar (se vuelve gris elegante)
+- Si se quiere color original, reaplicar aceite cada 12 meses
+- Limpiar solo con pano suave y seco
+- No usar productos quimicos fuertes
+- Mantener alejado de fuentes de calor intenso
+- Para closets: ventilacion adecuada prolonga la vida
+- Evitar exposicion directa al sol en interiores
+
+### Ventajas
+- Aroma natural hermoso
+- Resistencia a insectos sin quimicos
+- Estabilidad dimensional excepcional
+- Belleza natural sin necesidad de pintura
+- Largo plazo de vida
+- Propiedades aislantes
+
+### Desventajas
+- Precio considerablemente mas alto
+- Superficie blanda se marca facilmente
+- Puede causar alergia en personas sensibles al aroma
+- Disponibilidad limitada en algunas regiones
+- Requiere herramientas bien afiladas
+- Color puede cambiar con exposicion UV
+
+
+===============================================================================
+## Roble (Oak) - Quercus spp.
+===============================================================================
+
+### Descripcion General
+El roble es una de las maderas duras mas valoradas en carpinteria mundial,
+conocida por su excepcional dureza, belleza del veteado y longevidad. Es el
+estandar de oro para muebles de alta gama, pisos y barricas. Principales
+variedades: Roble Europeo (Quercus robur), Roble Americano (Quercus alba),
+Roble Rojo (Quercus rubra) y Roble Blanco (Quercus macrocarpa).
+
+### Propiedades Tecnicas
+- Densidad: 600-900 kg/m³ (promedio 770 kg/m³)
+- Dureza Janka: 1010-1360 lbf (4490-6050 N)
+- Dureza Janka promedio: 1220 lbf (5430 N)
+- Grosor comun: 1", 1.25", 1.5", 2", 3", 4", 6"
+- Ancho comun: 4", 6", 8", 10", 12", 14", 16"
+- Humedad recomendada: 6-8%
+- Color: Crema a marron (Roble Europeo), rojizo (Roble Americano)
+- Aroma: Neutro a ligeramente terroso
+- Veta: Marcada, con rayas visibles (medula), muy decorativa
+- Textura: Media a gruesa
+- Estabilidad: Alta
+
+### Patrones de Veta
+- Veta recta (Straight grain): Mas comun, formal, clasico
+- Veta rayada (Quarter-sawn): Rays visibles, premium, estable
+- Veta ondulada (Curly/wavy): Raro, decorativo, mas caro
+- Veta quemada (Fumed): Tratado con amoníaco, oscurecido, unico
+- Veta de libro (Book-matched): Simetrica, para paneles grandes
+- Veta de nogal ingles (Burled): Nodos decorativos, muy premium
+
+### Trabajabilidad
+- Cortado: Requiere herramientas de calidad y afiladas
+- Taladrado: Necesita pre-taladrado casi siempre
+- Ensamble: Excelente con juntas de espiga y mortaja
+- Pegamento: Excelente con cola PVA o epoxi
+- Lijado: Bueno, puede requerir lijado en grano abierto
+- Manchado: Excelente, absorbe tintes de manera uniforme
+- Barnizado: Resultados espectaculares
+- Torneado: Muy bueno, detalles finos
+- Ensamble con machihembrado: Ideal
+
+### Modificador de Precio
+- Base: 1.8x (80% mas que MDF)
+- Roble Americano (1x6, 8'): $350-$450 MXN/pie
+- Roble Americano (1x12, 8'): $650-$850 MXN/pie
+- Roble Europeo (1x6, 8'): $400-$550 MXN/pie
+- Roble Europeo (2" tabla): $800-$1100 MXN/pie
+- Roble Quarter-Sawn (seleccion): +40% sobre precio regular
+- Roble Rustico (con nudos): -20% sobre precio regular
+
+### Aplicaciones Recomendadas
+- Pisos de madera (la mejor opcion para alto trafico)
+- Mesas de comedor de lujo
+- Cocinas integrales premium
+- Puertas de entrada exteriores
+- Escaleras y barandales
+- Armarios y roperos
+- Barriles de vino y whiskey
+- Muebles de oficina ejecutiva
+- Repisas de carga pesada
+- Paneles decorativos
+- Chimeneas y marcos
+- Muebles de estilo colonial y rustico
+
+### Consejos de Acabado
+- Lijar con grano 120, 180, 220, 320 para acabado fino
+- Usar dye (tinte a base de alcohol) para colores uniformes
+- Aceite de tung da acabado natural hermoso
+- Barniz poliuretano para areas de alto uso
+- Para look clasico: mancha al agua tipo Ingles
+- Para look moderno: barniz mate o satinado
+- Cera de abeja para muebles antiguos
+- Double-stain para efecto envejecido
+
+### Cuidados Especiales
+- Mantener humedad estable (40-55% HR ambiente)
+- Lijar y reaplicar acabado cada 2-3 anos en muebles
+- Para pisos: reaparar cada 5-7 anos segun uso
+- Usar protectores de goma en todos los pies
+- No arrastrar objetos sobre superficies
+- Limpiar con producto especifico para roble
+- Evitar acumulacion de agua en superficies
+- Tratar con aceite de linaza para exteriores
+
+### Ventajas
+- Excepcional dureza y durabilidad
+- Belleza del veteado insuperable
+- Excelente para manchas y acabados
+- Valor que se mantiene o aumenta con el tiempo
+- Versatilidad de aplicaciones
+- Material ideal para herencia generacional
+
+### Desventajas
+- Precio alto
+- Peso significativo
+- Requiere herramientas de calidad
+- Tiempo de secado largo
+- Puede contraerse si no se seca correctamente
+- Disponibilidad variable (especies protegidas)
+
+
+===============================================================================
+## Nogal (Walnut) - Juglans spp.
+===============================================================================
+
+### Descripcion General
+El nogal es una madera dura premium reconocida mundialmente por su color
+profundo, veteado exquisito y lavor excepcional. Es la eleccion para muebles
+de alta gama y diseños contemporaneos. Principales especies: Nogal Americano
+(Juglans nigra), Nogal Europeo (Juglans regia), Nogal de Bolivia (Juglans
+boliviana) y Nogal de California (Juglans hindsii).
+
+### Propiedades Tecnicas
+- Densidad: 550-660 kg/m³ (promedio 610 kg/m³)
+- Dureza Janka: 1010-1220 lbf (4490-5430 N)
+- Dureza Janka promedio: 1010 lbf (4490 N)
+- Grosor comun: 1", 1.25", 1.5", 2", 3"
+- Ancho comun: 4", 6", 8", 10", 12", 14", 16"+ (tablas live edge)
+- Humedad recomendada: 6-8%
+- Color: Marron chocolate profundo (corazon), crema (sapo)
+- Aroma: Ligeramente picante, agradable
+- Veta: Ondulada a recta, muy decorativa
+- Textura: Media a fina
+- Estabilidad: Alta
+
+### Trabajabilidad
+- Cortado: Excelente con herramientas afiladas
+- Taladrado: Muy facil, resultados limpios
+- Ensamble: Ideal con juntas de espiga y mortaja
+- Pegamento: Excelente con cola PVA o epoxi
+- Lijado: Muy facil, acabado natural espectacular
+- Manchado: Generalmente no se mancha (color natural suficiente)
+- Barnizado: Resultados de show-room
+- Torneado: Excelente, ideal para detalles finos
+- Tallado: Muy bueno, retiene detalles
+
+### Modificador de Precio
+- Base: 2.2x (120% mas que MDF)
+- Nogal Americano (1x6, 8'): $500-$700 MXN/pie
+- Nogal Americano (1x12, 8'): $900-$1200 MXN/pie
+- Nogal Americano (2" tabla live edge): $1500-$2500 MXN/pie
+- Nogal Europeo (seleccionado): +30% sobre americano
+- Nogal Book-Matched (panel simetrico): +50% sobre regular
+- Nogal Live Edge (orilla natural): +40% sobre regular
+- Nogal figured (veteado especial): +60% sobre regular
+
+### Aplicaciones Recomendadas
+- Mesas de comedor de diseño
+- Tablas de cortar premium
+- Muebles contemporaneos
+- Cocinas integrales de lujo
+- Escritorios ejecutivos
+- Vestidores de lujo
+- Gabinetes de audio
+- Instrumentos musicales
+- Chapas decorativas
+- Paneles de acento
+- Puertas de interiores premium
+- Marcos de espejos y cuadros
+- Escaleras de diseno
+- Mobiliario para restaurants
+
+### Consejos de Acabado
+- Generalmente NO necesita mancha (color natural es perfecto)
+- Barniz satinado o mate para resaltar veta
+- Aceite de tung para acabado natural
+- Cera de abeja para muebles de interior
+- Para proteger color: usar acabado con inhibidor UV
+- Lijar con grano 180 maximo (no exagerar)
+- Minimo 3 capas de barniz para durabilidad
+- Para look moderno: barniz brillante espejo
+- Para look rustico: aceite y cera
+
+### Cuidados Especiales
+- Mantener alejado de luz solar directa (se decolora)
+- Control de humedad estricto (40-55% HR)
+- Limpiar solo con pano humedo y suave
+- Usar manteles o enceradores en superficies de uso
+- Reaplicar cera o aceite cada 6-12 meses
+- No usar productos de limpieza quimicos
+- Mantener temperatura estable
+- Para muebles de herencia: cuidados especificos segun acabado
+
+### Ventajas
+- Color natural sin necesidad de mancha
+- Veteado espectacular y unico en cada pieza
+- Excelente trabajabilidad
+- Valor premium que se mantiene
+- Color que mejora con la edad
+- Combinacion perfecta de dureza y lavor
+
+### Desventajas
+- Precio muy alto
+- Puede decolorarse con luz UV
+- Requiere acabado de calidad
+- Disponibilidad limitada de tablas anchas
+- Sap color contrastante puede no ser deseable
+- Puede oscurecerse excesivamente con ciertos acabados
+
+
+===============================================================================
+## Caoba (Mahogany) - Swietenia spp. / Khaya spp.
+===============================================================================
+
+### Descripcion General
+La caoba es una madera dura tropical considerada una de las mas nobles y
+duraderas del mundo. Fue la madera preferida para muebles de lujo durante
+siglos y sigue siendo sinonimo de calidad y elegancia. Principales especies:
+Caoba Americana (Swietenia macrophylla), Caoba Africana (Khaya spp.),
+Caoba de Honduras (Swietenia humilis) y Caoba Filipina (Shorea spp.).
+
+### Propiedades Tecnicas
+- Densidad: 500-900 kg/m³ (promedio 650 kg/m³)
+- Dureza Janka: 800-1300 lbf (3560-5780 N)
+- Dureza Janka promedio: 1000 lbf (4450 N)
+- Grosor comun: 1", 1.25", 1.5", 2", 3"
+- Ancho comun: 4", 6", 8", 10", 12"
+- Humedad recomendada: 6-8%
+- Color: Rosado a rojizo-marron, se oscurece bellamente con el tiempo
+- Aroma: Ligeramente dulce y agradable
+- Veta: Recta a ligeramente ondulada, uniforme
+- Textura: Fina a media
+- Estabilidad: Excepcional
+
+### Trabajabilidad
+- Cortado: Excelente, respuesta uniforme
+- Taladrado: Muy facil, agujeros limpios
+- Ensamble: Ideal con todas las juntas tradicionales
+- Pegamento: Excelente con cola PVA o epoxi
+- Lijado: Muy facil, acabado de espejo posible
+- Manchado: Excelente absorcion uniforme
+- Barnizado: Resultados espectaculares, la caoba resalta con barniz
+- Torneado: Superior, detalles finos impecables
+- Tallado: Excelente para detalles intrincados
+- Pulido: Puede lograrse acabado espejo natural
+
+### Modificador de Precio
+- Base: 2.5x (150% mas que MDF)
+- Caoba Africana (1x6, 8'): $550-$750 MXN/pie
+- Caoba Africana (1x12, 8'): $1000-$1400 MXN/pie
+- Caoba Americana (1x6, 8'): $700-$1000 MXN/pie
+- Caoba Americana (1x12, 8'): $1300-$1800 MXN/pie
+- Caoba Select (sin sapo): +40% sobre precio regular
+- Caoba Quartersawn (seleccion): +50% sobre precio regular
+- Caoba Antique (recuperada): +60-100% segun disponibilidad
+
+### Aplicaciones Recomendadas
+- Muebles de alta gama y coleccion
+- Cocinas integrales de lujo
+- Mesas de comedor ejecutivas
+- Puertas de entrada premium
+- Vestidores y walk-in closets de lujo
+- Escaleras de diseno
+- Muebles antiguos y restauracion
+- Instrumentos musicales (guitarras, pianos)
+- Embarcaciones nauticas
+- Paneles decorativos ejecutivos
+- Mobiliario para hotels de lujo
+- Gabinetes de display
+- Marcos de cuadros de arte
+- Cajas de regalo ejecutivas
+
+### Propiedades de Durabilidad
+- Muy resistente a la putrefaccion
+- Excelente resistencia a insectos
+- Estabilidad dimensional excepcional
+- Baja contraccion y expansion
+- Resistente a la abrasion
+- Se endurece con el tiempo (patina)
+- Propiedades de aislamiento termico
+- Resistente a productos quimicos
+
+### Consejos de Acabado
+- La caoba NO necesita mancha (se aprecia su color natural)
+- Barniz poliuretano de dos componentes para muebles de uso
+- Aceite de tung para acabado clasico
+- Lacas para acabado de show-room
+- Cera de abeja para muebles antiguos
+- Lijar con grano 180-220, no mas fino (bloquea absorcion)
+- Para restauracion: usar shellac (gomalaca) original
+- Double-stain para emular caoba envejecida
+- Minimo 4 capas de barniz para mobiliario de lujo
+- Buffing entre capas para acabado perfecto
+
+### Cuidados Especiales
+- Mantener humedad controlada (40-50% HR)
+- Proteger de luz UV directa
+- Limpieza solo con pano muy humedo y suave
+- Reaplicar acabado cada 12-18 meses
+- Usar protectores en todas las superficies de uso
+- Para muebles antiguos: consultar especialista en restauracion
+- Evitar cambios bruscos de temperatura
+- Para exteriores: solo con acabados marinos especializados
+
+### Restauracion de Caoba Antigua
+- Evaluar estado del acabado original
+- Decapar con producto adecuado (no abrasivo)
+- Lijar suavemente con grano 320
+- Reparar danos con wood filler a juego
+- Reaplicar shellac si es pieza original
+- Barnizar con poliuretano si es para uso moderno
+- Pulir con cera de abeja para acabado clasico
+- Documentar proceso para valor historico
+
+### Ventajas
+- Nobleza y elegancia incomparables
+- Durabilidad excepcional (siglos)
+- Color que mejora con la edad
+- Trabajabilidad superior
+- Valor historico y de coleccion
+- Estabilidad dimensional excepcional
+
+### Desventajas
+- Precio muy alto (la mas cara en esta guia)
+- Especie protegida (CITES) - verificar origen legal
+- Requiere herramientas de alta calidad
+- Disponibilidad limitada de tablas grandes
+- Requiere acabado de alta calidad
+- Puede ser suceptible a rayones por su dureza media
+
+
+===============================================================================
+## TABLA RESUMEN COMPARATIVA
+===============================================================================
+
+Madera     | Densidad    | Dureza  | Precio | Exterior | Lujo | Facilidad
+-----------|-------------|---------|--------|----------|------|----------
+MDF        | 750 kg/m³   | N/A     | 1.0x   | No       | No   | Facil
+Triplay    | 600 kg/m³   | N/A     | 1.1x   | Si*      | No   | Facil
+Pino       | 500 kg/m³   | 690 lbf | 1.2x   | Si*      | No   | Facil
+Cedro      | 480 kg/m³   | 600 lbf | 1.5x   | Si       | Si   | Media
+Roble      | 770 kg/m³   | 1220lbf | 1.8x   | Si       | Si   | Media
+Nogal      | 610 kg/m³   | 1010lbf | 2.2x   | No       | Si   | Media
+Caoba      | 650 kg/m³   | 1000lbf | 2.5x   | Si       | Si   | Media
+
+* Requiere tratamiento para uso exterior
+
+===============================================================================
+## GUIA DE SELECCION RAPIDA
+===============================================================================
+
+Para Gabinetes Economicos:
+-> MDF con pintura o film (1.0x)
+-> Triplay con pintura (1.1x)
+
+Para Muebles Rusticos:
+-> Pino con acabado natural (1.2x)
+-> Pino con cera y cepillado (1.2x)
+
+Para Closets y Armarios:
+-> Cedro para interiores premium (1.5x)
+-> MDF para economicos (1.0x)
+
+Para Mesas de Comedor:
+-> Roble para uso familiar (1.8x)
+-> Nogal para diseno contemporaneo (2.2x)
+-> Caoba para lujo y coleccion (2.5x)
+
+Para Pisos de Alto Trafico:
+-> Roble es la mejor opcion (1.8x)
+-> Caoba para areas de lujo (2.5x)
+
+Para Exteriores:
+-> Cedro natural (1.5x)
+-> Roble tratado (1.8x)
+
+Para Proyectos DIY:
+-> Pino (1.2x) - ideal para principiantes
+-> MDF (1.0x) - para prototipos
+
+===============================================================================
+## NOTAS TECNICAS ADICIONALES
+===============================================================================
+
+### Corte de Madera por Grano
+- A traves de la veta (cross-cut): Usa sierra de 40-80 dientes
+- Con la veta (rip-cut): Usa sierra de 24-40 dientes
+- MDF: Sierra de 60-80 dientes siempre
+- Triplay: Sierra de 40-60 dientes
+- Roble duro: Sierra de carburo de tungsteno
+
+### Temperaturas de Trabajo
+- Madera maciza: 15-30°C ideal
+- MDF: 18-25°C (evitar humedad extrema)
+- Triplay: 15-30°C
+- Pegamento: 10-35°C para mejor adherencia
+- Barniz: 18-27°C para secado adecuado
+
+### Contenido de Humedad Ideal
+- Muebles de interiores: 6-8%
+- Puertas de interiores: 6-8%
+- Puertas de exteriores: 8-10%
+- Pisos de interiores: 6-8%
+- Mobiliario de exterior: 10-14% (estabilizado)
+- MDF: 8-12%
+- Triplay: 8-12%
+
+### Conversiones Utiles
+- 1 pie cubico de madera = 0.0283 m³
+- 1 metro cubico = 35.315 pies cubicos
+- 1 tabla 1x6x8 = 4 pies cuadrados
+- 1 tabla 1x12x8 = 8 pies cuadrados
+- 1 hoja MDF 4x8 = 32 pies cuadrados
+- 1 kilogramo = 2.205 libras
+- 1 pulgada = 2.54 cm
+- 1 pie = 30.48 cm
+
+### Factores que Afectan el Precio
+- Disponibilidad en el mercado local
+- Temporada (construccion alta = precios altos)
+- Calidad/graduacion de la tabla
+- Grosor y dimensiones
+- Tratamiento previo (secado al horno, etc.)
+- Origen (nacional vs importado)
+- Certificacion (FSC, etc.)
+- Cantidad comprada
+- Relacion con proveedores
+
+===============================================================================
+## GLOSARIO DE TERMINOS
+===============================================================================
+
+Bark: Corteza de la madera
+Board foot: Pie de tabla (1" x 12" x 12")
+Check: Grieta por secado
+Crown: Curvatura natural de la tabla
+End grain: Extremo de la veta
+Face grain: Superficie con veta visible
+Figure: Patron decorativo del veta
+Grade: Clasificacion de calidad
+Heartwood: Madera del corazon (mas oscura, durable)
+Live edge: Borde natural con corteza
+Moisture content: Contenido de humedad
+Quartersawing: Corte en cuartos (veta recta)
+Ripping: Corte a lo largo de la veta
+Sapwood: Madera externa (mas clara, menos durable)
+Seasoning: Secado de la madera
+Shrinkage: Contraccion por perdida de humedad
+Softwood: Madera de conifera (pino, cedro, abeto)
+Hardwood: Madera de frondosa (roble, nogal, caoba)
+Veneer: Chapador delgado de madera
+Warp: Deformacion de la tabla
+Wood movement: Movimiento de la madera por humedad
+
+===============================================================================
+                    FIN DE LA GUIA DE MADERAS
+===============================================================================

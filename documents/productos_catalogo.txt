@@ -1,0 +1,1052 @@
+===============================================================================
+                  CATALOGO DETALLADO DE PRODUCTOS DE CARPINTERIA
+===============================================================================
+
+Ultima actualizacion: 2026
+Version: 2.1
+Todos los precios en pesos mexicanos (MXN)
+Precios base en MDF/Madera de pino - Aplican modificadores segun madera
+
+===============================================================================
+## MUEBLES A MEDIDA
+===============================================================================
+
+### Mesas de Comedor
+-------------------
+
+Tamano para 4 personas:
+- Dimensiones: 120cm x 80cm (48" x 32")
+- Altura: 75cm (30")
+- Capacidad: 4 sillas comodas
+- Material minimo: 2 tablas 1x12 o panel MDF 25mm
+- Peso promedio: 25-35 kg
+- Precio base: $4,500 MXN
+- Con bancos: +$2,000 MXN
+- Precio con roble: $8,100 MXN
+- Precio con nogal: $9,900 MXN
+- Precio con caoba: $11,250 MXN
+- Tiempo de fabricacion: 10-15 dias habiles
+
+Tamano para 6 personas:
+- Dimensiones: 180cm x 90cm (72" x 36")
+- Altura: 75cm (30")
+- Capacidad: 6 sillas comodas (3 por lado)
+- Material minimo: 3 tablas 1x12 o panel 30mm
+- Peso promedio: 40-55 kg
+- Precio base: $6,800 MXN
+- Precio con roble: $12,240 MXN
+- Precio con nogal: $14,960 MXN
+- Precio con caoba: $17,000 MXN
+- Tiempo de fabricacion: 12-18 dias habiles
+
+Tamano para 8 personas:
+- Dimensiones: 240cm x 100cm (96" x 40")
+- Altura: 75cm (30")
+- Capacidad: 8 sillas comodas (4 por lado)
+- Material minimo: 4 tablas 1x12 o panel 30mm
+- Peso promedio: 55-75 kg
+- Precio base: $9,200 MXN
+- Precio con roble: $16,560 MXN
+- Precio con nogal: $20,240 MXN
+- Precio con caoba: $23,000 MXN
+- Tiempo de fabricacion: 15-22 dias habiles
+- Opcion extensible: +$3,500 MXN
+
+Tamano para 10 personas:
+- Dimensiones: 300cm x 105cm (120" x 42")
+- Altura: 75cm (30")
+- Capacidad: 10 sillas comodas
+- Peso promedio: 70-90 kg
+- Precio base: $12,500 MXN
+- Precio con roble: $22,500 MXN
+- Precio con nogal: $27,500 MXN
+- Precio con caoba: $31,250 MXN
+- Tiempo de fabricacion: 18-25 dias habiles
+- Opcion extensible: +$4,500 MXN
+
+Tamano para 12+ personas:
+- Dimensiones: 360cm x 110cm (144" x 44") o mas
+- Altura: 75cm (30")
+- Capacidad: 12+ sillas
+- Peso promedio: 85-110 kg
+- Precio base: $16,000 MXN (minimo)
+- Precio con roble: $28,800 MXN
+- Precio con nogal: $35,200 MXN
+- Precio con caoba: $40,000 MXN
+- Tiempo de fabricacion: 22-30 dias habiles
+- Requiere consulta obligatoria
+
+Tipos de patas para mesas:
+- Patas cuadradas (5x5cm): Incluido en precio base
+- Patas redondas (5cm diametro): +$400 MXN
+- Patas tijera (diseño industrial): +$800 MXN
+- Patas metalicas negras (4 patas): +$1,200 MXN
+- Base central (palo de escoba): +$600 MXN
+- Patas con ruedas: +$1,000 MXN
+- Patas talladas a mano: +$2,000 MXN
+
+Acabados disponibles para mesas:
+- Barniz satinado: Incluido
+- Barniz brillante: +$300 MXN
+- Barniz mate: +$300 MXN
+- Aceite natural: +$200 MXN
+- Cera de abeja: +$250 MXN
+- Pintura (color personalizado): +$500 MXN
+- Efecto envejecido: +$600 MXN
+- Efecto quemado (shou sugi ban): +$800 MXN
+
+### Sillas y Bancos
+-------------------
+
+Silla basica de comedor:
+- Dimensiones: 45cm x 50cm x 90cm alto
+- Asiento: 45cm x 45cm
+- Peso: 4-6 kg
+- Precio base: $1,200 MXN (pino)
+- Precio con roble: $2,160 MXN
+- Precio con nogal: $2,640 MXN
+- Tiempo: 5-8 dias por juego de 4
+
+Silla con respaldo tallado:
+- Dimensiones: 45cm x 55cm x 95cm alto
+- Peso: 5-7 kg
+- Precio base: $1,800 MXN (pino)
+- Precio con roble: $3,240 MXN
+- Precio con nogal: $3,960 MXN
+- Tiempo: 7-10 dias por juego de 4
+
+Banca de comedor:
+- Dimensiones: 150cm x 40cm x 45cm alto
+- Capacidad: 3 personas
+- Peso: 15-20 kg
+- Precio base: $2,800 MXN (pino)
+- Precio con roble: $5,040 MXN
+- Tiempo: 8-12 dias
+
+Banco con almacenamiento:
+- Dimensiones: 120cm x 40cm x 45cm alto
+- Con tapa abatible
+- Peso: 18-22 kg
+- Precio base: $3,500 MXN (pino)
+- Precio con roble: $6,300 MXN
+- Tiempo: 10-14 dias
+
+### Escritorios
+---------------
+
+Escritorio basico:
+- Dimensiones: 120cm x 60cm x 75cm alto
+- 2 cajones en un lado
+- Peso: 25-35 kg
+- Precio base: $5,500 MXN
+- Precio con roble: $9,900 MXN
+- Precio con nogal: $12,100 MXN
+- Tiempo: 12-16 dias habiles
+
+Escritorio ejecutivo:
+- Dimensiones: 160cm x 80cm x 75cm alto
+- 4 cajones + repisa central
+- Peso: 45-60 kg
+- Precio base: $9,800 MXN
+- Precio con roble: $17,640 MXN
+- Precio con nogal: $21,560 MXN
+- Tiempo: 18-22 dias habiles
+
+Escritorio de esquina (L):
+- Dimensiones: 160cm x 120cm x 75cm alto
+- Modulo en L completo
+- Peso: 60-80 kg
+- Precio base: $14,500 MXN
+- Precio con roble: $26,100 MXN
+- Precio con nogal: $31,900 MXN
+- Tiempo: 22-28 dias habiles
+
+Escritorio para computadora:
+- Dimensiones: 140cm x 70cm x 75cm alto
+- Estante para CPU, bandeja para teclado
+- Peso: 35-45 kg
+- Precio base: $7,200 MXN
+- Precio con roble: $12,960 MXN
+- Tiempo: 14-18 dias habiles
+
+### Repisas y Estantes
+-----------------------
+
+Repisa flotante simple:
+- Dimensiones: 80cm x 25cm x 3cm grosor
+- Peso: 3-5 kg
+- Precio base: $450 MXN
+- Precio con roble: $810 MXN
+- Capacidad de carga: hasta 15 kg
+- Tiempo: 3-5 dias
+
+Repisa flotante doble:
+- Dimensiones: 100cm x 30cm x 4cm grosor
+- Peso: 6-8 kg
+- Precio base: $750 MXN
+- Precio con roble: $1,350 MXN
+- Capacidad de carga: hasta 25 kg
+- Tiempo: 4-6 dias
+
+Repisa con soporte metalico:
+- Dimensiones: 120cm x 30cm x 3cm grosor
+- Marco metalico negro incluido
+- Peso: 8-10 kg
+- Precio base: $1,100 MXN
+- Precio con roble: $1,980 MXN
+- Capacidad de carga: hasta 35 kg
+- Tiempo: 5-8 dias
+
+Estante para libros (modular):
+- Dimensiones: 80cm x 35cm x 180cm alto
+- 5 niveles ajustables
+- Peso: 25-35 kg
+- Precio base: $3,800 MXN
+- Precio con roble: $6,840 MXN
+- Precio con nogal: $8,360 MXN
+- Capacidad: hasta 100 kg total
+- Tiempo: 10-14 dias habiles
+
+### Camas
+----------
+
+Cama individual:
+- Dimensiones: 90cm x 190cm (36" x 75")
+- Marco completo con somier
+- Altura cabecera: 100cm
+- Peso: 35-45 kg
+- Precio base: $6,500 MXN
+- Precio con roble: $11,700 MXN
+- Tiempo: 15-20 dias habiles
+
+Cama matrimonial:
+- Dimensiones: 135cm x 190cm (54" x 75")
+- Marco completo con somier
+- Altura cabecera: 110cm
+- Peso: 50-65 kg
+- Precio base: $9,200 MXN
+- Precio con roble: $16,560 MXN
+- Precio con nogal: $20,240 MXN
+- Tiempo: 18-24 dias habiles
+
+Cama king size:
+- Dimensiones: 180cm x 200cm (72" x 80")
+- Marco completo con somier
+- Altura cabecera: 120cm
+- Peso: 70-90 kg
+- Precio base: $13,500 MXN
+- Precio con roble: $24,300 MXN
+- Precio con nogal: $29,700 MXN
+- Tiempo: 22-28 dias habiles
+
+Cama queen size:
+- Dimensiones: 150cm x 200cm (60" x 80")
+- Marco completo con somier
+- Altura cabecera: 115cm
+- Peso: 60-75 kg
+- Precio base: $11,800 MXN
+- Precio con roble: $21,240 MXN
+- Tiempo: 20-26 dias habiles
+
+Cabecera de cama (solo):
+- Tamano individual: 90cm x 80cm - $2,800 MXN
+- Tamano matrimonial: 135cm x 90cm - $4,200 MXN
+- Tamano king: 180cm x 100cm - $5,800 MXN
+- Con tapizado: +$2,500 MXN
+- Con iluminacion LED: +$1,800 MXN
+- Tiempo: 8-12 dias habiles
+
+Camas con almacenamiento:
+- Base elevada con cajones
+- Plus: +$3,500 MXN sobre cama base
+- Gas lifts para acesso: +$2,000 MXN
+
+
+===============================================================================
+## PUERTAS DE MADERA
+===============================================================================
+
+### Puertas de Interior
+-----------------------
+
+Puerta de interior basica (panel liso):
+- Dimensiones: 80cm x 210cm (estandar)
+- Grosor: 35mm (1-3/8")
+- Material: Pino cepillado o MDF
+- Precio base: $2,800 MXN (pino)
+- Precio con roble: $5,040 MXN
+- Precio con nogal: $6,160 MXN
+- Incluye: Marco, bisagras, chapa basica
+- Tiempo de fabricacion: 8-12 dias
+
+Puerta de interior panelado (2 paneles):
+- Dimensiones: 80cm x 210cm
+- Grosor: 40mm
+- Material: MDF o pino
+- Precio base: $3,500 MXN
+- Precio con roble: $6,300 MXN
+- Tiempo: 10-14 dias
+
+Puerta de interior panelado (4 paneles):
+- Dimensiones: 80cm x 210cm
+- Grosor: 40mm
+- Precio base: $4,200 MXN
+- Precio con roble: $7,560 MXN
+- Tiempo: 12-16 dias
+
+Puerta de interior tipo americana:
+- Dimensiones: 80cm x 210cm
+- Panel completo de madera
+- Precio base: $5,500 MXN
+- Precio con roble: $9,900 MXN
+- Tiempo: 14-18 dias
+
+Puerta corrediza (panel):
+- Dimensiones: 80cm x 210cm
+- Sistema de riel superior
+- Precio base: $6,200 MXN (con mecanismo)
+- Precio con roble: $11,160 MXN
+- Tiempo: 16-20 dias
+
+Puerta de baño (resistente a humedad):
+- Dimensiones: 70cm x 210cm
+- Grosor: 35mm
+- Tratamiento antihumedad
+- Precio base: $3,800 MXN
+- Precio con roble: $6,840 MXN
+- Tiempo: 10-14 dias
+
+### Puertas de Exterior
+------------------------
+
+Puerta de entrada basica:
+- Dimensiones: 90cm x 210cm
+- Grosor: 45mm (1-3/4")
+- Material: Roble o Cedro
+- Precio base: $12,000 MXN (roble)
+- Precio con caoba: $30,000 MXN
+- Incluye: Marco reforzado, bisagras pesadas, cerradura de seguridad
+- Aislamiento termico
+- Tiempo: 20-28 dias
+
+Puerta de entrada doble:
+- Dimensiones: 160cm x 210cm (dos hojas de 80cm)
+- Grosor: 50mm
+- Material: Roble o Nogal
+- Precio base: $22,000 MXN (roble)
+- Precio con nogal: $48,400 MXN
+- Tiempo: 28-35 dias
+
+Puerta tipo francesa (vidrio):
+- Dimensiones: 80cm x 210cm
+- Paneles de vidrio templado
+- Precio base: $8,500 MXN
+- Precio con roble: $15,300 MXN
+- Tiempo: 18-24 dias
+
+Puerta de jardin/patio:
+- Dimensiones: 80cm x 200cm
+- Material: Cedro o Roble tratado
+- Precio base: $7,800 MXN
+- Resistente a intemperie
+- Tiempo: 14-20 dias
+
+### Accesorios para Puertas
+----------------------------
+
+Bisagras (por par):
+- Bisagra basica (2 pulgadas): $80 MXN
+- Bisagra reforzada (3 pulgadas): $150 MXN
+- Bisagra oculta (perilla): $350 MXN
+- Bisagra suiza (soft close): $450 MXN
+- Bisagra para puerta pesada: $280 MXN
+
+Chapas y cerraduras:
+- Chapa basica (interior): $250 MXN
+- Chapa de privado (baño): $320 MXN
+- Cerradura de seguridad (exterior): $1,800 MXN
+- Cerradura inteligente (huella digital): $4,500 MXN
+- PasadorBasico: $180 MXN
+
+Marcos:
+- Marco de pino (80cm): $450 MXN
+- Marco de roble (80cm): $850 MXN
+- Marco de roble (90cm): $950 MXN
+- Zoclo de pino (2.4m): $120 MXN
+- Zoclo de roble (2.4m): $280 MXN
+
+
+===============================================================================
+## CLOSETS
+===============================================================================
+
+### Walk-in Closet (Vestidor)
+-----------------------------
+
+Tamano pequeno (1.5m x 1.5m):
+- Area total: 2.25 m² lineales de ropa
+- 2 paredes con tuberos
+- 1 repisa alta
+- 1 cajonera basica
+- Precio base MDF: $12,000 MXN
+- Precio con roble: $21,600 MXN
+- Precio con cedro: $18,000 MXN
+- Tiempo: 12-16 dias habiles
+
+Tamano mediano (2m x 2m):
+- Area total: 4 m² lineales de ropa
+- 3 paredes con tuberos
+- 2 repisas altas
+- 2 cajoneras
+- 1 cajon con organizer
+- Precio base MDF: $18,500 MXN
+- Precio con roble: $33,300 MXN
+- Precio con cedro: $27,750 MXN
+- Tiempo: 16-22 dias habiles
+
+Tamano grande (2.5m x 3m):
+- Area total: 7.5 m² lineales de ropa
+- 3 paredes completas con tuberos
+- 3 repisas altas
+- 3 cajoneras
+- 2 cajones con organizer
+- 1 island central (si hay espacio)
+- Precio base MDF: $28,000 MXN
+- Precio con roble: $50,400 MXN
+- Precio con cedro: $42,000 MXN
+- Tiempo: 22-30 dias habiles
+
+Tamano premium (3m x 4m):
+- Diseno personalizado completo
+- Isla central con cajones
+- Iluminacion LED integrada
+- Espejo de cuerpo entero
+- Organizadores de joyeria
+- Precio base MDF: $42,000 MXN
+- Precio con nogal: $92,400 MXN
+- Precio con caoba: $105,000 MXN
+- Tiempo: 30-40 dias habiles
+
+### Built-in Closet (Empotrado)
+--------------------------------
+
+Closet de 1 puerta (100cm ancho):
+- Interior: 2 tuberos, 2 repisas, 1 cajon
+- Precio base MDF: $5,500 MXN
+- Precio con pino: $6,600 MXN
+- Tiempo: 8-12 dias
+
+Closet de 2 puertas (150cm ancho):
+- Interior: 3 tuberos, 3 repisas, 2 cajones
+- Precio base MDF: $8,200 MXN
+- Precio con pino: $9,840 MXN
+- Tiempo: 10-14 dias
+
+Closet de 3 puertas (200cm ancho):
+- Interior: 4 tuberos, 4 repisas, 3 cajones, organizer
+- Precio base MDF: $11,500 MXN
+- Precio con pino: $13,800 MXN
+- Tiempo: 14-18 dias
+
+Closet de 4 puertas (250cm ancho):
+- Interior completo con todas las opciones
+- Precio base MDF: $15,000 MXN
+- Precio con pino: $18,000 MXN
+- Tiempo: 18-22 dias
+
+### Modular Closet
+-------------------
+
+Modulo base (80cm x 60cm x 200cm):
+- 2 tuberos + 2 repisas
+- Precio base: $3,200 MXN
+
+Modulo con cajones (80cm x 60cm x 200cm):
+- 2 tuberos + 2 repisas + 3 cajones
+- Precio base: $4,800 MXN
+
+Modulo estante (80cm x 35cm x 200cm):
+- 5 repisas ajustables
+- Precio base: $2,800 MXN
+
+Modulo zapatero (80cm x 35cm x 200cm):
+- 6 repisas para zapatos
+- Precio base: $3,000 MXN
+
+Organizer de cajon:
+- 12 compartimentos para accesorios
+- Precio base: $800 MXN
+
+
+===============================================================================
+## COCINAS INTEGRALES
+===============================================================================
+
+### Modulos de Cocina
+---------------------
+
+Modulo bajo basico (80cm ancho):
+- 2 puertas, 1 repisa interior
+- Altura: 85cm (con patas regulables)
+- Precio base: $4,200 MXN
+- Precio con roble: $7,560 MXN
+- Tiempo: 10-14 dias
+
+Modulo bajo con cajones (80cm):
+- 3 cajones (1 cubiertos, 2 generales)
+- Precio base: $5,800 MXN
+- Precio con roble: $10,440 MXN
+- Tiempo: 12-16 dias
+
+Modulo bajo para lavavajillas (60cm):
+- Espacio para lavavavillas incorporado
+- Precio base: $3,200 MXN
+- Tiempo: 8-10 dias
+
+Modulo bajo para estufa (80cm):
+- Refuerzo termico lateral
+- Precio base: $3,800 MXN
+- Tiempo: 8-12 dias
+
+Modulo bajo esquinero (90cm x 90cm):
+- Puerta abatible para acceso completo
+- Precio base: $7,500 MXN
+- Tiempo: 14-18 dias
+
+Modulo alto basico (80cm ancho):
+- 2 puertas, 1 repisa
+- Altura: 70cm
+- Precio base: $3,500 MXN
+- Precio con roble: $6,300 MXN
+- Tiempo: 8-12 dias
+
+Modulo alto con repisa (80cm):
+- 2 puertas, 3 repisas
+- Precio base: $4,200 MXN
+- Tiempo: 10-14 dias
+
+Modulo alto esquinero:
+- 2 puertas, optimizado para esquina
+- Precio base: $6,800 MXN
+- Tiempo: 12-16 dias
+
+### Encimeras (Countertops)
+----------------------------
+
+Encimera de MDF/HDF con Formica:
+- Precio por metro lineal: $800-$1,200 MXN
+- Grosor: 28mm (1-1/8")
+- Colores disponibles: 20+ opciones
+- Incluye cantos y corte para fregadero
+
+Encimera de madera maciza (Roble):
+- Precio por metro lineal: $2,800-$3,500 MXN
+- Grosor: 38mm (1-1/2")
+- Acabado: barniz marino o aceite
+- Incluye corte y acabado
+
+Encimera de madera maciza (Nogal):
+- Precio por metro lineal: $4,200-$5,500 MXN
+- Grosor: 38mm (1-1/2")
+- Acabado: barniz o aceite premium
+- Incluye corte y acabado
+
+Encimera de madera maciza (Caoba):
+- Precio por metro lineal: $5,000-$6,800 MXN
+- Grosor: 38mm (1-1/2")
+- Acabado: barniz marino de lujo
+- Incluye corte y acabado
+
+Encimera live edge (Nogal):
+- Precio por metro lineal: $6,500-$9,000 MXN
+- Grosor: 40-50mm
+- Acabado: epoxi transparente o aceite
+- Orilla natural preservada
+
+### Cubiertas y Accesorios
+---------------------------
+
+Cubierta para bar (120cm x 40cm):
+- Precio base: $2,800 MXN
+- Precio con roble: $5,040 MXN
+
+Mueble para microondas (60cm):
+- Precio base: $2,200 MXN
+- Incluye repisa reforzada
+
+Organizador de especias (30cm):
+- Precio base: $900 MXN
+
+Riel para colgar utensilios:
+- Precio por 60cm: $350 MXN
+
+Base para basurero (60cm):
+- Precio base: $1,800 MXN
+- Con cajon abatible: $2,500 MXN
+
+Sobre-techo con iluminacion (120cm):
+- Precio base: $3,500 MXN
+- Con LED: $5,200 MXN
+
+
+===============================================================================
+## MESAS DE COMEDOR (Detallado por Estilo)
+===============================================================================
+
+### Estilo Rustico
+-------------------
+
+Mesa rustica 6 personas (180cm):
+- Tabla gruesa (5cm) con bordes naturales
+- Patas de madera maciza
+- Acabado: cera o aceite
+- Precio base: $8,500 MXN (pino)
+- Precio con roble: $15,300 MXN
+- Tiempo: 18-24 dias
+
+### Estilo Moderno
+-------------------
+
+Mesa moderna minimalista 6 personas:
+- Tabla delgada (3cm) con acabado mate
+- Patas metalicas negras
+- Lineas limpias y geometricas
+- Precio base: $10,200 MXN
+- Tiempo: 20-26 dias
+
+### Estilo Industrial
+----------------------
+
+Mesa industrial 6 personas:
+- Tabla de madera reciclada o rustica
+- Estructura metalica negra
+- Tornillos visibles (decorativos)
+- Precio base: $9,800 MXN
+- Tiempo: 18-24 dias
+
+### Estilo Colonia/Mexicano
+-----------------------------
+
+Mesa colonial tallada 6 personas:
+- Tabla maciza con tallado decorativo
+- Patas tornearadas
+- Acabado oscuro
+- Precio base: $12,500 MXN (pino)
+- Precio con cedro: $18,750 MXN
+- Tiempo: 25-35 dias
+
+### Estilo Escandinavo
+------------------------
+
+Mesa nordica 4 personas:
+- Tabla clara con patas anguladas
+- Acabado natural claro
+- Diseno funcional y limpio
+- Precio base: $6,800 MXN
+- Tiempo: 14-18 dias
+
+### Mesas Extensibles
+----------------------
+
+Mesa extensible 6-8 personas:
+- Base para 6, extiende a 8
+- Mecanismo de extension incluido
+- Precio base: $11,500 MXN
+- Precio con roble: $20,700 MXN
+- Tiempo: 22-28 dias
+
+Mesa extensible 8-12 personas:
+- Base para 8, extiende a 12
+- Doble mecanismo de extension
+- Precio base: $18,000 MXN
+- Precio con roble: $32,400 MXN
+- Tiempo: 28-35 dias
+
+
+===============================================================================
+## LIBREROS Y ESTANTES
+===============================================================================
+
+### Librero Basico
+-------------------
+
+Altura 120cm:
+- Dimensiones: 80cm x 30cm x 120cm
+- 4 niveles fijos
+- Peso: 20-28 kg
+- Precio base: $3,200 MXN
+- Precio con roble: $5,760 MXN
+- Carga maxima: 80 kg total
+- Tiempo: 10-14 dias
+
+Altura 150cm:
+- Dimensiones: 80cm x 35cm x 150cm
+- 5 niveles fijos
+- Peso: 28-35 kg
+- Precio base: $4,200 MXN
+- Precio con roble: $7,560 MXN
+- Carga maxima: 100 kg total
+- Tiempo: 12-16 dias
+
+Altura 180cm:
+- Dimensiones: 90cm x 35cm x 180cm
+- 6 niveles (2 ajustables)
+- Peso: 35-45 kg
+- Precio base: $5,500 MXN
+- Precio con roble: $9,900 MXN
+- Carga maxima: 120 kg total
+- Tiempo: 14-18 dias
+
+Altura 200cm (hasta techo):
+- Dimensiones: 100cm x 40cm x 200cm
+- 7 niveles (3 ajustables)
+- Peso: 45-55 kg
+- Precio base: $6,800 MXN
+- Precio con roble: $12,240 MXN
+- Carga maxima: 150 kg total
+- Tiempo: 16-22 dias
+
+### Librero Modular
+---------------------
+
+Modulo base (80cm x 30cm x 40cm):
+- 1 cajon + 1 repisa
+- Precio base: $1,800 MXN
+
+Modulo repisa (80cm x 30cm x 40cm):
+- Repisa abierta
+- Precio base: $900 MXN
+
+Modulo con puerta (80cm x 30cm x 40cm):
+- Puerta con bisagra
+- Precio base: $1,500 MXN
+
+Modulo cajon (80cm x 30cm x 40cm):
+- 2 cajones
+- Precio base: $2,200 MXN
+
+### Librero de Piso a Techo
+----------------------------
+
+Diseno completo personalizado:
+- Medida exacta del espacio
+- Multiples configuraciones
+- Precio base: $850 MXN por metro lineal
+- Precio con roble: $1,530 MXN por metro lineal
+- Incluye instalacion
+- Tiempo: 20-30 dias habiles
+
+
+===============================================================================
+## RESTAURACION DE MUEBLES
+===============================================================================
+
+### Tipos de Restauracion
+--------------------------
+
+Restauracion basica (lijado + acabado):
+- Lijado completo de pieza
+- Aplicacion de nuevo acabado
+- Reparaciones menores
+- Precio: $2,500-$5,000 MXN (depende de tamano)
+- Tiempo: 5-10 dias
+
+Restauracion media (reparacion + acabado):
+- Reparacion de partes danadas
+- Reemplazo de herrajes
+- Lijado profundo
+- Nuevo acabado completo
+- Precio: $5,000-$12,000 MXN
+- Tiempo: 10-20 dias
+
+Restauracion completa (estructural + estetica):
+- Reparacion estructural completa
+- Reemplazo de partes rotas
+- Reconstruccion de detalles tallados
+- Acabado historico o moderno
+- Precio: $12,000-$35,000 MXN
+- Tiempo: 20-40 dias
+
+Restauracion de conservacion (piezas de valor):
+- Proceso reversble (normas de conservacion)
+- Materiales historicos o equivalentes
+- Documentacion fotografica completa
+- Certificado de restauracion
+- Precio: Desde $15,000 MXN (cita obligatoria)
+- Tiempo: Variable segun pieza
+
+### Tipos de Muebles para Restauracion
+----------------------------------------
+
+Sillas:
+- Silla basica: $1,500-$3,000 MXN
+- Silla colonial tallada: $3,000-$8,000 MXN
+- Silla tapizada (con retapizado): $4,000-$12,000 MXN
+
+Mesas:
+- Mesa basica: $2,000-$5,000 MXN
+- Mesa colonial: $5,000-$15,000 MXN
+- Mesa con detalles tallados: $8,000-$20,000 MXN
+
+Armarios y roperos:
+- Armario basico: $5,000-$12,000 MXN
+- Armario colonial: $10,000-$30,000 MXN
+- Armoire completo: $15,000-$45,000 MXN
+
+Escritorios:
+- Escritorio basico: $3,000-$8,000 MXN
+- Escritorio con cajones: $5,000-$15,000 MXN
+- Escritorio ejecutivo antiguo: $8,000-$25,000 MXN
+
+Cajones y comodas:
+- Cajon basico: $2,500-$6,000 MXN
+- Comoda completa: $5,000-$18,000 MXN
+- Cama colonial: $8,000-$25,000 MXN
+
+
+===============================================================================
+## PISO DE MADERA
+===============================================================================
+
+### Tipos de Piso
+------------------
+
+Piso laminado (Laminate):
+- Precio por m²: $120-$280 MXN
+- Grosor: 8-12mm
+- Capa de desgaste: 0.2-0.6mm
+- Resistencia al agua: Baja-media
+- Vida util: 10-20 anos
+- Incluye: click system, sin pegamento
+- Incluye: pate de amortiguacion
+- Instalacion: flotante (sin pegamento)
+
+Piso engineered (multicapa):
+- Precio por m²: $280-$600 MXN
+- Grosor: 10-15mm (3-4mm capa real)
+- Capa de desgaste: 3-4mm (madera real)
+- Resistencia al agua: Media-alta
+- Vida util: 20-40 anos
+- Incluye: click o pegamento
+- Puede ir sobre piso radiante
+
+Piso macizo (Solid hardwood):
+- Precio por m²: $450-$900 MXN
+- Grosor: 15-20mm completo
+- Capa de desgaste: Podria lijar multiples veces
+- Resistencia al agua: Baja (no recomendado para baños)
+- Vida util: 50-100+ anos
+- Requiere: pegamento y clavos
+- Requiere: subpiso perfecto
+
+Piso de bambu:
+- Precio por m²: $300-$550 MXN
+- Grosor: 10-15mm
+- Resistencia al agua: Media
+- Vida util: 25-50 anos
+- Ecologico y renovable
+
+Piso de corcho:
+- Precio por m²: $350-$650 MXN
+- Grosor: 4-6mm (sin subpiso adicional)
+- Resistencia al agua: Media
+- Vida util: 20-40 anos
+- Naturalmente antimicrobiano
+
+### Patrones de Instalacion
+-----------------------------
+
+Lineal recto: Sin costo adicional
+Lineal con offset (33% o 50%): Sin costo adicional
+Herradura (parquet): +$80 MXN/m²
+Espina de pez: +$120 MXN/m²
+Herringbone (doble): +$150 MXN/m²
+Cuadros (checkboard): +$100 MXN/m²
+Mosaico: +$180 MXN/m²
+
+### Costos de Instalacion
+---------------------------
+
+Instalacion estandar: $180-$280 MXN/m²
+Instalacion en patron especial: +$80-$180 MXN/m²
+Remocion de piso existente: $100-$180 MXN/m²
+Preparacion de subpiso: $80-$150 MXN/m²
+Traslado al piso: Incluido
+Herramientas y materiales: Incluido
+Rodapié/molduras: $150-$350 MXN/m lineal
+Transiciones: $250-$450 MXN por pieza
+
+### Maderas para Piso
+-----------------------
+
+Roble (la mas comun):
+- Precio materia prima: $450-$800 MXN/m²
+- Dureza Janka: 1220 lbf
+- Mejor para: alto trafico
+
+Nogal:
+- Precio materia prima: $650-$1100 MXN/m²
+- Dureza Janka: 1010 lbf
+- Mejor para: diseno de lujo
+
+Caoba:
+- Precio materia prima: $700-$1200 MXN/m²
+- Dureza Janka: 1000 lbf
+- Mejor para: areas ejecutivas
+
+Pino:
+- Precio materia prima: $200-$400 MXN/m²
+- Dureza Janka: 690 lbf
+- Mejor para: areas de bajo trafico, looks rusticos
+
+Cedro:
+- Precio materia prima: $500-$850 MXN/m²
+- Dureza Janka: 600 lbf
+- Mejor para: areas de descanso, dormitorios
+
+
+===============================================================================
+## ESCALERAS
+===============================================================================
+
+### Tipos de Escalera
+-----------------------
+
+Escalera recta:
+- Ancho minimo: 80cm
+- Ancho comodo: 90-100cm
+- Peldaños tipicos: 18-20cm (paso) x 28cm (huella)
+- Precio base: $25,000 MXN (pino, 13 peldaños)
+- Precio con roble: $45,000 MXN
+- Precio con nogal: $55,000 MXN
+- Incluye: barandal basico
+- Tiempo: 25-35 dias habiles
+
+Escalera en L:
+- Ancho: 80-100cm
+- Plataforma de descanso
+- Angulo: 90 grados
+- Precio base: $35,000 MXN (pino, 15 peldaños)
+- Precio con roble: $63,000 MXN
+- Tiempo: 30-40 dias habiles
+
+Escalera en U (caracol parcial):
+- Dos tramos con plataforma
+- Angulo: 180 grados
+- Precio base: $42,000 MXN (pino)
+- Precio con roble: $75,600 MXN
+- Tiempo: 35-45 dias habiles
+
+Escalera caracol (espiral):
+- Diametro: 80-120cm
+- Centro metalico o de madera
+- Precio base: $38,000 MXN (pino)
+- Precio con roble: $68,400 MXN
+- Precio con estructura metalica: +$15,000 MXN
+- Tiempo: 30-40 dias habiles
+
+Escalera modular:
+- Diseno prefabricado modular
+- Precio base: $18,000 MXN (pino)
+- Precio con roble: $32,400 MXN
+- Tiempo: 15-22 dias
+- Mas economica que personalizada
+
+### Componentes de Escalera
+-----------------------------
+
+Barandal de madera (por metro lineal):
+- Pino: $800 MXN
+- Roble: $1,500 MXN
+- Nogal: $2,200 MXN
+- Caoba: $2,800 MXN
+
+Pasamanos (por metro lineal):
+- Pino: $600 MXN
+- Roble: $1,200 MXN
+- Nogal: $1,800 MXN
+
+Balaustrada (por pieza):
+- Torreón basico: $350 MXN
+- Torreón tallado: $800 MXN
+- Torreón de diseño: $1,500 MXN
+
+Peldaño suelto (reemplazo):
+- Pino: $450 MXN
+- Roble: $850 MXN
+- Nogal: $1,200 MXN
+
+
+===============================================================================
+## VENTANAS
+===============================================================================
+
+### Tipos de Ventana
+---------------------
+
+Ventana de guillotine (inglesa):
+- Tamano estandar: 90cm x 120cm
+- Material: Pino o Roble
+- Doble vidrio: incluido
+- Precio base: $8,500 MXN
+- Precio con roble: $15,300 MXN
+- Tiempo: 18-24 dias
+
+Ventana corrediza:
+- Tamano estandar: 120cm x 120cm
+- Material: Pino o Roble
+- Precio base: $7,200 MXN
+- Precio con roble: $12,960 MXN
+- Tiempo: 16-22 dias
+
+Ventana abatible:
+- Tamano estandar: 60cm x 80cm
+- Material: Roble o Cedro
+- Precio base: $6,800 MXN
+- Precio con roble: $12,240 MXN
+- Tiempo: 14-20 dias
+
+Ventana tipo francesa (doble):
+- Tamano: 120cm x 180cm (doble hoja)
+- Material: Roble o Cedro
+- Precio base: $15,000 MXN
+- Precio con roble: $27,000 MXN
+- Tiempo: 22-28 dias
+
+Ventana de San Jorquin (arco):
+- Tamano: 60cm x 100cm (con arco)
+- Material: Roble tallado
+- Precio base: $12,000 MXN
+- Tiempo: 25-35 dias
+
+Ventana panoramica:
+- Tamano: 200cm x 120cm
+- Material: Roble o Nogal
+- Precio base: $18,000 MXN
+- Precio con nogal: $39,600 MXN
+- Tiempo: 28-35 dias
+
+### Componentes de Ventana
+----------------------------
+
+Marco de ventana:
+- Pino (90cm x 120cm): $1,200 MXN
+- Roble (90cm x 120cm): $2,400 MXN
+
+Vidrio doble (por m²):
+- Estandar: $800 MXN
+- Temperado: $1,200 MXN
+- Ahorro energetico: $1,500 MXN
+
+Celosia de madera:
+- Por m²: $1,800 MXN (pino), $3,200 MXN (roble)
+
+Mosquitero:
+- Por ventana: $800-$1,500 MXN
+
+Persiana de madera (veneciana):
+- Por ventana: $2,500-$5,000 MXN
+
+===============================================================================
+                    FIN DEL CATALOGO DE PRODUCTOS
+===============================================================================

@@ -1,0 +1,694 @@
+===============================================================================
+              GUIA COMPLETA DE PRESUPUESTOS Y PRECIOS
+===============================================================================
+
+Ultima actualizacion: 2026
+Version: 2.1
+Todos los precios en pesos mexicanos (MXN)
+
+===============================================================================
+## COMO FUNCIONA EL SISTEMA DE PRECIOS
+===============================================================================
+
+### Formula de Precio Base
+----------------------------
+
+El precio final de cualquier producto se calcula con la siguiente formula:
+
+PRECIO FINAL = Precio Base × Modificador de Madera × Modificador de Tamano
+               + Costos Adicionales + Instalacion + Envio
+
+Donde:
+- Precio Base: Costo del producto en MDF o pino
+- Modificador de Madera: Multiplicador segun especie seleccionada
+- Modificador de Tamano: Ajuste segun dimensiones fuera de estandar
+- Costos Adicionales: Acabados especiales, herrajes premium, etc.
+- Instalacion: Servicio de instalacion profesional (opcional)
+- Envio: Costo de transporte (si aplica)
+
+### Factores que Afectan el Precio
+-------------------------------------
+
+Factores de aumento:
+1. Madera premium (roble, nogal, caoba)
+2. Acabados especiales (multiple capas, efectos)
+3. Diseno personalizado sin plantilla existente
+4. Dimensiones fuera de estandar
+5. Herrajes de alta gama
+6. complejidad del diseño (tallado, curvas)
+7. Entrega foranea
+8. Instalacion en ubicacion complicada
+9. Urgencia (tiempo reducido)
+10. Combinacion de maderas
+
+Factores de reduccion:
+1. Cantidades grandes (descuento por volumen)
+2. Diseno estandar existente
+3. Madera comun (pino, MDF)
+4. Acabado simple
+5. Sin instalacion
+6. Recoger en taller
+7. Temporada baja (enero-febrero)
+8. Proyecto repetido
+9. Promociones vigentes
+10. Referidos de clientes existentes
+
+
+===============================================================================
+## MODIFICADORES DE MADERA
+===============================================================================
+
+### Tabla de Modificadores
+-----------------------------
+
+Madera          | Modificador | Precio Relativo | Disponibilidad
+----------------|-------------|-----------------|----------------
+MDF             | 1.0x        | Base            | Siempre
+Triplay         | 1.1x        | +10%            | Siempre
+Pino            | 1.2x        | +20%            | Siempre
+Cedro           | 1.5x        | +50%            | Limitada
+Roble           | 1.8x        | +80%            | Disponible
+Nogal           | 2.2x        | +120%           | Limitada
+Caoba           | 2.5x        | +150%           | Muy limitada
+
+### Ejemplo de Calculo con Modificadores
+------------------------------------------
+
+Mesa de comedor para 6 personas (precio base: $6,800 MXN):
+
+En MDF:     $6,800 × 1.0 = $6,800 MXN
+En Triplay: $6,800 × 1.1 = $7,480 MXN
+En Pino:    $6,800 × 1.2 = $8,160 MXN
+En Cedro:   $6,800 × 1.5 = $10,200 MXN
+En Roble:   $6,800 × 1.8 = $12,240 MXN
+En Nogal:   $6,800 × 2.2 = $14,960 MXN
+En Caoba:   $6,800 × 2.5 = $17,000 MXN
+
+### Maderas por Categoria de Precio
+--------------------------------------
+
+Economica (1.0x-1.2x):
+- MDF: Para gabinetes, closets economicos
+- Triplay: Para estructura, fondos
+- Pino: Para muebles rústicos, DIY
+
+Media (1.5x-1.8x):
+- Cedro: Para closets premium, armarios
+- Roble: Para mesas, pisos, puertas
+
+Premium (2.2x-2.5x):
+- Nogal: Para muebles de diseño, encimeras
+- Caoba: Para muebles de lujo, restauracion
+
+### Variaciones por Tipo de Madera
+--------------------------------------
+
+MDF:
+- MDF estandar: 1.0x
+- MDF con cara de madera: 1.15x
+- MDF resistente a humedad (verde): 1.1x
+- MDF flameado (texturizado): 1.2x
+
+Triplay:
+- Triplay B-cualidad: 1.05x
+- Triplay A-cualidad: 1.15x
+- Triplay marino: 1.3x
+- Triplay de abedil (Baltic birch): 1.35x
+
+Pino:
+- Pino radiata (construccion): 1.1x
+- Pino ocoa (SELECT): 1.2x
+- Pino douglas: 1.3x
+- Pino de oregon: 1.25x
+
+Roble:
+- Roble rustico (con nudos): 1.6x
+- Roble SELECT: 1.8x
+- Roble quartersawn: 2.0x
+- Roble figured (veteado especial): 2.3x
+
+Nogal:
+- Nogal comun: 2.1x
+- Nogal SELECT: 2.2x
+- Nogal book-matched: 2.5x
+- Nogal live edge: 2.7x
+
+Caoba:
+- Caoba africana: 2.3x
+- Caoba americana: 2.6x
+- Caoba select (sin sapo): 2.8x
+
+
+===============================================================================
+## MODIFICADORES DE TAMAÑO
+===============================================================================
+
+### Mesas de Comedor
+-----------------------
+
+Tamano           | Modificador | Rango de Precio Base
+4 personas       | 0.7x        | $3,150 - $4,500
+6 personas       | 1.0x        | $4,500 - $6,800
+8 personas       | 1.35x       | $6,800 - $9,200
+10 personas      | 1.8x        | $9,200 - $12,500
+12+ personas     | 2.3x        | $12,500 - $16,000+
+
+### Mesas Extensibles
+-----------------------
+
+Mecanismo        | Modificador | Costo Adicional
+Sin extension    | 1.0x        | Incluido
+Extension 2 lados| 1.55x       | +$3,500
+Extension 4 lados| 1.85x       | +$4,500
+Mariposa central | 1.7x        | +$4,000
+
+### Sillas
+-----------
+
+Tipo             | Modificador | Precio Base por Silla
+Basica           | 1.0x        | $1,200
+Con respaldo     | 1.15x       | $1,200 - $1,800
+Tallada          | 1.5x        | $1,800 - $2,500
+Tapizada         | 1.7x        | $2,000 - $3,000
+Regulable        | 2.0x        | $2,500 - $3,500
+
+### Escritorios
+----------------
+
+Tipo             | Modificador | Precio Base
+Basico           | 1.0x        | $5,500
+Ejecutivo        | 1.8x        | $9,800
+Esquinero (L)    | 2.6x        | $14,500
+Para computadora | 1.3x        | $7,200
+Standing desk    | 2.2x        | $12,100
+
+### Closets
+------------
+
+Tamano           | Modificador | Precio Base MDF
+1 puerta         | 1.0x        | $5,500
+2 puertas        | 1.5x        | $8,200
+3 puertas        | 2.1x        | $11,500
+4 puertas        | 2.7x        | $15,000
+Walk-in pequeno  | 2.2x        | $12,000
+Walk-in mediano  | 3.4x        | $18,500
+Walk-in grande   | 5.1x        | $28,000
+Walk-in premium  | 7.6x        | $42,000
+
+### Puertas
+------------
+
+Tipo             | Modificador | Precio Base
+Interior basica  | 1.0x        | $2,800
+Interior panel   | 1.25x       | $3,500
+Interior 4 paneles| 1.5x       | $4,200
+Americana        | 1.96x       | $5,500
+Exterior basica  | 4.3x        | $12,000
+Exterior doble   | 7.9x        | $22,000
+Francesa (vidrio)| 3.0x        | $8,500
+Corrediza        | 2.2x        | $6,200
+
+### Escaleras
+--------------
+
+Tipo             | Modificador | Precio Base
+Recta (13 pasos) | 1.0x        | $25,000
+Recta (18 pasos) | 1.4x        | $35,000
+En L              | 1.4x        | $35,000
+En U              | 1.68x       | $42,000
+Caracol          | 1.52x       | $38,000
+Modular          | 0.72x       | $18,000
+
+### Pisos de Madera
+---------------------
+
+Tipo             | Modificador | Precio Base por m²
+Laminado         | 1.0x        | $120 - $280
+Engineered       | 2.3x        | $280 - $600
+Macizo           | 3.8x        | $450 - $900
+Bambu            | 2.5x        | $300 - $550
+Corcho           | 2.9x        | $350 - $650
+
+
+===============================================================================
+## COSTOS DE ENTREGA E INSTALACION
+===============================================================================
+
+### Tarifas de Envio
+-----------------------
+
+Zona de entrega    | Costo      | Tiempo estimado
+Centro (0-5km)     | Incluido   | Mismo dia o siguiente
+Zona cercana (5-15km)| $500 MXN | 1-2 dias
+Zona media (15-30km)| $1,000-$2,000 | 2-3 dias
+Zona lejana (30-50km)| $2,000-$3,500 | 3-5 dias
+Otra ciudad        | Cotizar    | 5-10 dias
+Otra estado        | No ofrecer | N/A
+
+Requisitos de entrega:
+- Direccion exacta con codigo postal
+- Horario disponible para recepcion
+- Acceso para vehiculo de carga
+- Numero de telefono de contacto
+- Persona autorizada para recibir
+- Revision de pieza antes de firmar conformidad
+
+### Costos de Instalacion
+----------------------------
+
+Producto          | Instalacion | Tiempo estimado
+Puerta interior   | $800-$1,200 | 1-2 horas
+Puerta exterior   | $1,500-$2,500 | 2-3 horas
+Closet empotrado  | Incluido    | 4-8 horas
+Walk-in closet    | Incluido    | 6-12 horas
+Cocina integral   | Incluido    | 8-16 horas
+Piso de madera    | $180-$280/m²| Variable
+Escalera          | Incluido    | 8-16 horas
+Ventana           | $1,000-$2,000| 2-4 horas
+Mesa de comedor   | $800-$1,500 | 1-2 horas
+Escritorio        | $1,000-$2,000| 1-3 horas
+Repisas           | $400-$800   | 30 min-1 hora
+Estantes          | $600-$1,200 | 1-2 horas
+Cama              | $800-$1,500 | 1-2 horas
+
+Requisitos de instalacion:
+- Espacio libre para trabajar
+- Acceso a toma de corriente
+- Acceso a agua (para cocinas)
+- Retiro de muebles existentes (si aplica)
+- Nivel del piso verificado
+- Paredes libres de obstrucciones
+- Persona autorizada presente
+
+
+===============================================================================
+## TERMINOS DE PAGO
+===============================================================================
+
+### Estructura de Pagos
+-------------------------
+
+Para proyectos menores a $10,000 MXN:
+- 100% anticipo al confirmar pedido
+- Opciones: Efectivo, transferencia, tarjeta
+
+Para proyectos de $10,000 a $50,000 MXN:
+- 50% anticipo al confirmar pedido
+- 30% al aprobar diseno y materiales
+- 20% contra entrega e instalacion
+- Opciones: Efectivo, transferencia, tarjeta, cheque
+
+Para proyectos mayores a $50,000 MXN:
+- 40% anticipo al confirmar pedido
+- 30% al aprobar diseno y materiales
+- 20% al 75% de avance
+- 10% contra entrega e instalacion
+- Opciones: Transferencia bancaria, cheque, financiamiento
+
+### Metodos de Pago Aceptados
+--------------------------------
+
+- Efectivo: Sin recargo
+- Transferencia bancaria: Sin recargo
+- Tarjeta de credito/debito: +3% de recargo
+- Cheque nominativo: Sin recargo (verificar fondos)
+- Deposit bancario: Sin recargo
+- PayPal: +5% de recargo
+- Bitcoin: Cotizar por proyecto
+
+### Politicas de Pago
+-----------------------
+
+- Todos los precios incluyen IGV (16%)
+- Precios en pesos mexicanos
+- Cotizaciones validas por 30 dias
+- Cambios de precio con aviso de 15 dias
+- No se procesa pedido sin anticipo
+- Pagos pendientes generan interes del 2% mensual
+- Cheques sin fondos generan penalizacion del 5%
+- Promociones no son acumulables
+- Descuento por pronto pago: 5% (solo efectivo)
+
+
+===============================================================================
+## COTIZACIONES Y PRESUPUESTOS
+===============================================================================
+
+### Estructura de una Cotizacion
+-----------------------------------
+
+Encabezado:
+- Logo y datos del taller
+- Numero de cotizacion
+- Fecha de emision
+- Fecha de vencimiento (30 dias)
+- Datos del cliente
+- Descripcion del proyecto
+
+Cuerpo:
+- Descripcion detallada del producto
+- Especificaciones de materiales
+- Dimensiones exactas
+- Tipo de acabado
+- Cantidad
+- Precio unitario
+- Subtotal
+- Descuentos (si aplica)
+- Costo de envio
+- Costo de instalacion
+- Total
+
+Condiciones:
+- Forma de pago
+- Tiempo de fabricacion
+- Garantia
+- Politica de cancelacion
+- Notas y observaciones
+
+### Ejemplo de Cotizacion Detallada
+--------------------------------------
+
+Proyecto: Mesa de comedor para 6 personas
+Cliente: Juan Perez
+Cotizacion: COT-2026-0045
+Fecha: 17 de julio de 2026
+Vence: 16 de agosto de 2026
+
+Descripcion del producto:
+- Mesa de comedor rectangulo
+- Dimensiones: 180cm x 90cm x 75cm alto
+- Material: Roble SELECT (Quercus alba)
+- Acabado: Barniz satinado (3 capas)
+- Patas: Cuadradas 5x5cm
+- Peso estimado: 50 kg
+
+Desglose de costos:
+- Madera (roble): $5,440 MXN (Base $3,022 × 1.8)
+- Herrajes (pies niveladores): $350 MXN
+- Acabado (barniz + lijado): $850 MXN
+- Mano de obra: $2,560 MXN
+- Subtotal: $9,200 MXN
+- IGV (16%): $1,472 MXN
+- Total: $10,672 MXN
+
+Costos adicionales:
+- Envio a zona cercana (8km): $500 MXN
+- Instalacion: $1,200 MXN
+- Total con servicios: $12,372 MXN
+
+Condiciones:
+- Anticipo (50%): $6,186 MXN
+- Saldo contra entrega: $6,186 MXN
+- Tiempo de fabricacion: 18-22 dias habiles
+- Garantia: 2 anos contra defectos de fabricacion
+- Validez: 30 dias
+
+### Tipos de Cotizacion
+-------------------------
+
+Presupuesto rapido (1-2 dias):
+- Precio estimado por telefono o email
+- Sin especificaciones detalladas
+- Para referencia inicial
+- Sin compromiso
+
+Cotizacion formal (3-5 dias):
+- Precio exacto con especificaciones
+- Incluye materiales y mano de obra
+- Tiempo de fabricacion
+- Validez de 30 dias
+- Requiere firma para aprobar
+
+Cotizacion detallada (5-10 dias):
+- Para proyectos complejos
+- Incluye plano tecnico
+- Muestras de materiales
+- Varias opciones de precio
+- Validez de 30 dias
+- Requiere visita al sitio
+
+Presupuesto ejecutivo (10-15 dias):
+- Para proyectos muy complejos
+- Incluye diseno 3D
+- Muestras fisicas
+- Plan de trabajo completo
+- Cronograma detallado
+- Validez de 30 dias
+
+
+===============================================================================
+## FACTORES QUE AFECTAN EL PRECIO
+===============================================================================
+
+### Complejidad del Diseno
+-----------------------------
+
+Nivel 1 (Basico):
+- Lineas rectas, sin detalles
+- Sin tallado ni molduras
+- Acabado simple
+- Ejemplo: Mesa rectangular, estanteria basica
+- Modificador: 1.0x
+
+Nivel 2 (Intermedio):
+- Algunas curvas o perfiles
+- Molduras simples
+- Acabado de calidad
+- Ejemplo: Mesa con bordes redondeados, escritorio con cajones
+- Modificador: 1.2x
+
+Nivel 3 (Avanzado):
+- Curvas complejas
+- Tallado manual
+- Multiples acabados
+- Ejemplo: Mesa con patas tornearadas, silla tallada
+- Modificador: 1.5x
+
+Nivel 4 (Experto):
+- Diseno unico, sin plantilla
+- Tallado detallado
+- Acabado de museo
+- Ejemplo: Mesa de conferencia, mueble de exposicion
+- Modificador: 2.0x
+
+### Calidad del Acabado
+--------------------------
+
+Acabado basico (Nivel 1):
+- 1-2 capas de barniz
+- Lijado estandar (hasta grano 220)
+- Sin mancha (color natural)
+- Ejemplo: Partes internas, muebles economicos
+- Modificador: 1.0x
+
+Acabado estandar (Nivel 2):
+- 2-3 capas de barniz
+- Lijado completo (hasta grano 320)
+- Mancha o barniz color
+- Ejemplo: Muebles de uso diario
+- Modificador: 1.1x
+
+Acabado premium (Nivel 3):
+- 3-4 capas de barniz
+- Lijado fino (hasta grano 400)
+- Mancha de alta calidad
+- Buffing entre capas
+- Ejemplo: Muebles de comedor, escritorios ejecutivos
+- Modificador: 1.25x
+
+Acabado de lujo (Nivel 4):
+- 4+ capas de barniz o laca
+- Lijado extra fino (hasta grano 600)
+- Mancha artesanal
+- Pulido final a espejo
+- Ejemplo: Muebles de coleccion, restauraciones
+- Modificador: 1.5x
+
+### Dimenciones Fuera de Estandar
+------------------------------------
+
+Dimensiones normales:
+- Modificador: 1.0x
+- Sin costo adicional
+
+Dimensiones ligeramente fuera:
+- Modificador: 1.05-1.1x
+- +5-10% sobre precio base
+- Ejemplo: Mesa 200cm en vez de 180cm
+
+Dimensiones significativamente fuera:
+- Modificador: 1.1-1.3x
+- +10-30% sobre precio base
+- Ejemplo: Mesa 300cm en vez de 180cm
+
+Dimensiones extreme:
+- Modificador: 1.3-1.6x
+- +30-60% sobre precio base
+- Requiere consulta especial
+- Ejemplo: Mesa 400cm+, escalera personalizada
+
+
+===============================================================================
+## DESCUENTOS Y PROMOCIONES
+===============================================================================
+
+### Descuentos Disponibles
+-----------------------------
+
+Descuento por pronto pago:
+- 5% de descuento por pago total en efectivo
+- Aplica solo para pagos antes de iniciar fabricacion
+- No acumulable con otras promociones
+
+Descuento por volumen:
+- 3-5 piezas: 5% de descuento
+- 6-10 piezas: 8% de descuento
+- Mas de 10 piezas: 10% de descuento
+- Aplica para muebles del mismo tipo
+
+Descuento por referido:
+- $500 MXN de descuento por cada referido que compre
+- El referido tambien recibe $500 MXN de descuento
+- Sin limite de referidos
+
+Descuento por proyecto completo:
+- Cocina + closets + puertas: 7% de descuento
+- Muebles para toda la casa: 10% de descuento
+- Proyecto comercial (hotel, restaurante): Cotizar
+
+Descuento por temporada baja:
+- Enero-Febrero: 5% de descuento adicional
+- Agosto: 5% de descuento adicional
+- No acumulable con otros descuentos
+
+### Promociones Vigentes
+---------------------------
+
+Promocion de apertura:
+- 10% de descuento en primer pedido
+- Para nuevos clientes
+- Validez: 30 dias desde primer contacto
+
+Promocion de temporada:
+- Envio gratis en pedidos mayores a $15,000 MXN
+- Validez: Segun temporada
+- No acumulable con otros descuentos
+
+Promocion de组合 (combo):
+- Mesa + 6 sillas: 12% de descuento
+- Closets para 2 habitaciones: 10% de descuento
+- Cocina + comedor: 8% de descuento
+
+### Restricciones de Descuentos
+----------------------------------
+
+- No acumulable entre si (excepto referidos)
+- No aplicable a productos en promo ya rebajados
+- No aplicable a servicios de instalacion
+- No aplicable a envios
+- No reembolsable en efectivo
+- Aplica solo al total del pedido
+- Sujeto a disponibilidad
+
+
+===============================================================================
+## GUias DE PRECIO POR PRODUCTO
+===============================================================================
+
+### Mesas de Comedor (Rango Completo)
+----------------------------------------
+
+Tamano | MDF    | Pino   | Roble  | Nogal  | Caoba
+4 pers | $3,150 | $3,780 | $5,670 | $6,930 | $7,875
+6 pers | $4,500 | $5,400 | $8,100 | $9,900 | $11,250
+8 pers | $6,210 | $7,452 | $11,178| $13,662| $15,525
+10 pers| $8,100 | $9,720 | $14,580| $17,820| $20,250
+12+    | $10,350| $12,420| $18,630| $22,770| $25,875
+
+### Escritorios (Rango Completo)
+-----------------------------------
+
+Tipo       | MDF    | Pino   | Roble  | Nogal
+Basico     | $5,500 | $6,600 | $9,900 | $12,100
+Ejecutivo  | $9,800 | $11,760| $17,640| $21,560
+Esquinero  | $14,500| $17,400| $26,100| $31,900
+Computadora| $7,200 | $8,640 | $12,960| $15,840
+Standing   | $12,100| $14,520| $21,780| $26,620
+
+### Puertas (Rango Completo)
+-------------------------------
+
+Tipo         | MDF    | Pino   | Roble  | Cedro  | Nogal
+Interior bas| $2,800 | $3,360 | $5,040 | $4,200 | $6,160
+Interior pan| $3,500 | $4,200 | $6,300 | $5,250 | $7,700
+Americana   | $5,500 | $6,600 | $9,900 | $8,250 | $12,100
+Exterior    | N/A    | N/A    | $12,000| $9,000 | $26,400
+Exterior do | N/A    | N/A    | $22,000| N/A    | $48,400
+
+### Closets (Rango Completo)
+-------------------------------
+
+Tamano      | MDF    | Pino   | Cedro  | Roble
+1 puerta    | $5,500 | $6,600 | $8,250 | $9,900
+2 puertas   | $8,200 | $9,840 | $12,300| $14,760
+3 puertas   | $11,500| $13,800| $17,250| $20,700
+4 puertas   | $15,000| $18,000| $22,500| $27,000
+Walk-in peq | $12,000| $14,400| $18,000| $21,600
+Walk-in med | $18,500| $22,200| $27,750| $33,300
+Walk-in gra | $28,000| $33,600| $42,000| $50,400
+Walk-in pre | $42,000| $50,400| $63,000| $75,600
+
+### Pisos de Madera (por m²)
+-------------------------------
+
+Tipo      | Madera  | Precio por m² | Precio con inst.
+Laminado  | Varios  | $120-$280     | $300-$460
+Engineered| Roble   | $280-$600     | $460-$780
+Macizo    | Roble   | $450-$900     | $630-$1,080
+Macizo    | Nogal   | $650-$1,100   | $830-$1,280
+Macizo    | Caoba   | $700-$1,200   | $880-$1,380
+
+### Escaleras (Rango Completo)
+--------------------------------
+
+Tipo        | MDF    | Pino   | Roble  | Nogal  | Caoba
+Recta 13pas | $25,000| $30,000| $45,000| $55,000| $62,500
+Recta 18pas | $35,000| $42,000| $63,000| $77,000| $87,500
+En L        | $35,000| $42,000| $63,000| $77,000| $87,500
+En U        | $42,000| $50,400| $75,600| $92,400| $105,000
+Caracol     | $38,000| $45,600| $68,400| $83,600| $95,000
+
+
+===============================================================================
+## NOTAS FINALES
+===============================================================================
+
+### Validez de Precios
+-------------------------
+- Todos los precios son en pesos mexicanos (MXN)
+- Precios validos por 30 dias desde emision de cotizacion
+- Precios sujetos a cambio sin previo aviso
+- Precios no incluyen IGV (se agrega 16% al total)
+- Promociones sujetas a disponibilidad
+
+### Garantia
+--------------
+- Garantia de 2 anos contra defectos de fabricacion
+- Garantia de 1 ano en acabados
+- Garantia de 6 meses en herrajes
+- No cubre dano por uso indebido
+- No cubre dano por humedad o inundacion
+- No cubre dano por insectos (tratamiento incluido)
+- Reclamo dentro de 30 dias de entrega
+
+### Politica de Cancelacion
+-------------------------------
+- Antes de iniciar fabricacion: Reembolso del 100% del anticipo
+- Durante fabricacion (primer 25%): Reembolso del 50% del anticipo
+- Durante fabricacion (25-50%): Sin reembolso
+- Despues del 50%: El cliente paga el 100% del proyecto
+- Cancelaciones por fuerza mayor: Caso por caso
+
+===============================================================================
+                    FIN DE LA GUIA DE PRESUPUESTOS Y PRECIOS
+===============================================================================

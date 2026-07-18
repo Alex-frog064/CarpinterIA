@@ -6,19 +6,20 @@ from models.conversation_state import ConversationState
 from models.user import UserRole
 from services.activity_service import log_activity
 from services.audit_log import tools_logger
-from services.cancel_service import CancelService
 from services.conversation_state_service import get_conversation_state, _ensure_state_row
 from services.general_chat_service import GeneralChatService
-from services.intent_service import ChatMode, detect_mode
 from services.ollama_service import OllamaService
-from services.order_agent import OrderAgent
+from services.router_agent import RouterAgent
+from services.rag_agent import RAGAgent
+from services.transactional_agent import TransactionalAgent
 
 
 class ChatService:
     def __init__(self):
         self.ollama = OllamaService()
-        self.order_agent = OrderAgent(self.ollama)
-        self.cancel_service = CancelService(self.ollama)
+        self.router = RouterAgent()
+        self.rag_agent = RAGAgent()
+        self.transactional_agent = TransactionalAgent()
         self.general_chat = GeneralChatService(self.ollama)
 
     def _ensure_conversation(self, conversation_id: str | None, user_id: int) -> str:
@@ -107,37 +108,46 @@ class ChatService:
         self._save_message(cid, "user", user_message)
         log_activity(user_id, "SEND_MESSAGE", {"conversation_id": cid, "preview": user_message[:80]})
 
-        # Cancelación (cliente)
-        if role == UserRole.CUSTOMER.value:
-            cancel_result = await self.cancel_service.handle(user_id, cid, user_message, history)
-            if cancel_result is not None:
-                assistant_response, tools_used, state = cancel_result
-                if tools_used:
-                    tools_logger.info("Herramientas ejecutadas: %s | conv=%s", tools_used, cid[:8])
-                self._save_message(cid, "assistant", assistant_response, tools_used)
-                cart = state_data.get("cart") or []
-                return cid, assistant_response, tools_used, state, cart
+        # Use multi-agent router to determine intent
+        routing = await self.router.route(
+            message=user_message,
+            role=role,
+            conversation_state=current_state,
+            history=history,
+        )
+        agent_type = routing["agent"]
+        tools_logger.info(
+            "Agente ruteado: %s (razón: %s) | conv=%s",
+            agent_type, routing.get("reason", ""), cid[:8],
+        )
 
-        mode = detect_mode(user_message, role, current_state)
-        tools_logger.info("Modo chat: %s | conv=%s", mode.value, cid[:8])
-
-        if mode == ChatMode.ORDER_FLOW:
-            order_result = await self.order_agent.handle(cid, user_message, history)
-            if order_result is not None:
-                assistant_response, tools_used, state = order_result
+        if agent_type == "TRANSACTIONAL":
+            result = await self.transactional_agent.handle(
+                conversation_id=cid,
+                message=user_message,
+                user_id=user_id,
+                role=role,
+                history=history,
+                state_data=state_data,
+            )
+            if result is not None:
+                assistant_response, tools_used, state = result
                 if tools_used:
                     tools_logger.info("Herramientas ejecutadas: %s | conv=%s", tools_used, cid[:8])
                 self._save_message(cid, "assistant", assistant_response, tools_used)
                 cart = get_conversation_state(cid).get("cart") or []
                 return cid, assistant_response, tools_used, state, cart
 
-        if mode == ChatMode.ADMIN_ASSISTANT:
-            messages = history + [{"role": "user", "content": user_message}]
-            assistant_response, tools_used = await self.ollama.chat_with_tools(messages)
-            self._save_message(cid, "assistant", assistant_response, tools_used)
+        if agent_type == "RAG":
+            assistant_response = await self.rag_agent.handle(
+                message=user_message,
+                history=history,
+            )
+            self._save_message(cid, "assistant", assistant_response)
             state_data = get_conversation_state(cid)
-            return cid, assistant_response, tools_used, state_data["state"], state_data.get("cart") or []
+            return cid, assistant_response, [], state_data["state"], state_data.get("cart") or []
 
+        # GENERAL agent (default)
         assistant_response = await self.general_chat.handle(user_message, role, history)
         self._save_message(cid, "assistant", assistant_response)
         return cid, assistant_response, [], ConversationState.IDLE.value, state_data.get("cart") or []
@@ -152,7 +162,7 @@ class ChatService:
     ) -> tuple[str, str, list[str], str, list[dict]]:
         self._verify_conversation_access(conversation_id, user_id, role)
         cid = self._ensure_conversation(conversation_id, user_id)
-        response, tools_used, state = await self.order_agent.handle_location(
+        response, tools_used, state = await self.transactional_agent.handle_location(
             cid, latitude, longitude
         )
         if tools_used:

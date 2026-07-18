@@ -6,6 +6,45 @@ services:
     environment:
       - OLLAMA_BASE_URL=http://host.docker.internal:11434
       - OLLAMA_MODEL=llama3:latest
+      - DB_PATH=/app/carpinteria.db
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
+    volumes:
+      - carpinteria-data:/app/data
+
+  seeder:
+    build: .
+    profiles:
+      - tools
+    environment:
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+      - DB_PATH=/app/carpinteria.db
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - carpinteria-data:/app/data
+    command: python scripts/seeder.py
+
+  evaluator:
+    build: .
+    profiles:
+      - tools
+    environment:
+      - BACKEND_URL=http://carpinteria:8000
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+      - OLLAMA_MODEL=llama3:latest
+      - DB_PATH=/app/carpinteria.db
+      - REPORT_PATH=/app/reports/reporte_evaluacion.pdf
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - carpinteria
+    volumes:
+      - carpinteria-data:/app/data
+      - carpinteria-reports:/app/reports
+    command: python scripts/evaluar_agente.py
+
+volumes:
+  carpinteria-data:
+  carpinteria-reports:

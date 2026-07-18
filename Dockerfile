@@ -10,6 +10,10 @@ COPY database/ database/
 COPY models/ models/
 COPY services/ services/
 COPY tools/ tools/
+COPY rag/ rag/
+COPY scripts/ scripts/
+COPY documents/ documents/
+COPY data/ data/
 COPY frontend/ frontend/
 
 EXPOSE 8000

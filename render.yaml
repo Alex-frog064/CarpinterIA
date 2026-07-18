@@ -12,8 +12,7 @@ services:
         value: /data/carpinteria.db
     healthCheckPath: /health
     autoDeploy: true
-
-disks:
-  - name: carpinteria-data
-    mountPath: /data
-    sizeGB: 1
+    disk:
+      name: carpinteria-data
+      mountPath: /data
+      sizeGB: 1

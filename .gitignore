@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+.env
+*.db
+*.db-journal
+reporte_evaluacion.pdf
+.vscode/
+.idea/
+node_modules/
+data/vector_store/documents.json
+data/vector_store/embeddings.pkl

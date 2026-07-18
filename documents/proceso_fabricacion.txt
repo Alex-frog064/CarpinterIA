@@ -1,0 +1,861 @@
+===============================================================================
+                   PROCESO DE FABRICACION EN CARPINTERIA
+===============================================================================
+
+Ultima actualizacion: 2026
+Version: 2.1
+Guia completa del proceso de fabricacion de piezas de carpinteria
+
+===============================================================================
+## FASE 1: DISEÑO Y CONSULTA
+===============================================================================
+
+### Primera Consulta con el Cliente
+-------------------------------------
+
+Objetivo: Comprender completamente las necesidades, gustos y presupuesto del
+cliente antes de iniciar cualquier diseño.
+
+Pasos de la consulta inicial:
+1. Bienvenida y presentacion del taller
+2. Entrevista con el cliente (30-60 minutos)
+3. Recopilacion de informacion sobre el proyecto
+4. Visita al sitio de instalacion (si aplica)
+5. Toma de medidas preliminares
+6. Fotografiar el espacio
+7. Discutir presupuesto y expectativas
+8. Establecer cronograma preliminar
+
+Preguntas clave para el cliente:
+- Que funcion tendra el mueble?
+- Cuantas personas lo usaran?
+- Que estilo prefiere? (moderno, rustico, clasico, etc.)
+- Que tipo de madera le interesa?
+- Tiene restricciones de color?
+- Cuál es su presupuesto?
+- Cuando necesita el mueble listo?
+- Ha tenido problemas con muebles anteriores?
+- Tiene preferencias de acabado?
+- Necesita almacenamiento adicional?
+- El espacio tiene alguna limitacion?
+- Hay ninos o mascotas en el hogar?
+- Requiere que sea resistente a humedad?
+- Tiene imagenes de referencia?
+
+### Mediciones Profesionales
+-------------------------------
+
+Protocolo de medicion:
+1. Medir el espacio disponible (ancho, largo, alto)
+2. Verificar nivel del piso y paredes
+3. Identificar obstaculos (tomas, tuberias, ventanas)
+4. Medir puertas y pasillos de acceso
+5. Verificar espacio para manipulacion
+6. Tomar fotos con referencia de medidas
+7. Crear plano con cotas exactas
+8. Considerar holguras de movimiento
+
+Herramientas de medicion necesarias:
+- Metro de carpintero (3m o 5m)
+- Nivel de burbuja (60cm y 120cm)
+- Cinta metrica larga (30m para exteriores)
+- Escuadra de carpintero
+- Transportador de angulos
+- Laser de medicion (para espacios grandes)
+- Bitacora de mediciones
+- Camara fotografica
+
+Errores comunes de medicion:
+- No medir tres veces antes de cortar una vez
+- No considerar el grosor de los materiales
+- No verificar que el piso este nivel
+- Olvidar medir puertas y pasillos
+- No considerar el movimiento de la madera
+- No verificar la perpendicularidad de las paredes
+- No medir con muebles existentes en su posicion final
+- No considerar el espacio para instalacion
+
+### Bocetos y Disenos
+-----------------------
+
+Proceso de diseño:
+1. Croquis a mano alzada del cliente (5-10 minutos)
+2. Borrador a escala en papel (2-3 horas)
+3. Plano tecnico con medidas exactas (4-8 horas)
+4. Visualizacion 3D si es necesario (2-4 horas)
+5. Presentacion al cliente para aprobacion
+6. Modificaciones segun retroalimentacion
+7. Aprobacion final y firma de contrato
+
+Herramientas de diseño:
+- Papel cuadriculado para bocetos
+- Software de diseño asistido (AutoCAD, SketchUp)
+- Software de renderizado 3D
+- Escala 1:20 o 1:50 para planos
+- Muestras de madera para el cliente
+- Muestras de acabado
+- Fotos de proyectos similares
+
+Formato de plano tecnico:
+- Vista frontal con cotas
+- Vista lateral con cotas
+- Vista superior (planta) con cotas
+- Detalles de ensamble
+- Especificaciones de materiales
+- Notas de acabado
+- Lista de materiales (BOM)
+- Tiempo estimado de fabricacion
+
+### Presupuesto y Cotizacion
+-------------------------------
+
+Estructura de una cotizacion:
+1. Numero de cotizacion
+2. Fecha y vigencia
+3. Datos del cliente
+4. Descripcion detallada del proyecto
+5. Lista de materiales con costos
+6. Costo de mano de obra
+7. Tiempo estimado de fabricacion
+8. Condiciones de pago
+9. Politicas de cancelacion
+10. Firma de ambas partes
+
+Desglose de costos tipico:
+- Materia prima (madera): 40-55% del total
+- Herrajes y accesorios: 10-15% del total
+- Acabados (barniz, pintura): 5-10% del total
+- Mano de obra: 25-35% del total
+- Herramientas y consumibles: 3-5% del total
+- Gastos generales: 5-8% del total
+
+Tiempo de respuesta de cotizacion:
+- Presupuesto rapido: 1-2 dias habiles
+- Cotizacion detallada: 3-5 dias habiles
+- Proyecto complejo: 5-10 dias habiles
+
+
+===============================================================================
+## FASE 2: SELECCION DE MATERIALES
+===============================================================================
+
+### Inspeccion de Madera
+--------------------------
+
+Criterios de seleccion:
+1. Humedad adecuada (6-8% para interiores)
+2. Ausencia de nudos sueltos
+3. Veta recta y uniforme
+4. Sin grietas ni deformaciones
+5. Color uniforme dentro de la especie
+6. Sin senales de insectos o hongos
+7. Dimensiones correctas para el proyecto
+8. Grado adecuado (select, primer, segundo)
+
+Herramientas de inspeccion:
+- Humedimetro de pinzas: $500-$1,500 MXN
+- Escuadra de carpintero
+- Regla de aluminio (para verificar planitud)
+- Lupa (para inspeccionar defectos)
+- Martillo (para verificar sonido de la madera)
+- Ojo entrenado del carpintero
+
+Grados de madera:
+- Select/Premium: Sin defectos, acabado premium
+- Primer grado: Pocos defectos menores, buen acabado
+- Segundo grado: Algunos nudos y defectos, uso general
+- Rustico: Nudos, grietas, uso decorativo
+- Construccion: Uso estructural, sin consideraciones esteticas
+
+### Seleccion por Proyecto
+----------------------------
+
+Muebles de cocina:
+- Roble: Para encimeras y gabinetes premium
+- Nogal: Para diseno de lujo
+- MDF con pintura: Para gabinetes economicos
+- Triplay: Para estructura interna
+- Pino: Para partes internas no visibles
+
+Muebles de sala:
+- Roble: Para mesas de comedor
+- Nogal: Para mesas de diseno
+- Caoba: Para muebles de herencia
+- Cedro: Para armarios y roperos
+- Pino: Para muebles rústicos
+
+Pisos:
+- Roble: La mejor opcion general
+- Nogal: Para diseno premium
+- Pino: Para areas de bajo uso
+- Caoba: Para areas ejecutivas
+
+Puertas:
+- Roble: Para puertas de entrada
+- Pino: Para puertas de interior
+- Cedro: Para puertas de closet
+- MDF con pintura: Para puertas economicas
+
+Closets:
+- Cedro: Para walk-in closets premium
+- MDF: Para closets economicos
+- Pino: Para closets funcionales
+- Triplay: Para estructura interna
+
+
+===============================================================================
+## FASE 3: CORTE Y FORMADO
+===============================================================================
+
+### Herramientas de Corte
+----------------------------
+
+Sierra de mesa (Table saw):
+- Uso: Cortes rectos a lo largo y ancho
+- Blade recomendada: 80 dientes para MDF, 40 para madera
+- Profundidad maxima: 7-8 cm
+- Mantenimiento: Afilar cada 20 horas de uso
+- Precision: ±0.5mm con guia adecuada
+- Seguridad: Siempre usar empujador
+
+Sierra circular (Circular saw):
+- Uso: Cortes rectos portatiles
+- Blade recomendada: 60 dientes
+- Profundidad maxima: 6-7 cm
+- Mantenimiento: Afilar segun uso
+- Precision: ±1mm con guia de aluminio
+- Seguridad: Guia de aluminio siempre
+
+Sierra de inglete (Miter saw):
+- Uso: Cortes en angulo
+- Angulos: 0-45 grados
+- Blade recomendada: 60-80 dientes
+- Precision: ±0.5 grados
+- Mantenimiento: Afilar y calibrar angulos
+
+Sierra de banda (Band saw):
+- Uso: Cortes curvos y rectos
+- Blade: 6-25mm ancho
+- Profundidad: Hasta 20cm
+- Mantenimiento: Afilar cada 8-10 horas
+- Precision: ±1mm en cortes curvos
+
+Sierra de calar (Jigsaw):
+- Uso: Cortes curvos, detalles, cortes internos
+- Hojas: Segun material (madera, laminas)
+- Precision: ±2mm
+- Mantenimiento: Cambiar hojas segun desgaste
+
+Cortadora CNC:
+- Uso: Cortes de precision, diseños complejos
+- Precision: ±0.1mm
+- Velocidad: Variable segun material
+- Mantenimiento: Programacion y limpieza
+- Costo de operacion: $15-$40 MXN por hora de maquina
+
+### Tecnica de Corte
+-----------------------
+
+Corte a lo largo de la veta (Rip cut):
+- Sierra de mesa o sierra circular con guia
+- Siempre usar empujador
+- Velocidad lenta y constante
+- Verificar la linea de corte antes de cortar
+- Dejar margen de lijado (1-2mm)
+
+Corte a traves de la veta (Cross cut):
+- Sierra de inglete o sierra circular con guia
+- Usar tope de respaldo
+- Verificar perpendicularidad
+- Dejar margen de lijado
+
+Corte en angulo:
+- Sierra de inglete o sierra circular con transferidor
+- Verificar angulo antes de cortar
+- Hacer corte de prueba en madera de descarte
+- Ajustar herramienta segun resultado
+
+Corte curvo:
+- Sierra de banda o sierra de calar
+- Dibujar linea de corte claramente
+- Cortar lento y constante
+- Seguir la linea exterior
+- Dejar margen para lijado
+
+### Formado y Tallado
+------------------------
+
+Encolado y laminado:
+- Unir tablas para crear paneles anchos
+- Usar cola PVA de carpintero
+- Clamp en cruz para presion uniforme
+- Dejar secar 24 horas minimo
+- Verificar planitud al dia siguiente
+
+Torneado:
+- Torno para muebles
+- Herramientas de acero HSS o carburo
+- Velocidad variable segun diametro
+- Seco para madera dura, verde para formas complejas
+- Acabado en el torno (lijado y pulido)
+
+Tallado:
+- Herramientas manuales: formones, gubias
+- Herramientas mecanicas: router, formadora
+- Disenos pre-dibujados en la madera
+- Trabajar con la veta, nunca en contra
+- Paciencia y precision
+
+Router y formadoras:
+- Perfilado de bordes
+- Ranuras para machiembrado
+- Molduras decorativas
+- Calados y vaciados
+- Precision alta con guias
+
+
+===============================================================================
+## FASE 4: ENSAMBLE
+===============================================================================
+
+### Tipos de Juntas
+---------------------
+
+Junta de espiga y mortaja (Mortise and tenon):
+- La junta mas fuerte y tradicional
+- Aplicacion: Puertas, mesas, sillas, estanterias
+- Variaciones: Through tenon, blind tenon, wedged
+- Herramientas: Formon, escoplo, sierra
+- Tiempo: 15-30 minutos por junta
+- Resistencia: Excelente en tension y compresion
+- Material: Cola PVA o cola de contacto
+
+Junta de cola de pato (Dovetail):
+- La junta mas estetica y fuerte para cajones
+- Aplicacion: Cajones, cofres, joyeros
+- Variaciones: Through, half-blind, secret
+- Herramientas: Sierra de cola de pato, formon
+- Tiempo: 20-45 minutos por junta
+- Resistencia: Excelente en traccion
+- Material: Cola PVA de carpintero
+
+Junta de esquinero (Pocket hole):
+- Rapida y moderna
+- Aplicacion: Gabinetes, marcos, estructura
+- Variaciones: Kreg, esquinero simple, reforzado
+- Herramientas: Taladro de esquinero (Kreg jig)
+- Tiempo: 5-10 minutos por junta
+- Resistencia: Buena para uso general
+- Material: Tornillos de esquinero + cola
+
+Junta de machiembrado:
+- Facil y rapida
+- Aplicacion: Paneles, pisos, revestimientos
+- Variaciones: Simple, doble, a tope
+- Herramientas: Router con fresa de machiembrado
+- Tiempo: 5-15 minutos por junta
+- Resistencia: Buena con cola
+- Material: Cola PVA
+
+Junta de espiga simple:
+- Basica y funcional
+- Aplicacion: Marcos, estanterias simples
+- Variaciones: Rectangular, redonda
+- Herramientas: Taladro y sierra
+- Tiempo: 5-15 minutos por junta
+- Resistencia: Moderada
+- Material: Cola PVA
+
+Junta de inglete:
+- Basica y rapida
+- Aplicacion: Marcos, molduras
+- Variaciones: Recto, con diente, con cola de pato
+- Herramientas: Sierra de inglete
+- Tiempo: 5-10 minutos por junta
+- Resistencia: Baja (reforzar con cola)
+- Material: Cola PVA + clavos
+
+Junta a tope:
+- Simple y moderna
+- Aplicacion: Paneles, estanterias
+- Variaciones: Con refuerzo, sin refuerzo
+- Herramientas: Sierra de mesa
+- Tiempo: 2-5 minutos por junta
+- Resistencia: Baja (requiere refuerzo)
+- Material: Cola + tornillos
+
+### Proceso de Ensamble
+---------------------------
+
+Preparacion:
+1. Verificar que todas las piezas estan cortadas correctamente
+2. Hacer ensayo en seco (sin cola) de toda la pieza
+3. Verificar ajuste de todas las juntas
+4. Marcar piezas para referencia
+5. Preparar materiales de ensamble
+6. Tener clamps listos
+7. Verificar que el area de trabajo esta limpia
+8. Tener pano humedo para limpiar exceso de cola
+
+Ensamble con cola:
+1. Aplicar cola en ambas superficies (cara y espalda)
+2. Unir piezas y ajustar juntas
+3. Insertar tornillos o clavos si es necesario
+4. Colocar clamps en todos los puntos criticos
+5. Verificar perpendicularidad y planitud
+6. Retirar exceso de cola con pano humedo
+7. Dejar secar segun tipo de cola (2-24 horas)
+8. No mover la pieza durante el secado
+
+Secado de cola:
+- Cola PVA blanca: 24 horas para secado completo
+- Cola PVA amarilla (D3): 24 horas
+- Cola de contacto: 15-30 minutos (no requiere clamp)
+- Cola epoxi: 5 minutos a 24 horas (segun formula)
+- Cola poliuretano: 2-4 horas (no requiere clamp)
+- Cola hide (cola de conejo): 24 horas
+
+Clamps necesarios:
+- Clamps F (bar clamps): Los mas versatiles
+- Clamps de esquina: Para ángulos
+- Clamps de tambor (band clamps): Para juntas de panel
+- Clamps de pista (pipe clamps): Para paneles grandes
+- Clamps spring (de resorte): Para piezas pequenas
+- Clamps de tornillo: Para trabajo preciso
+
+### Refuerzo de Juntas
+-------------------------
+
+Tornillos de refuerzo:
+- Tipo y tamano segun la junta
+- Pre-taladrar siempre
+- Usar cola en combinacion
+- Tapar cabezas con tapones de madera
+- Opciones: Tapones de madera, wood plugs
+
+Clavos de refuerzo:
+- Clavos de cola (ring shank) para mayor retencion
+- Clavos de cabeza perdida (countersink)
+- Tamaño apropiado para el grosor de madera
+- Usar clavadora neumatica para eficiencia
+
+Dowels (espigas de madera):
+- Espigas de madera para refuerzo
+- Colocar cada 10-15cm en juntas de panel
+- Pre-taladrar con broca del diametro exacto
+- Usar cola en las espigas
+- Dejar secar completamente
+
+
+===============================================================================
+## FASE 5: ACABADO
+===============================================================================
+
+### Lijado
+-----------
+
+Proceso de lijado:
+1. Lijado grueso (grano 80-100) - Solo para superficies muy irregulares
+2. Lijado medio (grano 120) - Para remover marcas de herramienta
+3. Lijado fino (grano 180) - Para preparar para acabado
+4. Lijado muy fino (grano 220) - Para acabados de alta calidad
+5. Lijado extra fino (grano 320-400) - Para pulir entre capas de barniz
+
+Herramientas de lijado:
+- Lijadora orbital: Para superficies planas
+- Lijadora de banda: Para lijado rapido y grueso
+- Lijadora de excentrica (DA): Para acabados finos
+- Lijador de mango (oscilante): Para areas reducidas
+- Bloque de lijado manual: Para bordes y detalles
+- Lija de mano: Para superficies curvas
+
+Consejos de lijado:
+- Siempre lijar en direccion de la veta
+- No aplicar presion excesiva (deja rayones circulares)
+- Cambiar lijada frecuentemente
+- Limpiar polvo entre granos
+- Usar mascarilla siempre (polvo de madera es cancerigeno)
+- Verificar superficie con luz rasante
+
+Lijado entre capas de acabado:
+- Despues de primera capa de barniz: grano 320
+- Despues de segunda capa: grano 400
+- Despues de tercera capa: grano 600 (si se desea brillo)
+- Limpiar polvo completamente entre capas
+
+### Manchado (Tinte)
+---------------------
+
+Tipos de tinte:
+- Tinte al agua: Facil de usar, secado rapido
+- Tinte al alcohol: Penetra mas profundo, color mas uniforme
+- Tinte a base de aceite: Secado lento, color intenso
+- Tinte gel: Control mas preciso, menos goteo
+- Tinte pigmentado: Cubre la veta, efecto opaco
+- Tinte transparente: Resalta la veta, efecto natural
+
+Proceso de manchado:
+1. Verificar que la superficie esta lijada y limpia
+2. Aplicar Pre-Stain conditioner en maderas blandas (pino, cedro)
+3. Mezclar tinte segun instrucciones
+4. Probar tinte en madera de descarte
+5. Aplicar tinte con pano, brocha o esponja
+6. Trabajar en secciones pequenas
+7. Retirar exceso segun intensidad deseada
+8. Dejar secar completamente (4-8 horas)
+9. Aplicar segunda capa si se desea color mas oscuro
+10. Aplicar acabado protector
+
+Problemas comunes de manchado:
+- Manchas desiguales: Usar Pre-Stain conditioner
+- Color muy oscuro: Lijar y reaplicar
+- Color muy claro: Aplicar segunda capa
+- Veta bloqueada: Usar tinte mas diluido
+- Gotas visibles: Trabajar mas rapido, eliminar exceso
+- Bordes de seccion: Trabajar en areas completas
+
+### Barnizado
+--------------
+
+Tipos de barniz:
+- Poliuretano al agua: Facil de usar, bajo olor, secado rapido
+- Poliuretano al solvente: Mas duradero, olor fuerte, secado lento
+- Lacas: Brillo alto, secado muy rapido, fragil
+- Shellac (gomalaca): Natural, historico, facil de reparar
+- Varnish marino: Resistente a agua y UV, para exteriores
+- Epoxi: Ultra duradero, para pisos y encimeras
+
+Proceso de barnizado:
+1. Verificar que la superficie esta lijada y limpia
+2. Aplicar sellador (sealer) si es necesario
+3. Diluir barniz segun fabricante (10-20%)
+4. Aplicar primera capa con brocha de pinceleta o rodillo de espuma
+5. Trabajar en direccion de la veta
+6. Dejar secar segun fabricante (2-4 horas para al agua)
+7. Lijar con grano 320 suavemente
+8. Limpiar polvo completamente
+9. Aplicar segunda capa
+10. Repetir lijado y tercera capa
+11. Opcional: Cuarta capa para areas de mucho uso
+12. Dejar curar completamente (72 horas a 30 dias)
+
+Errores comunes de barnizado:
+- Burbujas: Aplicar capas mas delgadas, no agitar
+- Goteo: Retocar inmediatamente, lijar y reaplicar
+- Lineas de pincel: Usar brocha de pinceleta, trabajar rapido
+- Zonas sin barniz: Retocar inmediatamente
+- Acabado opaco: Lijar y reaplicar
+- Secado lento: Verificar temperatura y humedad
+- Color amarillento: Usar barniz sin color o al agua
+
+Cepillado entre capas de barniz:
+- Lijar con grano 320 para adherencia
+- Quitar polvo con pano humedo y vacio
+- Dejar secar completamente
+- Aplicar siguiente capa
+
+### Pintura
+------------
+
+Tipos de pintura para madera:
+- Pintura al agua (latex): Facil de usar, bajo olor
+- Pintura al solvente: Mas durable, olor fuerte
+- Pintura esmalte: Alta resistencia, brillo variable
+- Pintura mate: Moderna, disimula imperfecciones
+- Pintura satinada: Balance entre brillo y mate
+- Pintura brillante: Facil de limpiar, muestra imperfecciones
+
+Proceso de pintura:
+1. Lijar superficie con grano 180
+2. Aplicar sellador de grano abierto (MDF, pino)
+3. Dejar secar sellador (4 horas)
+4. Lijar suavemente con grano 220
+5. Aplicar primera capa de pintura
+6. Dejar secar (2-4 horas)
+7. Lijar con grano 320
+8. Aplicar segunda capa
+9. Repetir lijado y tercera capa si es necesario
+10. Dejar curar completamente
+
+Materiales de pintura:
+- Rodillo de espuma (para superficies planas)
+- Brocha de pinceleta (para bordes y detalles)
+- Cinta de enmascarar (para areas limpias)
+- Bandeja de pintura
+- Espátula para relleno
+- Sellador de grano abierto
+- Diluyente segun tipo de pintura
+
+
+===============================================================================
+## FASE 6: CONTROL DE CALIDAD
+===============================================================================
+
+### Inspeccion en Proceso
+----------------------------
+
+Puntos de inspeccion:
+1. Despues del corte: Verificar dimensiones
+2. Despues del formado: Verificar perfiles
+3. Despues del ensamble: Verificar perpendicularidad
+4. Despues del lijado: Verificar suavidad
+5. Despues del acabado: Verificar uniformidad
+6. Antes de empaque: Revision final completa
+
+Criterios de aceptacion:
+- Dimensiones: ±1mm de tolerancia
+- Perpendicularidad: ±0.5 grados
+- Superficie: Sin rayones, manchas o defectos visibles
+- Acabado: Uniforme, sin burbujas ni goteos
+- Colgadura: Puertas y cajones alineados
+- Funcionamiento: Todo opera suavemente
+- Seguridad: Sin bordes filosos o puntas
+
+### Inspeccion Final
+-----------------------
+
+Checklist de inspeccion final:
+□ Dimensiones correctas segun plano
+□ Colgadura de puertas correcta
+□ Funcionamiento de cajones suave
+□ Alineacion de todas las piezas
+□ Acabado uniforme y sin defectos
+□ Sin rayones ni manchas
+□ Superficie lisa al tacto
+□ Juntas bien cerradas
+□ Sin cola visible
+□ Herrajes funcionando correctamente
+□ Pies nivelados
+□ Etiquetas de identificacion colocadas
+□ Instrucciones de cuidado incluidas
+□ Empaque adecuado para transporte
+
+### Pruebas de Funcionamiento
+-------------------------------
+
+Para mesas:
+- Estabilidad en superficie plana
+- No balanceo en esquinas
+- Resistencia a carga distribuida
+- Funcionamiento de mecanismo extensible
+
+Para sillas:
+- Estabilidad sentada
+- Resistencia a peso (100 kg minimo)
+- Funcionamiento de mecanismo regulable
+- Comodidad del asiento
+
+Para puertas:
+- Apertura y cierre suave
+- Alineacion con marco
+- Funcionamiento de cerradura
+- Ajuste de bisagras
+
+Para cajones:
+- Apertura suave y completa
+- Cierre suave (soft close si aplica)
+- Alineacion con estructura
+- Carga maxima sin deformacion
+
+Para closets:
+- Nivelacion general
+- Funcionamiento de puertas
+- Carga de estantes
+- Estabilidad general
+
+
+===============================================================================
+## FASE 7: EMPAQUE Y ENTREGA
+===============================================================================
+
+### Empaque
+-------------
+
+Materiales de empaque:
+- Papel kraft: Para envolver superficies
+- Plastico de burbujas: Para proteger bordes
+- Carton corrugado: Para proteccion rigida
+- Esquina de carton: Para esquinas vulnerables
+- Cinta de embalar: Para cerrar empaques
+- Etiquetas de fragile: Para indicar manipulacion
+- Poliestireno expandido: Para piezas delicadas
+- Madera contrachapada: Para embalaje pesado
+
+Protocolo de empaque:
+1. Limpiar la pieza completamente
+2. Envolver superficies con papel kraft
+3. Proteger bordes con plastico de burbujas
+4. Colocar esquinas de carton en esquinas
+5. Sellar con cinta de embalar
+6. Etiquetar con nombre del cliente
+7. Incluir instrucciones de cuidado
+8. Colocar en area de entrega
+
+### Transporte
+--------------
+
+Vehiculo recomendado:
+- Camioneta con base acolchada
+- Mantas gruesas para proteger
+- Correas de tension para asegurar
+- Herramientas basicas para ajustes
+- Numero de contacto del carpintero
+
+Protocolo de carga:
+1. Verificar que la pieza esta bien empaquetada
+2. Cargar con cuidado (2 personas minimas)
+3. Colocar base acolchada en el vehiculo
+4. Asegurar con correas (nunca apoyar contra paredes)
+5. No apilar piezas pesadas sobre delicadas
+6. Transportar lo mas plano posible
+7. Evitar choques y vibraciones excesivas
+
+Zonas de entrega:
+- Zona centro (Radio 5km): Incluido
+- Zona norte/sur/east/oreste (5-15km): $500 MXN
+- Zona foranea (15-30km): $1,000-$2,000 MXN
+- Otra ciudad: Cotizar por proyecto
+- Otra estado: No ofrecemos (recomendar distribuidor)
+
+### Instalacion
+----------------
+
+Servicio de instalacion incluido:
+- Puertas de entrada: Incluido en precio
+- Closets empotrados: Incluido
+- Cocinas: Incluido
+- Pisos: Incluido
+- Escaleras: Incluido
+- Ventanas: Incluido
+
+Servicio de instalacion con costo adicional:
+- Mesas de comedor: $800-$1,500 MXN
+- Sillas: $500-$1,000 MXN
+- Repisas: $400-$800 MXN
+- Estantes: $600-$1,200 MXN
+- Camas: $800-$1,500 MXN
+- Escritorios: $1,000-$2,000 MXN
+
+Proceso de instalacion:
+1. Coordinar fecha y hora con el cliente
+2. Llegar con herramientas y materiales necesarios
+3. Preparar el area de instalacion
+4. Verificar medidas en sitio
+5. Instalar componentes segun instrucciones
+6. Nivelar y ajustar piezas
+7. Limpiar area de trabajo
+8. Demostrar funcionamiento al cliente
+9. Recoger firmas de conformidad
+10. Dejar instrucciones de cuidado
+
+
+===============================================================================
+## FASE 8: CRONOGRAMAS DE FABRICACION
+===============================================================================
+
+### Tiempos Estimados por Producto
+------------------------------------
+
+Muebles pequenos:
+- Repisa flotante: 3-5 dias
+- Mesa de noche: 4-6 dias
+- Cajonera pequena: 5-8 dias
+- Mesa de centro: 5-8 dias
+
+Muebles medianos:
+- Mesa de comedor 6 personas: 10-15 dias
+- Escritorio basico: 12-16 dias
+- Librero 150cm: 12-16 dias
+- Silla de comedor (set 4): 8-12 dias
+
+Muebles grandes:
+- Mesa de comedor 8 personas: 15-22 dias
+- Escritorio ejecutivo: 18-22 dias
+- Armario completo: 22-30 dias
+- Cama king size: 22-28 dias
+- Mesa extensible: 22-28 dias
+
+Proyectos especiales:
+- Closets empotrados: 15-25 dias
+- Cocina integral: 25-40 dias
+- Escalera: 25-40 dias
+- Restauracion completa: Variable
+
+### Factores que Afectan el Tiempo
+-------------------------------------
+
+Factores de aumento:
+- Madera dura (roble, nogal, caoba): +30-50%
+- Acabado especial (pintura, multiple capas): +20-40%
+- Trazos tallados o detalles complejos: +30-60%
+- Diseno personalizado sin plantilla: +25-50%
+- Piezas muy grandes (requieren manejo especial): +20-30%
+- Combinacion de maderas: +15-25%
+- Mecanismos especiales (extensible, regulable): +20-40%
+- Entrega foranea: +1-3 dias
+
+Factores de reduccion:
+- Proyecto repetido (ya tenemos plantilla): -20-30%
+- Madera pre-cortada (proveedor): -10-20%
+- Acabado simple (1-2 capas): -10-20%
+- Diseno estandar sin modificacion: -15-25%
+- Piezas pequenas multiples (produccion en lote): -20-30%
+
+
+===============================================================================
+## FLUJO DE TRABAJO COMPLETO DE UN PROYECTO
+===============================================================================
+
+Ejemplo: Mesa de comedor para 6 personas en roble
+
+Dia 1-2: Consulta y diseño
+- Reunion con cliente (1 hora)
+- Mediciones en sitio (1 hora)
+- Boceto y diseno (4 horas)
+- Cotizacion al cliente (2 horas)
+- Aprobacion del cliente
+
+Dia 3-5: Seleccion de materiales
+- Compra de madera (1 dia)
+- Inspeccion y seleccion (2 horas)
+- aclimatacion en taller (2-3 dias)
+
+Dia 6-8: Corte y formado
+- Corte de piezas (3-4 horas)
+- Perfilado de bordes (2 horas)
+- Ranuras para ensamble (2 horas)
+
+Dia 9-10: Ensamble
+- Ensayo en seco (1 hora)
+- Encolado y ensamble (3 horas)
+- Secado de cola (24 horas)
+
+Dia 11-12: Lijado y preparacion
+- Lijado completo (4 horas)
+- Limpieza y preparacion (1 hora)
+
+Dia 13-14: Acabado
+- Primera capa de barniz (2 horas)
+- Secado (4 horas)
+- Lijado entre capas (1 hora)
+- Segunda capa (2 horas)
+- Secado (4 horas)
+
+Dia 15: Acabado final
+- Tercera capa de barniz (2 horas)
+- Secado (4 horas)
+- Revision final (1 hora)
+
+Dia 16-17: Entrega
+- Empaque (1 hora)
+- Transporte (1-2 horas)
+- Instalacion (1-2 horas)
+- Entrega al cliente
+
+Tiempo total: 17 dias habiles
+Costo estimado: $12,240 MXN (roble, acabado satinado)
+
+
+===============================================================================
+                    FIN DEL PROCESO DE FABRICACION
+===============================================================================

@@ -1,0 +1,828 @@
+===============================================================================
+                   GUIA COMPLETA DE INSTALACION DE MADERA
+===============================================================================
+
+Ultima actualizacion: 2026
+Version: 2.1
+Instrucciones detalladas para la instalacion profesional de productos de madera
+
+===============================================================================
+## INSTALACION DE PUERTAS
+===============================================================================
+
+### Mediciones Preliminares
+------------------------------
+
+Antes de instalar una puerta, verificar:
+- Ancho del vano (marco de la puerta): Medir en 3 puntos (arriba, medio, abajo)
+- Alto del vano: Medir en los 2 lados
+- Grosor de la pared: Medir en 4 puntos
+- Nivel del piso: Con nivel de burbuja
+- Plomo de la pared: Con nivel de plomo
+- Espacio para la hoja: 3mm de holgura por lado
+- Espacio en la parte superior: 5-8mm
+
+Herramientas necesarias:
+- Nivel de burbuja (60cm y 120cm)
+- Metro de carpintero
+- Cinta metrica
+- Lapiz de carpintero
+- Sierra circular o de inglete
+- Taladro con brocas
+- Destornillador
+- Formon
+- Calzo de madera
+- Clavos de 2 pulgadas
+- Tornillos de 3 pulgadas
+- Bisagras (4 por puerta minimo)
+- Chapa y cerradura
+
+### Instalacion de Marco
+---------------------------
+
+Proceso paso a paso:
+1. Verificar que el vano este libre de obstrucciones
+2. Colocar el marco en el vano
+3. Calzar con calzos de madera en la parte superior
+4. Verificar nivel en la parte superior
+5. Verificar plomo en los laterales
+6. Sujetar con clavos provisionales
+7. Verificar que la puerta cierre correctamente
+8. Perforar y colocar tornillos de fijacion
+9. Rellenar huecos con espuma de poliuretano
+10. Colocar molduras decorativas
+
+Calzos de instalacion:
+- Usar calzos de madera (nunca plastico para puertas pesadas)
+- Colocar calzos cada 40cm
+- No sobre-calzar (deformara el marco)
+- Retirar calzos provisionales despues de fijar
+
+Fijacion del marco:
+- Tornillos de 3 pulgadas (75mm) cada 40cm
+- Pre-taladrar para evitar grietas
+- Usar taladro atornillador para eficiencia
+- Verificar nivel despues de cada fijacion
+- No apretar en exceso (deformaria el marco)
+
+### Instalacion de Bisagras
+-------------------------------
+
+Tipos de bisagras:
+- Bisagra de 2 pulgadas (48mm): Para puertas ligeras
+- Bisagra de 3 pulgadas (76mm): Para puertas estandar
+- Bisagra de 3.5 pulgadas (89mm): Para puertas pesadas
+- Bisagra de 4 pulgadas (102mm): Para puertas de exterior
+
+Posicion de bisagras:
+- Bisagra superior: 15cm desde el borde superior
+- Bisagra inferior: 20cm desde el borde inferior
+- Bisagra central: A la mitad exacta
+- Para puertas pesadas: Agregar cuarta bisagra
+
+Proceso de instalacion de bisagra:
+1. Marcar posicion en el marco
+2. Tallar ranura con formon (profundidad del ala de la bisagra)
+3. Perforar para tornillos
+4. Fijar bisagra al marco con tornillos
+5. Marcar posicion correspondiente en la hoja
+6. Tallar ranura en la hoja
+7. Fijar bisagra a la hoja
+8. Verificar que la puerta cierre correctamente
+
+### Instalacion de Chapa y Cerradura
+--------------------------------------
+
+Componentes de la chapa:
+- Cilindro (llave): $150-$400 MXN
+- Placa de roseton: Incluida o $80-$200 MXN
+- Pestillo: Incluido con la chapa
+- Contrachapa (en el marco): Incluida
+
+Proceso de instalacion:
+1. Marcar altura de la chapa (90-100cm del piso)
+2. Taladrar agujero para el cilindro (broca de 22mm)
+3. Taladrar agujero para el pestillo (broca de 25mm)
+4. Cortar mortaja para el cuerpo de la chapa
+5. Insertar mecanismo de la chapa
+6. Fijar placas decorativas
+7. Instalar contrachapa en el marco
+8. Probar funcionamiento de llave y pestillo
+9. Ajustar si es necesario
+
+### Alineacion y Ajuste
+---------------------------
+
+Problemas comunes y soluciones:
+1. Puerta no cierra completamente:
+   - Verificar bisagras (ajustar)
+   - Verificar calzo del marco
+   - Lijar borde inferior si es necesario
+   - Verificar que el piso no este obstruyendo
+
+2. Puerta no se alinea con el marco:
+   - Ajustar tornillos de bisagra
+   - Verificar plomo del marco
+   - Agregar calzos si es necesario
+   - Ajustar con formon en areas de contacto
+
+3. Puerta cruje al abrir/cerrar:
+   - Aplicar lubricante en bisagras
+   - Verificar alineacion de bisagras
+   - Ajustar tornillos de bisagra
+   - Aplicar cera en el borde inferior
+
+4. Puerta no se cierra con llave:
+   - Verificar alineacion de pestillo con contrachapa
+   - Ajustar contrachapa
+   - Verificar que el cilindro este bien instalado
+   - Probar con otra llave
+
+### Puertas Corredizas
+------------------------
+
+Instalacion de sistema de riel:
+1. Marcar posicion del riel superior
+2. Instalar riel con tornillos (cada 30cm)
+3. Verificar nivel del riel
+4. Colocar carros en el riel
+5. Colocar tope en el riel
+6. Colocar guia inferior (si aplica)
+7. Colgar la puerta en los carros
+8. Ajustar altura con tornillos de reglaje
+9. Instalar tope suave (soft close)
+10. Probar funcionamiento
+
+Carga maxima del riel:
+- Riel basico: Hasta 40 kg
+- Riel reforzado: Hasta 80 kg
+- Riel industrial: Hasta 120 kg
+
+Ajustes de puerta corrediza:
+- Altura: Tornillo de reglaje en el carro
+- Horizontal: Tornillo de ajuste lateral
+- Velocidad: Regulador de soft close
+- Tope: Posicion del tope final
+
+
+===============================================================================
+## INSTALACION DE CLOSETS
+===============================================================================
+
+### Closet Empotrado (Built-in)
+---------------------------------
+
+Preparacion del espacio:
+1. Desmontar closet existente (si aplica)
+2. Reparar paredes y piso
+3. Verificar nivel del piso
+4. Verificar plomo de las paredes
+5. Marcar linea de referencia en el piso
+6. Preparar herramientas y materiales
+
+Instalacion paso a paso:
+1. Instalar paneles laterales (marcos)
+   - Posicionar panel lateral izquierdo
+   - Verificar plomo con nivel
+   - Sujetar con tornillos a la pared (cada 40cm)
+   - Repetir con panel derecho
+
+2. Instalar paneles superiores e inferiores
+   - Colocar base del closet (si aplica)
+   - Instalar panel superior
+   - Verificar nivel
+   - Sujetar con tornillos
+
+3. Instalar divisiones internas
+   - Colocar divisiones verticales
+   - Sujetar a paneles laterales y superior
+   - Verificar nivel y plomo
+
+4. Instalar repisas
+   - Marcar alturas deseadas
+   - Instalar soportes o perfiles
+   - Colocar repisas sobre soportes
+   - Verificar nivel
+
+5. Instalar tuberos para ropa
+   - Marcar altura (170-180cm)
+   - Instalar soportes de tubero
+   - Colocar tuberos (metal o madera)
+   - Verificar que cuelgan bien
+
+6. Instalar cajones (si aplica)
+   - Montar rieles de cajon
+   - Colocar cajones en rieles
+   - Ajustar funcionamiento
+   - Instalar frentes de cajon
+
+7. Instalar puertas
+   - Marcar posiciones de bisagras
+   - Instalar bisagras en marcos
+   - Colgar puertas
+   - Ajustar bisagras
+   - Instalar tiradores
+
+8. Instalar molduras y acabados
+   - Colocar rodapies
+   - Rellenar juntas con masilla
+   - Pintar o acabar segun especificacion
+
+### Walk-in Closet (Vestidor)
+-------------------------------
+
+Instalacion modular:
+1. Instalar sistema de tuberos en paredes
+   - Medir y marcar alturas
+   - Perforar y anclar a la pared
+   - Instalar soportes de tubero
+   - Colocar tuberos
+
+2. Instalar repisas superiores
+   - Marcar altura (180-200cm)
+   - Instalar soportes de consola
+   - Colocar repisas
+   - Verificar nivel
+
+3. Instalar cajoneras
+   - Posicionar cajoneras
+   - Nivelar con reglajes
+   - Fijar a pared si es necesario
+   - Instalar cajones
+
+4. Instalar isla central (si aplica)
+   - Posicionar isla
+   - Nivelar patas
+   - Fijar al piso (si es necesario)
+   - Instalar cajones y compartimentos
+
+5. Instalar iluminacion
+   - Cablear puntos de luz
+   - Instalar tiras LED (si aplica)
+   - Conectar a interruptor
+   - Probar funcionamiento
+
+6. Instalar accesorios
+   - Organizadores de joyeria
+   - Estantes para zapatos
+   - Cajas y compartimentos
+   - Espejos
+
+### Closet Modular
+--------------------
+
+Instalacion de sistema modular:
+1. Instalar paneles base en pared
+   - Marcar linea de referencia
+   - Instalar paneles con tornillos
+   - Verificar nivel
+
+2. Colocar modulos en posicion
+   - Empezar por esquina
+   - Conectar modulos entre si
+   - Nivelar cada modulo
+   - Fijar a pared
+
+3. Instalar accesorios de modulo
+   - Repisas
+   - Tuberos
+   - Cajones
+   - Organizadores
+
+4. Instalar puertas (si aplica)
+   - Bisagras de modulo
+   - Ajuste de alineacion
+   - Tiradores
+
+5. Instalar acabados
+   - Molduras de terminacion
+   - Relleno de juntas
+   - Pintura o acabado
+
+
+===============================================================================
+## INSTALACION DE COCINAS
+===============================================================================
+
+### Preparacion
+----------------
+
+Antes de instalar:
+1. Verificar que la plomeria este completa
+2. Verificar que la electricidad este completa
+3. Medir espacio para cada modulo
+4. Marcar lineas de referencia en pared y piso
+5. Verificar nivel del piso
+6. Retirar cocina existente (si aplica)
+7. Reparar paredes y piso
+8. Tener herramientas y materiales listos
+
+Herramientas especificas:
+- Nivel de 120cm
+- Taladro con brocas
+- Llave ajustable
+- Llave de tubo
+- Sierra circular
+- Cinta metrica
+- Lapiz de carpintero
+- Calzos de madera
+- Tornillos de 3 pulgadas
+- Anclajes para pared
+
+### Instalacion de Modulos Bajos
+----------------------------------
+
+Proceso paso a paso:
+1. Marcar linea de referencia en la pared
+   - Altura de instalacion: 85cm desde el piso
+   - Marcar con nivel y lapiz
+   - Verificar que sea nivelada
+
+2. Instalar riel de soporte (si aplica)
+   - Fijar riel a la pared con tornillos cada 30cm
+   - Verificar nivel del riel
+
+3. Colocar primer modulo
+   - Empezar por esquina (si hay modulo esquinero)
+   - Posicionar sobre calzos
+   - Verificar nivel
+   - Fijar a la pared con tornillos
+
+4. Colocar modulos siguientes
+   - Conectar entre si con tornillos
+   - Verificar nivel de cada modulo
+   - Fijar a la pared
+   - Ajustar altura con calzos
+
+5. Nivelar todos los modulos
+   - Verificar nivel en todas las direcciones
+   - Ajustar calzos segun sea necesario
+   - Apretar tornillos de fijacion
+
+6. Instalar patas
+   - Regular altura de patas
+   - Ajustar para nivel
+   - Fijar al piso (si es necesario)
+
+### Instalacion de Modulos Altos
+----------------------------------
+
+Proceso paso a paso:
+1. Marcar linea de referencia
+   - Altura sobre modulos bajos: 50-60cm
+   - Marcar con nivel
+
+2. Instalar riel de soporte (si aplica)
+   - Fijar riel a la pared
+   - Verificar nivel
+
+3. Colocar primer modulo
+   - Empezar por esquina
+   - Colgar del riel o fijar a la pared
+   - Verificar nivel
+
+4. Colocar modulos siguientes
+   - Conectar entre si
+   - Fijar a la pared
+   - Verificar nivel
+
+5. Verificar alineacion
+   - Todos los modulos deben estar alineados
+   - Ajustar si es necesario
+   - Fijar firmemente
+
+### Instalacion de Encimera
+------------------------------
+
+Preparacion:
+1. Verificar que todos los modulos estan nivelados
+2. Medir longitud exacta de encimera
+3. Verificar corte para fregadero y cooktop
+4. Preparar herramientas de corte
+
+Instalacion:
+1. Colocar encimera sobre modulos
+   - Con ayuda de 2 personas
+   - Posicionar con cuidado
+   - Verificar alineacion con pared
+
+2. Cortar para fregadero (si es necesario)
+   - Marcar area de corte
+   - Cortar con sierra circular
+   - Lijar bordes del corte
+
+3. Cortar para cooktop (si es necesario)
+   - Marcar area de corte
+   - Cortar con sierra circular
+   - Instalar soportes
+
+4. Fijar encimera a modulos
+   - Atornillar desde dentro de los modulos
+   - Usar tornillos de 2 pulgadas
+   - No perforar la encimera
+
+5. Instalar fregadero
+   - Aplicar silicona en el borde del corte
+   - Posicionar fregadero
+   - Apretar abrazaderas desde abajo
+   - Conectar plomeria
+
+6. Instalar backsplash (si aplica)
+   - Cortar a medida
+   - Aplicar silicona
+   - Fijar a la pared
+   - Rellenar juntas
+
+### Coordinacion con Plomeria
+-------------------------------
+
+Puntos de conexion:
+- Fregadero: Agua caliente y fria, desague
+- Lavavajillas: Agua caliente y fria, desague, electricidad
+- Refrigerador: Agua (si tiene dispensador), electricidad
+- Horno: Electricidad o gas
+- Estufa: Gas o electricidad
+- Microondas: Electricidad
+- Campana extractora: Electricidad y ventilacion
+
+Verificaciones:
+- Todas las conexiones deben estar completas antes de instalar
+- No forzar conexiones
+- Verificar fugas despues de conectar
+- Dejar acceso para mantenimiento futuro
+- No bloquear conexiones con modulos
+
+
+===============================================================================
+## INSTALACION DE PISOS DE MADERA
+===============================================================================
+
+### Preparacion del Subpiso
+-------------------------------
+
+Requisitos del subpiso:
+- Nivel: ±3mm en 3 metros
+- Limpio: Sin polvo, debris, o residuos
+- Seco: Humedad <12%
+- Firme: Sin flexion
+- Plano: Sin abolladuras ni protuberancias
+
+Procesos de preparacion:
+1. Limpieza completa
+   - Barrer y aspirar
+   - Retirar debris
+   - Limpiar con pano humedo
+
+2. Reparacion de subpiso
+   - Rellenar huecos con compound
+   - Lijar protuberancias
+   - Reparar areas danadas
+   - Verificar nivel
+
+3. Impermeabilizacion (si aplica)
+   - Aplicar membrana de polietileno
+   - Sobrelapar juntas 15cm
+   - Sellar con cinta
+   - Verificar cobertura completa
+
+4. Capa de amortiguacion (si aplica)
+   - Colocar underlayment
+   - Cortar a medida
+   - Sellar juntas con cinta
+   - Verificar plano
+
+### Aclimatacion de la Madera
+--------------------------------
+
+Tiempo de aclimatacion:
+- Piso laminado: 24-48 horas
+- Piso engineered: 48-72 horas
+- Piso macizo: 3-7 dias
+- Piso de bambu: 3-5 dias
+
+Proceso de aclimatacion:
+1. Abrir cajas de piso
+2. Colocar tablillas en area de instalacion
+3. Dejar expuestas a condiciones ambientales
+4. Verificar que no hayan deformaciones
+5. No instalar hasta completar aclimatacion
+
+Condiciones ambientales:
+- Temperatura: 18-27°C
+- Humedad: 40-55% HR
+- Ventilacion: Normal de la habitacion
+- Calefaccion/aire acondicionado: Encendido
+
+### Patrones de Instalacion
+-------------------------------
+
+Lineal recto:
+1. Empezar por la pared mas larga
+2. Colocar primera hilada con borde machiembrado hacia la pared
+3. Dejar holgura de 8-10mm en paredes
+4. Unir tablillas con click o pegamento
+5. Cortar ultima tablilla de cada hilada
+6. Alternar juntas entre hiladas
+
+Herradura (Parquet):
+1. Marcar centro de la habitacion
+2. Instalar tabla guia en centro
+3. Colocar tablas en angulo de 45 grados
+4. Cortar bordes en angulo
+5. Avanzar hacia afuera
+6. Completar con tablas de corte
+
+Espina de pez (Herringbone):
+1. Marcar lineas guia en el piso
+2. Empezar desde el centro
+3. Colocar tablas en angulo de 90 grados entre si
+4. Unir con machiembrado
+5. Avanzar en ambas direcciones
+6. Cortar bordes segun sea necesario
+
+### Herramientas de Instalacion
+---------------------------------
+
+Herramientas basicas:
+- Sierra circular o de inglete
+- Martillo de goma
+- Calzo de madera
+- Espaciador de 8-10mm
+- Metro de carpintero
+- Nivel de 60cm
+- Lapiz de carpintero
+- Sierra de calar (para cortes complejos)
+- Cinta de enmascarar
+- Rodillo de presion
+
+Herramientas avanzadas:
+- Lijadora orbital (para bordes)
+- Sierra de mesa (para cortes precisos)
+- Compresor con clavadora (para clavado)
+- Termometro infrared
+- Humedimetro
+
+### Mantenimiento Post-Instalacion
+------------------------------------
+
+Primeras 24 horas:
+- No caminar sobre el piso
+- No mover muebles
+- Mantener temperatura estable
+- No ventilar excesivamente
+
+Primeras 2 semanas:
+- Caminar con cuidado
+- No arrastrar muebles
+- No mojar el piso
+- Mantener temperatura estable
+
+Despues de 2 semanas:
+- Uso normal
+- Instalar protectores en patas de muebles
+- Colocar tapetes en entradas
+- Limpieza normal (ver guia de mantenimiento)
+
+
+===============================================================================
+## INSTALACION DE VENTANAS
+===============================================================================
+
+### Tipos de Instalacion
+---------------------------
+
+Reemplazo completo:
+- Retirar ventana existente
+- Reparar vano
+- Instalar nueva ventana
+- Sellar y aislar
+- Instalar molduras
+
+Instalacion nueva:
+- Verificar vano
+- Instalar marco
+- Instalar ventana
+- Sellar exterior
+- Sellar interior
+- Instalar molduras
+
+### Mediciones de Ventana
+---------------------------
+
+Medidas necesarias:
+- Ancho del vano (en 3 puntos)
+- Alto del vano (en 2 puntos)
+- Grosor de la pared (en 4 puntos)
+- Nivel del vano
+- Plomo del vano
+- Espacio para marco (3mm por lado)
+
+### Instalacion del Marco
+----------------------------
+
+Proceso:
+1. Verificar vano
+2. Colocar marco en vano
+3. Calzar con calzos
+4. Verificar nivel y plomo
+5. Fijar con tornillos cada 40cm
+6. Sellar con espuma de poliuretano
+7. Dejar curar espuma (24 horas)
+8. Cortar exceso de espuma
+9. Instalar molduras interiores
+10. Instalar molduras exteriores
+
+### Sellar y Aislar
+---------------------
+
+Sello exterior:
+- Masilla elastomerica (silicona)
+- Cinta de autoadhesivo
+- Espuma de poliuretano
+- Dejar ranura para drenaje
+
+Sello interior:
+- Masilla de silicona
+- Espuma de poliuretano
+- Cinta aislante
+- Relleno de juntas
+
+Aislamiento termico:
+- Espuma de poliuretano en juntas
+- Aislante de fiberglass
+- Cinta aislante
+- Burletes de goma
+
+### Verificaciones Post-Instalacion
+-------------------------------------
+
+Verificar:
+- □ Ventana abre y cierra correctamente
+- □ No hay fugas de agua
+- □ No hay corrientes de aire
+- □ Sello hermetico correcto
+- □ Molduras firmes y niveladas
+- □ Vidrio sin grietas
+- □ Herrajes funcionales
+- □ Pintura o acabado completo
+
+
+===============================================================================
+## INSTALACION DE ESCALERAS
+===============================================================================
+
+### Tipos de Instalacion
+---------------------------
+
+Nueva construccion:
+- Verificar estructura existente
+- Instalar caracol (stringers)
+- Instalar peldanos
+- Instalar barandal
+- Instalar pasamanos
+- Acabado final
+
+Reemplazo:
+- Retirar escalera existente
+- Reparar estructura
+- Instalar nuevos componentes
+- Acabado final
+
+### Instalacion de Caracol
+-----------------------------
+
+Tipos de caracol:
+- Caracol de madera (stringer solido)
+- Caracol de madera laminada
+- Caracol metalico (estructura)
+- Caracol central (mono-stringer)
+
+Proceso de instalacion:
+1. Marcar posiciones de caracol
+   - Marcar en pared y piso
+   - Verificar nivel y plomo
+   - Marcar altura de cada peldano
+
+2. Instalar caracol
+   - Posicionar caracol
+   - Fijar a estructura con tornillos
+   - Verificar nivel de cada peldaño
+   - Ajustar segun sea necesario
+
+3. Instalar peldanos
+   - Colocar peldanos en caracol
+   - Verificar que estan nivelados
+   - Fijar con tornillos
+   - Verificar altura de paso (18-20cm)
+
+4. Instalar barandal
+   - Fijar barandal a caracol y peldanos
+   - Verificar altura (90-100cm)
+   - Verificar resistencia
+   - Instalar balaustradas
+
+5. Instalar pasamanos
+   - Fijar pasamanos a barandal
+   - Verificar inclinacion
+   - Verificar altura
+   - Instalar terminales
+
+### Codigo de Construccion
+----------------------------
+
+Altura de peldano:
+- Maximo: 20cm (7.75")
+- Minimo: 12cm (4.75")
+- Recomendado: 17-18cm (6.75-7")
+
+Profundidad de huella:
+- Minimo: 25cm (10")
+- Recomendado: 28-30cm (11-12")
+
+Ancho de escalera:
+- Minimo: 80cm (32")
+- Recomendado: 90-100cm (36-40")
+
+Barandal:
+- Altura minima: 90cm (36")
+- Espacio entre balaustradas: Maximo 10cm (4")
+- Resistencia: 200 kg en cualquier punto
+
+Pasamanos:
+- Altura: 80-90cm (32-36")
+- Diametro: 3.5-4.5cm (1.5-2")
+- Debe ser continuo en toda la escalera
+
+### Seguridad en Instalacion
+-------------------------------
+
+Medidas de seguridad:
+- Usar casco de seguridad
+- Usar arnes si se trabaja en altura
+- Herramientas bien afiladas (herramientas rompientes son peligrosas)
+- Area de trabajo limpia y libre de obstaculos
+- Tener extintor cercano
+- No trabajar solo en proyectos de escalera
+- Verificar estructura antes de cargar peso
+- Seguir instrucciones del fabricante
+- Cumplir con codigos locales de construccion
+
+
+===============================================================================
+## HERRAMIENTAS DE INSTALACION RECOMENDADAS
+===============================================================================
+
+### Herramientas Basicas
+---------------------------
+
+- Nivel de burbuja (60cm y 120cm)
+- Metro de carpintero (3m y 5m)
+- Cinta metrica (8m)
+- Lapiz de carpintero
+- Sierra circular
+- Sierra de inglete
+- Taladro atornillador
+- Brocas para madera
+- Brocas para concreto
+- Destornilladores (set completo)
+- Martillo
+- Llave ajustable
+- Formon
+- Gubia
+- Cincel
+- Clavos y tornillos (varios tamaños)
+- Calzos de madera
+- Espaciadores
+- Cinta de enmascarar
+
+### Herramientas Avanzadas
+----------------------------
+
+- Compresor con clavadora
+- Sierra de mesa
+- Router
+- Lijadora orbital
+- Sierra de banda
+- Torno para muebles
+- Laser de nivelacion
+- Termometro infrared
+- Humedimetro
+- Multimetro electrico
+
+### Consumibles
+-----------------
+
+- Cola de carpintero (PVA)
+- Silicona (interior y exterior)
+- Espuma de poliuretano
+- Tornillos (varios tamaños)
+- Clavos (varios tamaños)
+- Anclajes para pared
+- Masilla de relleno
+- Cinta de autoadhesivo
+- Lija (varios granos)
+- Pintura o barniz
+
+===============================================================================
+                    FIN DE LA GUIA DE INSTALACION
+===============================================================================
