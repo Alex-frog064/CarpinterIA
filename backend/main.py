@@ -1,3 +1,8 @@
+import json
+import os
+import subprocess
+import sys
+
 from contextlib import asynccontextmanager
 from pathlib import Path
 
@@ -5,7 +10,7 @@ from typing import Annotated
 
 from fastapi import Depends, FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 
 from backend.auth_deps import get_current_user, require_admin
@@ -436,4 +441,54 @@ async def admin_delete_product_size(size_id: int, admin: dict = Depends(require_
     if not res.get("exito"):
         raise HTTPException(status_code=400, detail=res.get("mensaje"))
     return res
+
+
+# ── Evaluación ──────────────────────────────────────────────────────────────
+
+REPORT_PATH = Path(os.getenv("REPORT_PATH", str(Path(__file__).resolve().parent.parent / "reporte_evaluacion.pdf")))
+
+
+@app.post("/admin/evaluate")
+async def run_evaluation(admin: dict = Depends(require_admin)):
+    """Ejecuta el script de evaluación LLM-as-Judge y genera el PDF."""
+    import io
+    logs = []
+    try:
+        proc = subprocess.run(
+            [sys.executable, "scripts/evaluar_agente.py"],
+            capture_output=True,
+            text=True,
+            timeout=600,
+            cwd=str(Path(__file__).resolve().parent.parent),
+        )
+        logs = proc.stdout.splitlines()[-30:]
+        if proc.returncode != 0:
+            logs += proc.stderr.splitlines()[-20:]
+    except subprocess.TimeoutExpired:
+        return {"exito": False, "mensaje": "La evaluación tardó más de 10 minutos"}
+    except Exception as e:
+        return {"exito": False, "mensaje": f"Error: {e}"}
+
+    if not REPORT_PATH.exists():
+        return {"exito": False, "mensaje": "No se generó el PDF", "logs": logs}
+
+    return {
+        "exito": True,
+        "mensaje": "Evaluación completada",
+        "report_size_kb": round(REPORT_PATH.stat().st_size / 1024, 1),
+        "download_url": "/admin/evaluate/report",
+        "logs": logs,
+    }
+
+
+@app.get("/admin/evaluate/report")
+async def download_evaluation_report(admin: dict = Depends(require_admin)):
+    """Descarga el PDF del reporte de evaluación."""
+    if not REPORT_PATH.exists():
+        raise HTTPException(status_code=404, detail="No hay reporte disponible. Ejecuta /admin/evaluate primero.")
+    return FileResponse(
+        str(REPORT_PATH),
+        media_type="application/pdf",
+        filename="reporte_evaluacion.pdf",
+    )
 
