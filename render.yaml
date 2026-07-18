@@ -9,10 +9,8 @@ services:
       - key: OLLAMA_MODEL
         value: llama3:latest
       - key: DB_PATH
-        value: /data/carpinteria.db
+        value: /app/carpinteria.db
+      - key: REPORT_PATH
+        value: /app/reporte_evaluacion.pdf
     healthCheckPath: /health
     autoDeploy: true
-    disk:
-      name: carpinteria-data
-      mountPath: /data
-      sizeGB: 1
