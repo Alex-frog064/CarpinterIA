@@ -10,3 +10,4 @@ reporte_evaluacion.pdf
 node_modules/
 data/vector_store/documents.json
 data/vector_store/embeddings.pkl
+!.gitkeep
